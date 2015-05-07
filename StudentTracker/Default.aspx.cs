@@ -17,8 +17,6 @@ namespace StudentTracker
                 Response.Redirect("~/Admin");
             else if (Context.User.IsInRole("Instructor"))
                 Response.Redirect("~/Instructor");
-            else
-                Response.Redirect("~/");
         }
     }
 }
