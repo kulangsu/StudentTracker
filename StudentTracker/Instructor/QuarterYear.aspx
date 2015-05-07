@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Create Quarter Year" Language="C#" MasterPageFile="~/Instructor/Instructor.master" AutoEventWireup="true" CodeBehind="QuarterYear.aspx.cs" Inherits="StudentTracker.Instructor.QuarterYearCreate" %>
+﻿<%@ Page Title="Create Quarter Year" Language="C#" MasterPageFile="~/Instructor/Instructor.master" AutoEventWireup="true" CodeBehind="QuarterYear.aspx.cs" Inherits="StudentTracker.Instructor.QuarterYearClass" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="form-horizontal">

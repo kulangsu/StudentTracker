@@ -8,9 +8,9 @@ using System.Web.UI.WebControls;
 
 namespace StudentTracker.Instructor
 {
-    public partial class QuarterYearCreate : System.Web.UI.Page
+    public partial class QuarterYearClass : System.Web.UI.Page
     {
-        QuarterYearsDBContext db = new QuarterYearsDBContext();
+        StudentTrackerDBContext db = new StudentTrackerDBContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {

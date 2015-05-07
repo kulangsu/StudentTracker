@@ -10,16 +10,7 @@
 namespace StudentTracker.Instructor {
     
     
-    public partial class QuarterYearClass {
-        
-        /// <summary>
-        /// GridViewQuarterYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewQuarterYear;
+    public partial class CreateClass {
         
         /// <summary>
         /// ErrorMessage control.
@@ -31,30 +22,39 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.Literal ErrorMessage;
         
         /// <summary>
-        /// selectYear control.
+        /// GridViewClassList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList selectYear;
+        protected global::System.Web.UI.WebControls.GridView GridViewClassList;
         
         /// <summary>
-        /// selectQuarter control.
+        /// selectQuarterYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList selectQuarter;
+        protected global::System.Web.UI.WebControls.DropDownList selectQuarterYear;
         
         /// <summary>
-        /// btnQuarterYearCreate control.
+        /// ClassName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnQuarterYearCreate;
+        protected global::System.Web.UI.WebControls.TextBox ClassName;
+        
+        /// <summary>
+        /// btnClassCreate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClassCreate;
     }
 }
