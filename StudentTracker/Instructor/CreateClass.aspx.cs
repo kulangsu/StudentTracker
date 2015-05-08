@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 namespace StudentTracker.Instructor
 {
@@ -32,34 +33,56 @@ namespace StudentTracker.Instructor
                 selectQuarterYear.DataTextField = "_QrtYr";
                 selectQuarterYear.DataSource = qrtYearList;
                 selectQuarterYear.DataBind();
+
+                if(qrtYearList.Count == 0)
+                {
+                    ErrorMessage.Text = "No QuarterYear found for curreent year or next year. Quarter Year need to create before can create class.";
+                    btnClassCreate.Enabled = false;
+                    ClassListMessage.Text = "";
+                }
             }
+
+            ClassListMessage.Text = "lap to: "+User.Identity.GetUserId();
         }
 
         protected void CreateClass_Click(object sender, EventArgs e)
         {
             //quick check to see if Year & QuarterYear already exist
-//            var quarteryear = db.Courses
-//                              .Where(q => q.QuarterYearID == selectQuarterYear.SelectedIndex && q.Name.Equals(ClassName.Text))
-//                              .ToList();
+            var quarteryear = db.Courses
+                              .Where(q => q.QuarterYearID == selectQuarterYear.SelectedIndex && q.Name.Equals(ClassName.Text))
+                              .ToList();
 
-//            if (quarteryear.Count == 0)
-//            {
+            if (quarteryear.Count == 0)
+            {
                 //insert new quarteryear into database
                 var addClass = new Course
                 {
                     QuarterYearID = Convert.ToInt32(selectQuarterYear.SelectedValue),
-                    Name = ClassName.Text
+                    Name = ClassName.Text.Trim()
                 };
                 db.Courses.Add(addClass);
                 db.SaveChanges();
-                
+                int classID = addClass.ID;
+                if(classID > 0)
+                {
+                    var addClassToIntructor = new UsersCourse
+                    {
+                        CourseId = classID,
+                        UserId = User.Identity.GetUserId()
+                    };
+                    db.UsersCourses.Add(addClassToIntructor);
+                    classID = db.SaveChanges();
+                }
 
-                ErrorMessage.Text = "New Class created successful.";
-//            }
-//            else
-//            {
-//                ErrorMessage.Text = "Similar class entry already existed in database.";
-//            }            
+                if (classID > 0)
+                    ErrorMessage.Text += "New Class created successful.";
+                else
+                    ErrorMessage.Text += "System failed to insert new Class to database.";
+            }
+            else
+            {
+                ErrorMessage.Text = "Similar class entry already existed in database.";
+            }            
         }
     }
 }

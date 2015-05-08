@@ -12,6 +12,12 @@ namespace StudentTracker.Account
 {
     public partial class Register : Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (User.Identity.IsAuthenticated)
+                Response.Redirect("~/Default");
+        }
+
         protected void CreateUser_Click(object sender, EventArgs e)
         {
             // grab the context

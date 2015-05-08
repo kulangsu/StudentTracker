@@ -5,17 +5,11 @@
         <div class="row">
             <div class="col-md-offset-4 col-md-8">
                 <h2><%: Title %></h2>
-                <p>Select School Year and Quarter to create new entry</p>
+                <h4>Select School Year and Quarter to create new entry</h4>
             </div>
         </div>
     </div>
     <div class="form-horizontal">
-        <div class="row">
-            <div class="col-md-offset-4 col-md-6">
-                <asp:GridView ID="GridViewQuarterYear" runat="server" CssClass="table">
-                </asp:GridView>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-offset-4 col-md-8">
                 <asp:ValidationSummary runat="server" CssClass="text-danger" />
@@ -28,7 +22,7 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="selectYear" CssClass="col-md-4 control-label">School Year</asp:Label>
                 <div class="col-md-3">
-                    <asp:DropDownList ID="selectYear" runat="server" CssClass="form-control">
+                    <asp:DropDownList ID="selectYear" runat="server" CssClass="form-control" AutoPostBack="True">
                     </asp:DropDownList>
                 </div>
             </div>
@@ -47,6 +41,13 @@
                 <div class="col-md-offset-4 col-md-6">
                     <asp:Button ID="btnQuarterYearCreate" runat="server" OnClick="CreateQrtYear_Click" Text="Crate Quarter Year" CssClass="btn btn-primary" />
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4 col-md-7">
+                <h4>QuarterYear list below created for current and next year.</h4>
+                <asp:GridView ID="GridViewQuarterYear" runat="server" CssClass="table">
+                </asp:GridView>
             </div>
         </div>
     </div>

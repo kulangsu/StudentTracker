@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StudentTracker.Models;
 using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace StudentTracker.Models
 {
@@ -32,7 +33,12 @@ namespace StudentTracker.Models
         {
             return Task.FromResult(GenerateUserIdentity(manager));
         }
+
+        public virtual ICollection<Course> Courses { get; set; }
+
     }
+
+
 
     public class UserDbContext : IdentityDbContext<User>
     {
@@ -50,12 +56,18 @@ namespace StudentTracker.Models
         {
             base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
 
+
+
             modelBuilder.Entity<User>().ToTable("Users", "dbo").Property(p => p.Id).HasColumnName("UserId");
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles", "dbo");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "dbo");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims", "dbo").Property(p => p.Id).HasColumnName("UserClaimId");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles", "dbo").Property(p => p.Id).HasColumnName("RoleId");
             modelBuilder.Ignore<IdentityUser>();
+
+            //modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            //modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
     }
 }

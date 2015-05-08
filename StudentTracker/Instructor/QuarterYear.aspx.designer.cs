@@ -13,15 +13,6 @@ namespace StudentTracker.Instructor {
     public partial class QuarterYearClass {
         
         /// <summary>
-        /// GridViewQuarterYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewQuarterYear;
-        
-        /// <summary>
         /// ErrorMessage control.
         /// </summary>
         /// <remarks>
@@ -56,5 +47,14 @@ namespace StudentTracker.Instructor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnQuarterYearCreate;
+        
+        /// <summary>
+        /// GridViewQuarterYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewQuarterYear;
     }
 }

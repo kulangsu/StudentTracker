@@ -65,7 +65,7 @@ namespace StudentTracker.Instructor
                 db.SaveChanges();
                 
 
-                ErrorMessage.Text = "insert successful.";
+                ErrorMessage.Text = "Quarter Year inserted successful.";
             }
             else
             {
