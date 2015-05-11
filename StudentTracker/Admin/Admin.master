@@ -1,11 +1,24 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="StudentTracker.Admin.Admin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="row">
-        <div class="col-md-9">
+        <div class="row" style="margin-top:30px;">
+        <div class="col-md-9 body-border">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
         <div class="col-md-3">
-            <h3>Admin Control Panel</h3>
+            <div class="panel panel-primary" style="margin-top:30px;">
+                <div class="panel-heading">
+                    <span>Administrator Control Panel</span>
+                </div>
+
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
+                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
+                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
+                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
+                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
+                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
+                </ul>
+            </div>
         </div>
     </div>  
 </asp:Content>

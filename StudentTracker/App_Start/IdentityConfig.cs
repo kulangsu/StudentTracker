@@ -26,7 +26,10 @@ namespace StudentTracker
         {
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
-            myMessage.From = new System.Net.Mail.MailAddress("laptto@student.cascadia.edu", "Student Tracker");
+            //send copy to admin/staft who oversee this website, uncomment line below
+            myMessage.AddBcc(ConfigurationManager.AppSettings["adminAddress"]); //see web.config for configuration
+//            myMessage.From = new System.Net.Mail.MailAddress("fromEmail@domain.com", "From Name");
+            myMessage.From = new System.Net.Mail.MailAddress(ConfigurationManager.AppSettings["fromAddress"], ConfigurationManager.AppSettings["fromName"]);
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;

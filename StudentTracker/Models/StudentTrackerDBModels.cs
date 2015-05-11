@@ -43,6 +43,23 @@ namespace StudentTracker.Models
         public int CourseId { get; set; }
     }
 
+    //Course Prefix object
+    public class CoursePrefix
+    {
+        [Key]
+        public int PrefixID { get; set; }
+        public string PrefixName { get; set; }
+    }
+
+    //Course Number object
+    public class CourseNumber
+    {
+        [Key]
+        public int NumberID { get; set; }
+        public string Number { get; set; }
+        public int PrefixID { get; set; }
+    }
+
     /*
     public class YourNextTableHere
     {
@@ -65,6 +82,8 @@ namespace StudentTracker.Models
         public DbSet<QuarterYear> QuarterYears { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<UsersCourse> UsersCourses { get; set; }
+        public DbSet<CoursePrefix> CoursePrefixs { get; set; }
+        public DbSet<CourseNumber> CourseNumbers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

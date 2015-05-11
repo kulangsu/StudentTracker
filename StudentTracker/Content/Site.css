@@ -1,4 +1,8 @@
-﻿/* Move down content because we have a fixed navbar that is 50px tall */
+﻿html, body{
+    height:100%;
+    width:100%;
+}
+/* Move down content because we have a fixed navbar that is 50px tall */
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -45,3 +49,40 @@ footer{
 .cap_first_letter{
     text-transform:capitalize;
 }
+
+.panel-heading span{
+    font-size: 20px;
+}
+
+.body-border{
+    border: 1px solid #0026ff;
+    border-radius: 5px;
+}
+
+/*border Left,Bottom,Right*/
+.border_lbr{
+    height: 200px;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 25px 0px 15px 0px;
+    list-style: none;
+}
+
+.currentCourseList{
+    width:100%;
+    height:135px;
+    border: 2px solid #808080;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor:pointer;
+}
+
+.currentCourseList:hover{
+    background-color: #f7f7e9;
+    border: 4px solid #ff0000;
+}
+

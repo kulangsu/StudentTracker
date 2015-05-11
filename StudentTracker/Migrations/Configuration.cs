@@ -10,7 +10,6 @@ namespace StudentTracker.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "StudentTracker.Models.StudentTrackerDBContext";
         }
 
         protected override void Seed(StudentTracker.Models.StudentTrackerDBContext context)

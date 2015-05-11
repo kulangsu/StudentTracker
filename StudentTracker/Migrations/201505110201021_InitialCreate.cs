@@ -8,6 +8,25 @@ namespace StudentTracker.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.CourseNumbers",
+                c => new
+                    {
+                        NumberID = c.Int(nullable: false, identity: true),
+                        Number = c.String(),
+                        PrefixID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.NumberID);
+            
+            CreateTable(
+                "dbo.CoursePrefixes",
+                c => new
+                    {
+                        PrefixID = c.Int(nullable: false, identity: true),
+                        PrefixName = c.String(),
+                    })
+                .PrimaryKey(t => t.PrefixID);
+            
+            CreateTable(
                 "dbo.Courses",
                 c => new
                     {
@@ -29,14 +48,27 @@ namespace StudentTracker.Migrations
                     })
                 .PrimaryKey(t => t.ID);
             
+            CreateTable(
+                "dbo.UsersCourses",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        UserId = c.String(),
+                        CourseId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.Courses", "QuarterYearID", "dbo.QuarterYears");
             DropIndex("dbo.Courses", new[] { "QuarterYearID" });
+            DropTable("dbo.UsersCourses");
             DropTable("dbo.QuarterYears");
             DropTable("dbo.Courses");
+            DropTable("dbo.CoursePrefixes");
+            DropTable("dbo.CourseNumbers");
         }
     }
 }

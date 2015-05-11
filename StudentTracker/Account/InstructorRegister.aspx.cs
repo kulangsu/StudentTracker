@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using StudentTracker.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
 
 namespace StudentTracker.Account
 {
@@ -16,9 +17,18 @@ namespace StudentTracker.Account
         {
             // grab the context
             UserDbContext context = Context.GetOwinContext().Get<UserDbContext>();
+            ErrorMessage.Text = ""; //clear out previous message
 
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+
+            //verify instructor sceret code before register
+            string thisSecretCode = ConfigurationManager.AppSettings["registerSecretCode"];
+            if(!SecretCode.Text.Trim().Equals(thisSecretCode))
+            {
+                ErrorMessage.Text = "Secret Code is mismatch, please contact Administrator or Staft who oversee this Student Tracker.";
+                return;
+            }
             
             //force First and Last name first letter to Uppercase.
             string fName = FirstName.Text;
@@ -80,6 +90,9 @@ namespace StudentTracker.Account
                 {
                     ErrorMessage.Text = "New Account Successful Created:<br>An email has been sent to your account. Please view the email and confirm your account to complete the registration process.";
                     DisableAllField();
+
+                    //redirec to login page after 5 seconds delay
+                    Response.AddHeader("REFRESH", "5;URL=Login");
                 }
             }
             else 
@@ -91,6 +104,7 @@ namespace StudentTracker.Account
         //disable all field after sucess create new account
         protected void DisableAllField()
         {
+            SecretCode.Enabled = false;
             FirstName.Enabled = false;
             LastName.Enabled = false;
             SID.Enabled = false;

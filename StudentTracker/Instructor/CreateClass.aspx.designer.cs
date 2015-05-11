@@ -31,6 +31,33 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.DropDownList selectQuarterYear;
         
         /// <summary>
+        /// CourseArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CourseArea;
+        
+        /// <summary>
+        /// SqlCoursePrefixList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlCoursePrefixList;
+        
+        /// <summary>
+        /// CourseNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CourseNumber;
+        
+        /// <summary>
         /// ClassName control.
         /// </summary>
         /// <remarks>
@@ -58,22 +85,22 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.Literal ClassListMessage;
         
         /// <summary>
-        /// GridView1 control.
+        /// FullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Literal FullName;
         
         /// <summary>
-        /// SqlInstructtorCurrentClass control.
+        /// GridViewInstructorClassList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlInstructtorCurrentClass;
+        protected global::System.Web.UI.WebControls.GridView GridViewInstructorClassList;
         
         /// <summary>
         /// GridViewClassList control.

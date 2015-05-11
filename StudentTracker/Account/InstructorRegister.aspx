@@ -8,6 +8,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="SecretCode" CssClass="col-md-5 control-label">Secret Code</asp:Label>
+                    <div class="col-md-6">
+                        <asp:TextBox runat="server" ID="SecretCode" CssClass="form-control" placeholder="Secret Code is required to Register" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="SecretCode"
+                            CssClass="text-danger" ErrorMessage="Secret Code field is required.<br>Secret code can be often from Administrator or Staft." Display="Dynamic" />
+                    </div>
+                </div>
+                <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="SID" CssClass="col-md-5 control-label">Employee ID</asp:Label>
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="SID" CssClass="form-control" placeholder="Enter 9-digits Employee ID" />
@@ -82,7 +90,7 @@
                 <div class="col-md-6">
                     <asp:ValidationSummary runat="server" CssClass="text-danger" />
                     <p class="text-danger">
-                    <asp:Literal runat="server" ID="ErrorMessage" />
+                        <asp:Literal runat="server" ID="ErrorMessage" />
                     </p>
                 </div>
             </div>

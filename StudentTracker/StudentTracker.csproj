@@ -232,6 +232,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -479,13 +480,9 @@
     <Compile Include="Instructor\QuarterYear.aspx.designer.cs">
       <DependentUpon>QuarterYear.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505072220587_InitialCreate.cs" />
-    <Compile Include="Migrations\201505072220587_InitialCreate.Designer.cs">
-      <DependentUpon>201505072220587_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505080536345_Initial.cs" />
-    <Compile Include="Migrations\201505080536345_Initial.Designer.cs">
-      <DependentUpon>201505080536345_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201505110201021_InitialCreate.cs" />
+    <Compile Include="Migrations\201505110201021_InitialCreate.Designer.cs">
+      <DependentUpon>201505110201021_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -532,11 +529,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505072220587_InitialCreate.resx">
-      <DependentUpon>201505072220587_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505080536345_Initial.resx">
-      <DependentUpon>201505080536345_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505110201021_InitialCreate.resx">
+      <DependentUpon>201505110201021_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
