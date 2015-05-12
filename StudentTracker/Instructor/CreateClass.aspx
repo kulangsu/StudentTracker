@@ -56,8 +56,9 @@
                 <asp:Literal runat="server" ID="ClassListMessage" />
             </h4>
         </div>
-        <div class="col-md-offset-3 col-md-7">
-            <h4>Courses List Link To: <asp:Literal runat="server" ID="FullName" /></h4>
+        <div class="col-md-offset-2 col-md-9">
+            <h4>Courses Link To:
+                <asp:Literal runat="server" ID="FullName" /></h4>
             <asp:GridView ID="GridViewInstructorClassList" runat="server" CssClass="table" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="CourseID" HeaderText="Course ID" InsertVisible="False" ReadOnly="True" SortExpression="CourseID" />
@@ -67,19 +68,17 @@
                 </Columns>
             </asp:GridView>
         </div>
-        <div class="col-md-offset-3 col-md-7">
-            <h4>All Courses list below created for current selected quarter.</h4>
-            <asp:GridView ID="GridViewClassList" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlClassListAdded">
+        <div class="col-md-offset-2 col-md-9">
+            <h4>All Courses below link to other Instructors:</h4>
+            <asp:GridView ID="GridViewClassList" runat="server" CssClass="table" AutoGenerateColumns="false">
                 <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="Course ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
-                    <asp:BoundField DataField="Name" HeaderText="Course Name" SortExpression="Name" />
+                    <asp:BoundField DataField="CourseID" HeaderText="Course ID" SortExpression="CourseID" />
+                    <asp:BoundField DataField="FullName" HeaderText="Instructor" SortExpression="FullName" />
+                    <asp:BoundField DataField="Year" HeaderText="Year" SortExpression="Year" />
+                    <asp:BoundField DataField="Quarter" HeaderText="Quarter" SortExpression="Quarter" />
+                    <asp:BoundField DataField="CourseName" HeaderText="Course Name" SortExpression="CourseName" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlClassListAdded" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>" SelectCommand="SELECT [ID], [Name] FROM [Courses] WHERE ([QuarterYearID] = @QuarterYearID)">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="selectQuarterYear" Name="QuarterYearID" PropertyName="SelectedValue" Type="Int32" />
-                </SelectParameters>
-            </asp:SqlDataSource>
         </div>
     </div>
 

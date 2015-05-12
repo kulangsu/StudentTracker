@@ -73,7 +73,7 @@ namespace StudentTracker
         {
             if (Context.User.Identity.IsAuthenticated)
             {
-                var manager = new UserManager<User>(new UserStore<User>(new UserDbContext()));
+                var manager = new UserManager<User>(new UserStore<User>(new StudentTrackerDBContext()));
                 var currentUser = manager.FindById(Context.User.Identity.GetUserId());
 
                 string fName = currentUser.FirstName;

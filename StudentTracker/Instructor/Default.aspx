@@ -45,8 +45,8 @@
                         <div class="col-md-6">
                             <div class="currentCourseList">
                                 <a href="#">
-                                    <div style="width: 100%; float: left"><%#Eval("Year") %> - <%#Eval("Quarter") %></div>
-                                    <div style="width: 100%; float: left"><%#Eval("CourseName") %></div>
+                                    <div style="width: 100%; float: left; font-weight: bold;"><%#Eval("Year") %> - <%#Eval("Quarter") %></div>
+                                    <div style="width: 100%; float: left; font-weight: bold;"><%#Eval("CourseName") %></div>
                                     <div style="width: 45%; float: left" title="Student Enrolled In This Class">Enrollment: (00)</div>
                                     <div style="width: 45%; float: right" title="Number of Assignment">Assignment: (00)</div>
                                     <div style="width: 45%; float: left" title="Number of Project">Projects: (00)</div>

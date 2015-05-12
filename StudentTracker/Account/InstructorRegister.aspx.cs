@@ -16,7 +16,7 @@ namespace StudentTracker.Account
         protected void CreateInstructorUser_Click(object sender, EventArgs e)
         {
             // grab the context
-            UserDbContext context = Context.GetOwinContext().Get<UserDbContext>();
+            StudentTrackerDBContext context = Context.GetOwinContext().Get<StudentTrackerDBContext>();
             ErrorMessage.Text = ""; //clear out previous message
 
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();

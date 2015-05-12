@@ -110,14 +110,5 @@ namespace StudentTracker.Instructor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewClassList;
-        
-        /// <summary>
-        /// SqlClassListAdded control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlClassListAdded;
     }
 }

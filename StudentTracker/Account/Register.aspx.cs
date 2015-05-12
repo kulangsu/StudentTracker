@@ -21,7 +21,7 @@ namespace StudentTracker.Account
         protected void CreateUser_Click(object sender, EventArgs e)
         {
             // grab the context
-            UserDbContext context = Context.GetOwinContext().Get<UserDbContext>();
+            StudentTrackerDBContext context = Context.GetOwinContext().Get<StudentTrackerDBContext>();
 
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();

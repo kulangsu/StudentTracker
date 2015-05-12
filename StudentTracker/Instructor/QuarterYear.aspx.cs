@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace StudentTracker.Instructor
 {
@@ -24,7 +26,6 @@ namespace StudentTracker.Instructor
             }
             //loading quarter year from database to gridview
             var yrArr = new int[] { yr, yr + 1 };
-
             var qrtYearList = db.QuarterYears
                 .Where(c => yrArr.Contains(c.Year))
                 .OrderByDescending(c => c.Year)

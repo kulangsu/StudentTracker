@@ -13,7 +13,6 @@ namespace StudentTracker.Instructor
     public partial class CreateClass : System.Web.UI.Page
     {
         StudentTrackerDBContext db = new StudentTrackerDBContext();
-        UserDbContext dbUser = new UserDbContext();
         protected void Page_Load(object sender, EventArgs e)
         {
             int yr = DateTime.Now.Year;
@@ -44,19 +43,49 @@ namespace StudentTracker.Instructor
 
                 //load Classes List that link to Instructor
                 LoadInstructorClassList(StringQuarterYear());
+                LoadAllInstructorClassList(StringQuarterYear());
 
                 //loading default course number
                 int BIT = 1;
                 LoadCourseNumber(BIT);
 
                 //get User full name
-                var manager = new UserManager<User>(new UserStore<User>(new UserDbContext()));
+                var manager = new UserManager<User>(new UserStore<User>(new StudentTrackerDBContext()));
                 var currentUser = manager.FindById(Context.User.Identity.GetUserId());
                 FullName.Text = currentUser.FirstName + ", "+currentUser.LastName;
             }
         }
 
+        //load All Classes List that link to ALL Instructors
+        //per Quarter Year selected
+        protected void LoadAllInstructorClassList(string qrt)
+        {
+            int yr = DateTime.Now.Year;
+            var yrArr = new int[] { yr, yr + 1 };
+            string userID = User.Identity.GetUserId();
+            var CourseLists = db.UsersCourses
+                .Join(db.Courses, c => c.CourseId, cm => cm.ID, (c, cm) => new { c, cm })
+                .Join(db.QuarterYears, q => q.cm.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
+                .Where(w => w.qm.Quarter.Equals(qrt) && !w.q.c.UserId.Equals(userID))
+                .OrderByDescending(q => q.q.cm.Name)
+                .Select(i => new {i.q.c.UserId, CourseID = i.q.cm.ID, CourseName = i.q.cm.Name, Year = i.qm.Year, Quarter = i.qm.Quarter });
+
+
+            var list = (from u in db.Users
+                        join a in CourseLists on u.Id equals a.UserId
+                        select new { a.CourseID, FullName = u.FirstName + " " + u.LastName, a.Year, a.Quarter, a.CourseName }
+                       ).ToList();
+            /*
+                        .Join(CourseLists, a => a.Id, am => am.userID, (a, am) => new { a, am })
+                        .Select(s => new { FullName = s.a.FirstName + " " + s.a.LastName, CourseID = s.am.CourseID, CourseName = s.am.CourseName, Year = s.am.Year, Quarter=s.am.Quarter })
+                        .ToList(); */
+
+            GridViewClassList.DataSource = list;
+            GridViewClassList.DataBind();
+        }
+
         //load Classes List that link to Instructore
+        //per Quarter Year selected
         protected void LoadInstructorClassList(string qrt)
         {
             int yr = DateTime.Now.Year;
@@ -152,6 +181,7 @@ namespace StudentTracker.Instructor
             string qrt = selectQuarterYear.SelectedItem.Text;
             string[] temp = qrt.Split('-');
             LoadInstructorClassList(temp[1].Trim());
+            LoadAllInstructorClassList(temp[1].Trim());
         }
 
         protected void CourseArea_SelectedIndexChanged(object sender, EventArgs e)

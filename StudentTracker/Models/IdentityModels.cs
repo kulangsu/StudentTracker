@@ -9,6 +9,7 @@ using Microsoft.Owin.Security;
 using StudentTracker.Models;
 using System.Data.Entity;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudentTracker.Models
 {
@@ -38,8 +39,119 @@ namespace StudentTracker.Models
 
     }
 
+    //definition Quarter Year table
+    public class QuarterYear
+    {
+        [Key]
+        public int ID { get; set; }
+        public int Year { get; set; }
+        public string Quarter { get; set; }
 
+        public virtual ICollection<Course> Courses { get; set; }
+    }
 
+    //definition Classes table
+    public class Course
+    {
+        [Key]
+        public int ID { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public int QuarterYearID { get; set; }
+        public virtual QuarterYear QuarterYear { get; set; }
+
+        //public virtual ICollection<User> Users { get; set; }
+
+    }
+
+    public class UsersCourse
+    {
+        [Key]
+        public int ID { get; set; }
+        public string UserId { get; set; }
+        public int CourseId { get; set; }
+    }
+
+    //Course Prefix object
+    public class CoursePrefix
+    {
+        [Key]
+        public int PrefixID { get; set; }
+        public string PrefixName { get; set; }
+    }
+
+    //Course Number object
+    public class CourseNumber
+    {
+        [Key]
+        public int NumberID { get; set; }
+        public string Number { get; set; }
+        public int PrefixID { get; set; }
+    }
+
+    /*
+    public class YourNextTableHere
+    {
+        [Key]
+        public int ID { get; set; }
+        public datatype name { get; set; }
+      
+        //any FK or one-many or many-many relationship below here
+        public virtual NextTableName TableName { get; set; }
+    }
+    */
+
+    //Database connection EF code first
+    public class StudentTrackerDBContext : IdentityDbContext<User>
+    {
+        public StudentTrackerDBContext()
+            : base("dbStudentTracker")
+        {
+        }
+
+        public static StudentTrackerDBContext Create()
+        {
+            return new StudentTrackerDBContext();
+        }
+
+        //add more DbSet table below here inside this class
+        public DbSet<QuarterYear> QuarterYears { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<UsersCourse> UsersCourses { get; set; }
+        public DbSet<CoursePrefix> CoursePrefixs { get; set; }
+        public DbSet<CourseNumber> CourseNumbers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
+
+            //configure model with fluent API
+            modelBuilder.Entity<Course>().HasRequired(q => q.QuarterYear).WithMany(c => c.Courses).HasForeignKey(c => c.QuarterYearID);
+
+            modelBuilder.Entity<User>().ToTable("Users", "dbo").Property(p => p.Id).HasColumnName("UserId");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles", "dbo");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "dbo");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims", "dbo").Property(p => p.Id).HasColumnName("UserClaimId");
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles", "dbo").Property(p => p.Id).HasColumnName("RoleId");
+            modelBuilder.Ignore<IdentityUser>();
+            /*
+            //create many-to-many relationship between Instructor and Course
+            modelBuilder.Entity<Course>().
+              HasMany(u => u.Users).
+              WithMany(c => c.Courses).
+              Map(
+               m =>
+               {
+                   m.MapLeftKey("UserId");
+                   m.MapRightKey("ID");
+                   m.ToTable("UsersCourses");
+               });
+            */
+        }
+    }
+    /*
     public class UserDbContext : IdentityDbContext<User>
     {
         public UserDbContext()
@@ -69,7 +181,7 @@ namespace StudentTracker.Models
             //modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
             //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
-    }
+    }*/
 }
 
 #region Helpers
