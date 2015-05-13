@@ -13,6 +13,7 @@ namespace StudentTracker
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
+            settings.AutoRedirectMode = RedirectMode.Off;
         }
     }
 }

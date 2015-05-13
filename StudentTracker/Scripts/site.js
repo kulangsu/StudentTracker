@@ -1,3 +1,4 @@
 ﻿$(document).ready(function () {
-    //alert("hello world");
+    //auto completed textbox when type
+
 });

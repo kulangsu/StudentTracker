@@ -6,11 +6,14 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using StudentTracker.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Linq;
 
 namespace StudentTracker.Account
 {
     public partial class Login : Page
     {
+        StudentTrackerDBContext db = new StudentTrackerDBContext();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
@@ -57,6 +60,7 @@ namespace StudentTracker.Account
                         switch (result)
                         {
                             case SignInStatus.Success:
+                                UpdateLastLogin();
                                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                                 //Response.Redirect("~/");
                                 break;
@@ -80,6 +84,17 @@ namespace StudentTracker.Account
             }
         }
 
+        //update user last login date time
+        protected void UpdateLastLogin()
+        {
+            var updateLogin = db.Users.SingleOrDefault(u => u.Email == Email.Text.Trim());
+            if (updateLogin != null)
+            {
+                updateLogin.LastLogin = System.DateTime.Now;
+                db.SaveChanges();
+            }
+        }
+
         protected void SendEmailConfirmationToken(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -97,6 +112,11 @@ namespace StudentTracker.Account
                     ResendConfirm.Visible = false;
                 }
             }
+        }
+
+        protected void Email_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

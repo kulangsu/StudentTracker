@@ -76,16 +76,14 @@ footer{
 .currentCourseList{
     margin: 10px 0 5px 0;
     width:100%;
-    height:135px;
-    border: 2px solid #808080;
+    height:165px;
+    border: 2px solid #0000ff;
     padding: 10px;
     border-radius: 10px;
     font-size: 16px;
-    cursor:pointer;
 }
 
 .currentCourseList:hover{
     background-color: #f7f7e9;
-    border: 4px solid #ff0000;
+    border: 2px solid #ff0000;
 }
-

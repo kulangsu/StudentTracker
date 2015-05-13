@@ -20,6 +20,7 @@ namespace StudentTracker.Account
 
         protected void CreateUser_Click(object sender, EventArgs e)
         {
+            ErrorMessage.Text = ""; //clear error message
             // grab the context
             StudentTrackerDBContext context = Context.GetOwinContext().Get<StudentTrackerDBContext>();
 
@@ -32,8 +33,16 @@ namespace StudentTracker.Account
             string lName = LastName.Text;
             lName = char.ToUpper(lName[0]) + lName.Substring(1);
 
-            
-            
+            //need to create store procedure to check make sure only 1 valid SID or EID.
+            //check SID and Email and EmailConfirmed = True
+            int thisSID = Convert.ToInt32(SID.Text.Trim());
+            var isSID = context.Users.Where(u => u.SID == thisSID).ToList();
+            if(isSID.Count > 0)
+            {
+                ErrorMessage.Text = "Student ID (SID) is already registered in database or invalid.";
+                return; //exist Student ID SID found
+            }
+
             //built new user information
             var user = new User
             {
@@ -46,14 +55,6 @@ namespace StudentTracker.Account
                 CreatedDate = System.DateTime.Now,
                 LastLogin = System.DateTime.Now
             };
-
-            //need to create store procedure to check make sure only 1 valid SID or EID.
-            //check SID and Email and EmailConfirmed = True
-
-            /*
-             * code go here
-             * 
-             */
 
             IdentityResult result = manager.Create(user, Password.Text);
             
@@ -88,6 +89,9 @@ namespace StudentTracker.Account
                 {
                     ErrorMessage.Text = "New Account Successful Created:<br>An email has been sent to your account. Please view the email and confirm your account to complete the registration process.";
                     DisableAllField();
+
+                    //redirect user to Login page after 5seconds
+                    Response.AddHeader("REFRESH", "5;URL=Login");
                 }
             }
             else 

@@ -1,6 +1,31 @@
 ﻿<%@ Page Title="Create New Class" Language="C#" MasterPageFile="~/Instructor/Instructor.master" AutoEventWireup="true" CodeBehind="CreateClass.aspx.cs" Inherits="StudentTracker.Instructor.CreateClass" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <style> .ui-autocomplete { font-size:11px; text-align:left; } </style>
+       <script lang="javascript" type="text/javascript">
+            $(document).ready(function () {
+                //auto completed textbox when type
+                $('#<%=ClassName.ClientID%>').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../AjaxController.aspx/GetCourseList",
+                        data: "{ 'pre':'" + request.term + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            response($.map(data.d, function (item) {
+                                return { value: item }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(textStatus);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
     <div class="form-horizontal">
         <div class="row">
             <div class="col-md-offset-3 col-md-8">
@@ -38,7 +63,7 @@
                     <asp:DropDownList ID="CourseNumber" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="ClassName" CssClass="form-control cap_first_letter" />
+                    <asp:TextBox runat="server" ID="ClassName" CssClass="form-control cap_first_letter textboxAuto" />                     
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="ClassName"
                         CssClass="text-danger" ErrorMessage="Class Name field is required." Display="Dynamic" />
                 </div>
@@ -66,6 +91,9 @@
                     <asp:BoundField DataField="Quarter" HeaderText="Quarter" SortExpression="Quarter" />
                     <asp:BoundField DataField="CourseName" HeaderText="Course Name" SortExpression="CourseName" />
                 </Columns>
+                <EmptyDataTemplate>
+                    <h4 class="text-danger">No Class found from selected quarter.</h4>
+                </EmptyDataTemplate>
             </asp:GridView>
         </div>
         <div class="col-md-offset-2 col-md-9">
@@ -78,6 +106,9 @@
                     <asp:BoundField DataField="Quarter" HeaderText="Quarter" SortExpression="Quarter" />
                     <asp:BoundField DataField="CourseName" HeaderText="Course Name" SortExpression="CourseName" />
                 </Columns>
+                <EmptyDataTemplate>
+                    <h4 class="text-danger">No Class found from selected quarter.</h4>
+                </EmptyDataTemplate>                
             </asp:GridView>
         </div>
     </div>
