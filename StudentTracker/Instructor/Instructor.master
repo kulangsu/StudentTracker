@@ -14,9 +14,9 @@
                 <ul class="list-group">
                     <li class="list-group-item"><a href="QuarterYear">Create Quarter Year</a></li>
                     <li class="list-group-item"><a href="CreateClass">Create Class</a></li>
-                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
-                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
-                    <li class="list-group-item"><a href="#">Next Link Here</a></li>
+                    <li class="list-group-item"><a href="Homework">Homework</a></li>
+                    <li class="list-group-item"><a href="AddHomework">Add Homework</a></li>
+                    <li class="list-group-item"><a href="EditHomework">Edit Homework</a></li>
                     <li class="list-group-item"><a href="#">Next Link Here</a></li>
                 </ul>
             </div>

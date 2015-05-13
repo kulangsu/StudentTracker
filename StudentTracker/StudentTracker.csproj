@@ -207,8 +207,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Icon.png" />
+    <Content Include="Instructor\AddHomework.aspx" />
     <Content Include="Instructor\Default.aspx" />
     <Content Include="Instructor\CreateClass.aspx" />
+    <Content Include="Instructor\EditHomework.aspx" />
+    <Content Include="Instructor\Homework.aspx" />
     <Content Include="Instructor\QuarterYear.aspx" />
     <Content Include="packages.config" />
     <Content Include="Account\Web.config" />
@@ -445,12 +448,33 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Instructor\AddHomework.aspx.cs">
+      <DependentUpon>AddHomework.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Instructor\AddHomework.aspx.designer.cs">
+      <DependentUpon>AddHomework.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Instructor\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Instructor\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor\EditHomework.aspx.cs">
+      <DependentUpon>EditHomework.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Instructor\EditHomework.aspx.designer.cs">
+      <DependentUpon>EditHomework.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor\Homework.aspx.cs">
+      <DependentUpon>Homework.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Instructor\Homework.aspx.designer.cs">
+      <DependentUpon>Homework.aspx</DependentUpon>
     </Compile>
     <Compile Include="Instructor\Instructor.master.cs">
       <DependentUpon>Instructor.master</DependentUpon>
