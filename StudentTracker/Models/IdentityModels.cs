@@ -35,8 +35,6 @@ namespace StudentTracker.Models
             return Task.FromResult(GenerateUserIdentity(manager));
         }
 
-        public virtual ICollection<Course> Courses { get; set; }
-
     }
 
     //definition Quarter Year table

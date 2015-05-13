@@ -280,6 +280,7 @@
     <Content Include="Instructor\Instructor.master" />
     <Content Include="Admin\Admin.master" />
     <Content Include="Instructor\InstructorClass.master" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -605,6 +606,9 @@
     <EmbeddedResource Include="Migrations\201505110201021_InitialCreate.resx">
       <DependentUpon>201505110201021_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
