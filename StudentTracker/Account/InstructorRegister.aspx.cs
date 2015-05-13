@@ -23,13 +23,24 @@ namespace StudentTracker.Account
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
 
             //verify instructor sceret code before register
+            //secret code can be found in web.config
             string thisSecretCode = ConfigurationManager.AppSettings["registerSecretCode"];
             if(!SecretCode.Text.Trim().Equals(thisSecretCode))
             {
                 ErrorMessage.Text = "Secret Code is mismatch, please contact Administrator or Staft who oversee this Student Tracker.";
                 return;
             }
-            
+
+            //need to create store procedure to check make sure only 1 valid SID or EID.
+            //check SID and Email and EmailConfirmed = True
+            int thisSID = Convert.ToInt32(SID.Text.Trim());
+            var isSID = context.Users.Where(u => u.SID == thisSID).ToList();
+            if (isSID.Count > 0)
+            {
+                ErrorMessage.Text = "Employee ID (EID) is already registered in database or invalid.";
+                return; //exist Student ID SID found
+            }
+
             //force First and Last name first letter to Uppercase.
             string fName = FirstName.Text;
             fName = char.ToUpper(fName[0]) + fName.Substring(1);
@@ -48,14 +59,6 @@ namespace StudentTracker.Account
                 CreatedDate = System.DateTime.Now,
                 LastLogin = System.DateTime.Now
             };
-
-            //need to create store procedure to check make sure only 1 valid SID or EID.
-            //check SID and Email and EmailConfirmed = True
-
-            /*
-             * code go here
-             * 
-             */
 
             IdentityResult result = manager.Create(user, Password.Text);
             
