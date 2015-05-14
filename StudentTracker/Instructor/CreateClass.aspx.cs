@@ -13,6 +13,8 @@ namespace StudentTracker.Instructor
     public partial class CreateClass : System.Web.UI.Page
     {
         StudentTrackerDBContext db = new StudentTrackerDBContext();
+        GetQuarter getQuarter = new GetQuarter();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int yr = DateTime.Now.Year;
@@ -42,8 +44,8 @@ namespace StudentTracker.Instructor
                 }
 
                 //load Classes List that link to Instructor
-                LoadInstructorClassList(StringQuarterYear());
-                LoadAllInstructorClassList(StringQuarterYear());
+                LoadInstructorClassList(getQuarter.CurrentQuart());
+                LoadAllInstructorClassList(getQuarter.CurrentQuart());
 
                 //loading default course number
                 int BIT = 1;
@@ -103,16 +105,6 @@ namespace StudentTracker.Instructor
             GridViewInstructorClassList.DataBind();
         }
 
-        //get default Quaerter
-        protected String StringQuarterYear()
-        {
-            int month = DateTime.Now.Month;
-            if (month >= 0 && month <= 3) return "Winter";
-            else if (month >= 4 && month <= 6) return "Spring";
-            else if (month >= 7 && month <= 9) return "Summer";
-            else return "Fall";
-        }
-
         protected String StringFormat(String str)
         {
             str = str.ToLower();
@@ -166,7 +158,12 @@ namespace StudentTracker.Instructor
                 }
 
                 if (classID > 0)
+                {
                     ErrorMessage.Text += "<br>New Class created successful.";
+                    //load Classes List that link to Instructor
+                    LoadInstructorClassList(getQuarter.CurrentQuart());
+                    LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                }
                 else
                     ErrorMessage.Text += "System failed to insert new Class to database.";
             }
