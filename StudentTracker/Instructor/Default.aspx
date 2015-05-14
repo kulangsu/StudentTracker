@@ -37,8 +37,7 @@
                     </EmptyDataTemplate>
                     <LayoutTemplate>
                         <ul class="nav nav-tabs">
-                            <li role="presentation"><a href="#">Previous Quarter</a></li>
-                            <li role="presentation" id="lblWinter" runat="server" class="active"><a href="#"><span class="glyphicon glyphicon-inbox"></span>&nbsp Current Quarter</a></li>
+                            <li role="presentation" runat="server" class="active"><a href="#"><span class="glyphicon glyphicon-inbox"></span>&nbsp Current Quarter</a></li>
                             <li role="presentation"><a href="#">Next Quarter</a></li>
                         </ul>
                         <table class="border_lbr">
