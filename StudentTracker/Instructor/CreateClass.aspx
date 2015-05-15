@@ -31,7 +31,7 @@
             <div class="col-md-offset-3 col-md-8">
                 <h2><%: Title %></h2>
                 <h4>Create new class each quarter. Select quarter year then enter class name. 
-                    If you QuarterYear not found in the dropdown list, it need to create first.</h4>
+                    If your QuarterYear is not found in the dropdown list, it needz to be created first.</h4>
             </div>
         </div>
     </div>

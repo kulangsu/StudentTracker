@@ -13,17 +13,20 @@ namespace StudentTracker.Student
     public partial class WebForm1 : System.Web.UI.Page
     {
         StudentTrackerDBContext db = new StudentTrackerDBContext();
+        GetQuarter getQuarter = new GetQuarter();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             int yr = DateTime.Now.Year;
-            string qr = StringQuarterYear();
+           
             if (!IsPostBack)
             {
+                string qrt = getQuarter.CurrentQuart();
+
                 //get current quarter courses by joining courses and quarterYears tables        
                 var courseList = db.Courses
                     .Join(db.QuarterYears, q => q.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
-                    .Where(c => c.qm.Quarter.Equals(qr) && c.qm.Year == yr)
+                    .Where(c => c.qm.Quarter.Equals(qrt) && c.qm.Year == yr)
                     .Select(i => new { Course_ID = i.q.ID, Course_Name = i.q.Name })
                     .ToList();
 
@@ -36,8 +39,8 @@ namespace StudentTracker.Student
         }
         protected void btn_Join_Click(object sender, EventArgs e)
         {
-            string user = User.Identity.GetUserId();
-            
+            ErrorMessage.Text = " ";
+            string user = User.Identity.GetUserId();            
 
             //insert new class into UsersCourses table
             var addUserClass = new UsersCourse
@@ -47,17 +50,16 @@ namespace StudentTracker.Student
 
             };
             db.UsersCourses.Add(addUserClass);
-            int classID = db.SaveChanges(); //adding classID here so that we can grab it later when we are adding list of current courses to Student Page
-        }
+            int classID = db.SaveChanges(); 
 
+            //message status to user
+            if (classID > 0)
+            {
+                ErrorMessage.Text += "<br>You have successfully joined a class.";
 
-        protected String StringQuarterYear()
-        {
-            int month = DateTime.Now.Month;
-            if (month >= 0 && month <= 3) return "Winter";
-            else if (month >= 4 && month <= 6) return "Spring";
-            else if (month >= 7 && month <= 9) return "Summer";
-            else return "Fall";
+            }
+            else
+                ErrorMessage.Text += "System failed to join you to this class.";
         }
 
 
