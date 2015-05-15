@@ -18,33 +18,36 @@ namespace StudentTracker.Student
         {
             int yr = DateTime.Now.Year;
             string qr = StringQuarterYear();
+            if (!IsPostBack)
+            {
+                //get current quarter courses by joining courses and quarterYears tables        
+                var courseList = db.Courses
+                    .Join(db.QuarterYears, q => q.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
+                    .Where(c => c.qm.Quarter.Equals(qr) && c.qm.Year == yr)
+                    .Select(i => new { Course_ID = i.q.ID, Course_Name = i.q.Name })
+                    .ToList();
 
-            //get current quarter courses by joining courses and quarterYears tables        
-            var courseList = db.Courses
-                .Join(db.QuarterYears, q => q.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
-                .Where(c => c.qm.Quarter.Equals(qr) && c.qm.Year == yr)
-                .Select(i => new { Course_ID = i.q.ID, Course_Name = i.q.Name })
-                .ToList();
-
-            //load current courses into dropdown
-            drpDwn_Join.DataValueField = "Course_ID";
-            drpDwn_Join.DataTextField = "Course_Name";
-            drpDwn_Join.DataSource = courseList;
-            drpDwn_Join.DataBind();
-
+                //load current courses into dropdown
+                drpDwn_Join.DataValueField = "Course_ID";
+                drpDwn_Join.DataTextField = "Course_Name";
+                drpDwn_Join.DataSource = courseList;
+                drpDwn_Join.DataBind();
+            }
         }
         protected void btn_Join_Click(object sender, EventArgs e)
         {
             string user = User.Identity.GetUserId();
+            
 
-
-            //insert new class into UsersCourse
-            var userClass = new UsersCourse
+            //insert new class into UsersCourses table
+            var addUserClass = new UsersCourse
             {
                 UserId = user,
                 CourseId = Convert.ToInt32(drpDwn_Join.SelectedValue)
 
             };
+            db.UsersCourses.Add(addUserClass);
+            int classID = db.SaveChanges(); //adding classID here so that we can grab it later when we are adding list of current courses to Student Page
         }
 
 
