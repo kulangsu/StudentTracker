@@ -37,7 +37,7 @@ namespace StudentTracker.Models
         }
 
         //determine default current quarter by Month of the year
-        private int InQuarter()
+        public int InQuarter()
         {
             int month = DateTime.Now.Month;
             if (month >= 0 && month <= 3) return 0;     //winter
@@ -46,7 +46,7 @@ namespace StudentTracker.Models
             else return 3;  //fall
         }
 
-        private string GetQuarters(int num)
+        public string GetQuarters(int num)
         {
             switch (num)
             {

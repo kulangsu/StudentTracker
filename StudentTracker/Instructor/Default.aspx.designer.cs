@@ -31,48 +31,12 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.ListView CourseListView;
         
         /// <summary>
-        /// qrtWinter control.
+        /// ListViewPreCourses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox qrtWinter;
-        
-        /// <summary>
-        /// qrtSpring control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox qrtSpring;
-        
-        /// <summary>
-        /// qrtSummer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox qrtSummer;
-        
-        /// <summary>
-        /// qrtFall control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox qrtFall;
-        
-        /// <summary>
-        /// GridViewClassesList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewClassesList;
+        protected global::System.Web.UI.WebControls.ListView ListViewPreCourses;
     }
 }
