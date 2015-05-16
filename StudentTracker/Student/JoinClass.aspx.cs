@@ -40,26 +40,45 @@ namespace StudentTracker.Student
         protected void btn_Join_Click(object sender, EventArgs e)
         {
             ErrorMessage.Text = " ";
-            string user = User.Identity.GetUserId();            
+            string user = User.Identity.GetUserId();
+            int courseId = Convert.ToInt32(drpDwn_Join.SelectedValue);
+            bool userAlreadyEnrolled = false;
 
-            //insert new class into UsersCourses table
-            var addUserClass = new UsersCourse
-            {
-                UserId = user,
-                CourseId = Convert.ToInt32(drpDwn_Join.SelectedValue)
+             var userCourseList = db.UsersCourses.ToList();
+            //check to see if the user is already enrolled
+             foreach (var item in userCourseList)
+             {
+                 if( user == item.UserId && courseId == item.CourseId)
+                 {
+                     userAlreadyEnrolled = true;
+                 }
+             }
 
-            };
-            db.UsersCourses.Add(addUserClass);
-            int classID = db.SaveChanges(); 
+             if (userAlreadyEnrolled == false)
+             {
+                 //insert new class into UsersCourses table
+                 var addUserClass = new UsersCourse
+                 {
+                     UserId = user,
+                     CourseId = courseId
 
-            //message status to user
-            if (classID > 0)
-            {
-                ErrorMessage.Text += "<br>You have successfully joined a class.";
+                 };
 
-            }
-            else
-                ErrorMessage.Text += "System failed to join you to this class.";
+
+                 db.UsersCourses.Add(addUserClass);
+                 int classID = db.SaveChanges();
+
+                 //message status to user
+                 if (classID > 0)
+                 {
+                     ErrorMessage.Text += "<br>You have successfully joined a class.";
+
+                 }
+                 else
+                     ErrorMessage.Text += "<br>System failed to join you to this class.";
+             }
+             else
+                 ErrorMessage.Text += "<br>You are already enrolled in this class.";
         }
 
 
