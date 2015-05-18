@@ -28,7 +28,7 @@ namespace StudentTracker
             {
                 tempList = (from a in dc.Courses
                             orderby a.Name
-                            where a.Name.Contains(pre)
+                            //where a.Name.Contains(pre)
                             group a by a.Name into am
                             select am.Key).ToList();
             }
@@ -37,10 +37,11 @@ namespace StudentTracker
             {
                 string[] tmp = str.Split(' ');
                 string temp=null;
-                for(int i=2; i<tmp.Length; i++)
+                for(int i=2; i<tmp.Length-1; i++)
                     temp += tmp[i]+" ";
                 allCourseName.Add(temp.Trim());
             }
+
             return allCourseName;
         }
     }

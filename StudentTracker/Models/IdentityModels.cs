@@ -35,8 +35,6 @@ namespace StudentTracker.Models
             return Task.FromResult(GenerateUserIdentity(manager));
         }
 
-        public virtual ICollection<Course> Courses { get; set; }
-
     }
 
     //definition Quarter Year table
@@ -59,10 +57,8 @@ namespace StudentTracker.Models
         public string Name { get; set; }
         [Required]
         public int QuarterYearID { get; set; }
+        
         public virtual QuarterYear QuarterYear { get; set; }
-
-        //public virtual ICollection<User> Users { get; set; }
-
     }
 
     public class UsersCourse
@@ -71,6 +67,9 @@ namespace StudentTracker.Models
         public int ID { get; set; }
         public string UserId { get; set; }
         public int CourseId { get; set; }
+
+        public virtual User Users { get; set; }
+        public virtual Course Course { get; set; }
     }
 
     //Course Prefix object
@@ -79,6 +78,8 @@ namespace StudentTracker.Models
         [Key]
         public int PrefixID { get; set; }
         public string PrefixName { get; set; }
+
+        public virtual ICollection<CourseNumber> CourseNumbers { get; set; }
     }
 
     //Course Number object
@@ -88,8 +89,54 @@ namespace StudentTracker.Models
         public int NumberID { get; set; }
         public string Number { get; set; }
         public int PrefixID { get; set; }
+
+        public virtual CoursePrefix CoursePrefixs { get; set; }
+    }
+    //Course section
+    public class CourseSection
+    {
+        [Key]
+        public int SectionID { get; set; }
+        public string Section { get; set; }
     }
 
+    //definition AssignmentGroup table
+    public class AssignmentGroup
+    {
+        [Key]
+        public int AssignmentGroupID { get; set; }
+        public string AssignmentGroupName { get; set; }           
+    }
+
+    //definition Assignment table
+    public class Assignment
+    {
+        [Key]
+        public int AssignmentID { get; set; }
+        public int AssignmentGroupID { get; set; }
+        public int CourseID { get; set; }
+        public string AssignmentName { get; set; }
+        public System.DateTime DueDate { get; set; }
+        public decimal MaxPoint { get; set; }
+        public int activate { get; set; } 
+    }
+
+    public class StudentAssignment
+    {
+        [Key]
+        public int StudentAssignmentID { get; set; }
+        public int AssignmentID { get; set; }
+        public string UserId { get; set; }
+        public decimal Grade { get; set; }       
+    }
+    public class AssignmentFile
+    {
+        [Key]
+        public int AssignmentFileID { get; set; }
+        public int StudentAssignmentID { get; set; }
+        public string FileName { get; set; }
+        public System.DateTime UploadDate { get; set; }
+    }
     /*
     public class YourNextTableHere
     {
@@ -121,6 +168,11 @@ namespace StudentTracker.Models
         public DbSet<UsersCourse> UsersCourses { get; set; }
         public DbSet<CoursePrefix> CoursePrefixs { get; set; }
         public DbSet<CourseNumber> CourseNumbers { get; set; }
+        public DbSet<CourseSection> CourseSections { get; set; }
+        public DbSet<AssignmentGroup> AssignmentGroups { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<StudentAssignment> StudentAssignments { get; set; }
+        public DbSet<AssignmentFile> AssignmentFiles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -128,7 +180,9 @@ namespace StudentTracker.Models
             base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
 
             //configure model with fluent API
-            modelBuilder.Entity<Course>().HasRequired(q => q.QuarterYear).WithMany(c => c.Courses).HasForeignKey(c => c.QuarterYearID);
+            //modelBuilder.Entity<Course>().HasRequired(q => q.QuarterYear).WithMany(c => c.Courses).HasForeignKey(c => c.QuarterYearID).WillCascadeOnDelete(true);
+            
+            
 
             modelBuilder.Entity<User>().ToTable("Users", "dbo").Property(p => p.Id).HasColumnName("UserId");
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles", "dbo");
@@ -136,52 +190,22 @@ namespace StudentTracker.Models
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims", "dbo").Property(p => p.Id).HasColumnName("UserClaimId");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles", "dbo").Property(p => p.Id).HasColumnName("RoleId");
             modelBuilder.Ignore<IdentityUser>();
-            /*
+            
             //create many-to-many relationship between Instructor and Course
-            modelBuilder.Entity<Course>().
-              HasMany(u => u.Users).
-              WithMany(c => c.Courses).
-              Map(
-               m =>
-               {
-                   m.MapLeftKey("UserId");
-                   m.MapRightKey("ID");
-                   m.ToTable("UsersCourses");
-               });
-            */
+            /*
+            modelBuilder.Entity<User>()
+                .HasMany<Course>(u => u.Courses)
+                .WithMany(c => c.Users)
+                .Map(m =>
+                {
+                    m.MapLeftKey("Id");
+                    m.MapRightKey("ID");
+                    m.ToTable("UsersCourses");
+                });
+             */
         }
     }
-    /*
-    public class UserDbContext : IdentityDbContext<User>
-    {
-        public UserDbContext()
-            : base("dbStudentTracker", throwIfV1Schema: false)
-        {
-        }
 
-        public static UserDbContext Create()
-        {
-            return new UserDbContext();
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
-
-
-
-            modelBuilder.Entity<User>().ToTable("Users", "dbo").Property(p => p.Id).HasColumnName("UserId");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles", "dbo");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "dbo");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims", "dbo").Property(p => p.Id).HasColumnName("UserClaimId");
-            modelBuilder.Entity<IdentityRole>().ToTable("Roles", "dbo").Property(p => p.Id).HasColumnName("RoleId");
-            modelBuilder.Ignore<IdentityUser>();
-
-            //modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-            //modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-            //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
-        }
-    }*/
 }
 
 #region Helpers

@@ -13,18 +13,25 @@ namespace StudentTracker.Instructor
     public partial class QuarterYearClass : System.Web.UI.Page
     {
         StudentTrackerDBContext db = new StudentTrackerDBContext();
+        GetQuarter getQuarter = new GetQuarter();
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            int yr = DateTime.Now.Year;
+        {            
             if (!IsPostBack)
             {
- 
+                int yr = DateTime.Now.Year;
                 selectYear.Items.Add(yr.ToString());
                 selectYear.Items.Add((yr + 1).ToString());
-                selectQuarter.SelectedValue = StringQuarterYear();
+                selectQuarter.SelectedValue = getQuarter.CurrentQuart();
             }
+
+            LoadQuarterYear();
+        }
+
+        protected void LoadQuarterYear()
+        {
             //loading quarter year from database to gridview
+            int yr = DateTime.Now.Year;
             var yrArr = new int[] { yr, yr + 1 };
             var qrtYearList = db.QuarterYears
                 .Where(c => yrArr.Contains(c.Year))
@@ -33,15 +40,6 @@ namespace StudentTracker.Instructor
 
             GridViewQuarterYear.DataSource = qrtYearList;
             GridViewQuarterYear.DataBind();
-        }
-
-        protected String StringQuarterYear()
-        {
-            int month = DateTime.Now.Month;
-            if (month >= 0 && month <= 3) return "Winter";
-            else if (month >= 4 && month <= 6) return "Spring";
-            else if (month >= 7 && month <= 9) return "Summer";
-            else return "Fall";
         }
 
         protected void CreateQrtYear_Click(object sender, EventArgs e)
@@ -67,6 +65,7 @@ namespace StudentTracker.Instructor
                 
 
                 ErrorMessage.Text = "Quarter Year inserted successful.";
+                LoadQuarterYear();
             }
             else
             {

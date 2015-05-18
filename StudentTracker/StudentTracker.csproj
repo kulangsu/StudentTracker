@@ -272,6 +272,7 @@
     <Content Include="Instructor\EditHomework.aspx" />
     <Content Include="Instructor\Homework.aspx" />
     <Content Include="Instructor\QuarterYear.aspx" />
+    <Content Include="Instructor\UploadGrade.aspx" />
     <Content Include="packages.config" />
     <Content Include="Account\Web.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -283,6 +284,7 @@
     <Content Include="Instructor\Instructor.master" />
     <Content Include="Admin\Admin.master" />
     <Content Include="Instructor\InstructorClass.master" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -571,12 +573,16 @@
     <Compile Include="Instructor\QuarterYear.aspx.designer.cs">
       <DependentUpon>QuarterYear.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505110201021_InitialCreate.cs" />
-    <Compile Include="Migrations\201505110201021_InitialCreate.Designer.cs">
-      <DependentUpon>201505110201021_InitialCreate.cs</DependentUpon>
+    <Compile Include="Instructor\UploadGrade.aspx.cs">
+      <DependentUpon>UploadGrade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Instructor\UploadGrade.aspx.designer.cs">
+      <DependentUpon>UploadGrade.aspx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\STLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -626,9 +632,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505110201021_InitialCreate.resx">
-      <DependentUpon>201505110201021_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

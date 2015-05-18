@@ -12,7 +12,14 @@ namespace StudentTracker.Instructor
 {
     public partial class CreateClass : System.Web.UI.Page
     {
+        //see IdentityModels.cs
         StudentTrackerDBContext db = new StudentTrackerDBContext();
+
+        //see STLib.cs file
+        GetQuarter getQuarter = new GetQuarter();
+        RoleManager roleManager = new RoleManager();
+        CapFirstLetter capFirstLetter = new CapFirstLetter();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int yr = DateTime.Now.Year;
@@ -42,8 +49,8 @@ namespace StudentTracker.Instructor
                 }
 
                 //load Classes List that link to Instructor
-                LoadInstructorClassList(StringQuarterYear());
-                LoadAllInstructorClassList(StringQuarterYear());
+                LoadInstructorClassList(getQuarter.CurrentQuart());
+                LoadAllInstructorClassList(getQuarter.CurrentQuart());
 
                 //loading default course number
                 int BIT = 1;
@@ -63,10 +70,14 @@ namespace StudentTracker.Instructor
             int yr = DateTime.Now.Year;
             var yrArr = new int[] { yr, yr + 1 };
             string userID = User.Identity.GetUserId();
+
+            //load all instructor userID
+            var users = roleManager.ReturnAllInstructor(); 
+
             var CourseLists = db.UsersCourses
                 .Join(db.Courses, c => c.CourseId, cm => cm.ID, (c, cm) => new { c, cm })
                 .Join(db.QuarterYears, q => q.cm.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
-                .Where(w => w.qm.Quarter.Equals(qrt) && !w.q.c.UserId.Equals(userID))
+                .Where(w => w.qm.Quarter.Equals(qrt) && users.Contains(w.q.c.UserId) && !w.q.c.UserId.Equals(userID))
                 .OrderByDescending(q => q.q.cm.Name)
                 .Select(i => new {i.q.c.UserId, CourseID = i.q.cm.ID, CourseName = i.q.cm.Name, Year = i.qm.Year, Quarter = i.qm.Quarter });
 
@@ -75,10 +86,6 @@ namespace StudentTracker.Instructor
                         join a in CourseLists on u.Id equals a.UserId
                         select new { a.CourseID, FullName = u.FirstName + " " + u.LastName, a.Year, a.Quarter, a.CourseName }
                        ).ToList();
-            /*
-                        .Join(CourseLists, a => a.Id, am => am.userID, (a, am) => new { a, am })
-                        .Select(s => new { FullName = s.a.FirstName + " " + s.a.LastName, CourseID = s.am.CourseID, CourseName = s.am.CourseName, Year = s.am.Year, Quarter=s.am.Quarter })
-                        .ToList(); */
 
             GridViewClassList.DataSource = list;
             GridViewClassList.DataBind();
@@ -103,31 +110,6 @@ namespace StudentTracker.Instructor
             GridViewInstructorClassList.DataBind();
         }
 
-        //get default Quaerter
-        protected String StringQuarterYear()
-        {
-            int month = DateTime.Now.Month;
-            if (month >= 0 && month <= 3) return "Winter";
-            else if (month >= 4 && month <= 6) return "Spring";
-            else if (month >= 7 && month <= 9) return "Summer";
-            else return "Fall";
-        }
-
-        protected String StringFormat(String str)
-        {
-            str = str.ToLower();
-            string[] temp = str.Split(' ');
-            str = " ";
-            for(int i = 0; i < temp.Length; i++)
-            {
-                string tmp = temp[i];
-                str += (char.ToUpper(tmp[0]) + tmp.Substring(1));
-                str += " ";
-            }
-                        
-            return str.Trim();
-        }
-
         protected void CreateClass_Click(object sender, EventArgs e)
         {
             ErrorMessage.Text = "";
@@ -135,8 +117,9 @@ namespace StudentTracker.Instructor
             string CoursePre = CourseArea.SelectedItem.Text;
             string CourseNum = CourseNumber.SelectedItem.Text;
             string courseName = ClassName.Text;
+            string CourseSec = CourseSection.SelectedItem.Text;
 
-            courseName = CoursePre + " " + CourseNum + " " + StringFormat(ClassName.Text);
+            courseName = CoursePre + " " + CourseNum + " " + capFirstLetter.CapLetterString(ClassName.Text, ' ') + " " + CourseSec;
             //quick check to see if Year & QuarterYear already exist
             int qrtyrid = Convert.ToInt32(selectQuarterYear.SelectedValue);
             var quarteryear = db.Courses
@@ -166,7 +149,12 @@ namespace StudentTracker.Instructor
                 }
 
                 if (classID > 0)
+                {
                     ErrorMessage.Text += "<br>New Class created successful.";
+                    //load Classes List that link to Instructor
+                    LoadInstructorClassList(getQuarter.CurrentQuart());
+                    LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                }
                 else
                     ErrorMessage.Text += "System failed to insert new Class to database.";
             }
@@ -195,7 +183,6 @@ namespace StudentTracker.Instructor
             var courseNumberList = db.CourseNumbers
                 .Where(c => c.PrefixID == num)
                 .OrderBy(c => c.Number)
-                //    .Select(i => new { _ID = i.ID, _QrtYr = i.Year + " - " + i.Quarter })
                 .ToList();
 
             CourseNumber.DataValueField = "Number";

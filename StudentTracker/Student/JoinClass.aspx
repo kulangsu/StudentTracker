@@ -1,13 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Student/Student.master" AutoEventWireup="true" CodeBehind="JoinClass.aspx.cs" Inherits="StudentTracker.Student.WebForm1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-    <h1>You're login as Student account.</h1>
-<h3>You&#39;re in Student Content view page</h3>
-    <h3>Please Select class from drop down list<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>" SelectCommand="SELECT [ID], [Name] FROM [Courses]"></asp:SqlDataSource></h3>
-    <p><asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="ID">
-    </asp:DropDownList></p>
-   
-   
-    
+    <h1>You're logged in under a Student account.</h1>
+    <h3>Please select a class from the drop down list</h3>
+    <h4>
+        <asp:Literal runat="server" ID="ErrorMessage" />
+    </h4>
+    <p>
+        <asp:DropDownList ID="drpDwn_Join" runat="server" DataTextField="Name" DataValueField="ID" Font-Size="Larger" Height="25px" Width="300px">
+        </asp:DropDownList>&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btn_Join" runat="server" Font-Size="Larger" OnClick="btn_Join_Click" Text="Join" />
+    </p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+
+
 </asp:Content>
