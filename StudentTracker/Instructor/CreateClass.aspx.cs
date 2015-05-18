@@ -72,8 +72,7 @@ namespace StudentTracker.Instructor
             string userID = User.Identity.GetUserId();
 
             //load all instructor userID
-            //var role = (from r in db.Roles where r.Name.Contains("Instructor") select r).FirstOrDefault();
-            var users = roleManager.ReturnAllStudentID(); // db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role.Id) && !x.Id.Equals(userID)).Select(u=>u.Id).ToArray();
+            var users = roleManager.ReturnAllInstructor(); 
 
             var CourseLists = db.UsersCourses
                 .Join(db.Courses, c => c.CourseId, cm => cm.ID, (c, cm) => new { c, cm })

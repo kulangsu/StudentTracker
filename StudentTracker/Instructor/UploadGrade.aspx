@@ -5,8 +5,9 @@
         <div class="form-horizontal">
             <div class="row">
                 <div class="col-md-offset-3 col-md-9">
-                    <h2> <%: Title %></h2>
-                    <h2><span style="font-size: 24px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp <asp:Label ID="ClassName" runat="server"></asp:Label></h2>
+                    <h2><%: Title %></h2>
+                    <h2><span style="font-size: 24px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp
+                        <asp:Label ID="ClassName" runat="server"></asp:Label></h2>
                     <h4>Browse Student Grade for this class to upload</h4>
                 </div>
             </div>
@@ -30,6 +31,53 @@
                 <div class="col-md-offset-3 col-md-6">
                     <asp:Button ID="btnUploadGrade" runat="server" OnClick="UploadGrade_Click" Text="Upload Grade" CssClass="btn btn-primary" />
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default col-md-11 col-md-offset-1">
+                <table class="table">
+                    <tr>
+                        <th class="col-md-5"><h4>Current Enrolled Student</h4></th>
+                        <th class="col-md-5"><h4>Upload Grade Student</h4></th>
+                        <th class="col-md-2"><h4>Upload Status</h4></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:GridView ID="gvCurrentStudentEnroll" runat="server" CssClass="table" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:BoundField DataField="SID" HeaderText="Student ID" SortExpression="SID" />
+                                    <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
+                                    <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
+                                </Columns>
+                                <EmptyDataTemplate>
+                                    <h4 class="text-danger">No Student Enroll In This Class.</h4>
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+                        </td>
+                        <td>
+                            <asp:GridView ID="gvGradeUploadStudent" runat="server" CssClass="table" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:BoundField DataField="SID" HeaderText="Student ID" SortExpression="SID" />
+                                    <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
+                                    <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
+                                </Columns>
+                                <EmptyDataTemplate>
+                                    <h4 class="text-danger">Grade Upload Not Yet Submit.</h4>
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+                        </td>
+                        <td>
+                            <asp:GridView ID="gvGradeUploadStatus" runat="server" CssClass="table" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                                </Columns>
+                                <EmptyDataTemplate>                                    
+                                    <h4 class="text-danger">Not Upload</h4>
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
