@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using System.Web.UI.HtmlControls;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 
 namespace StudentTracker.Instructor
@@ -70,10 +71,63 @@ namespace StudentTracker.Instructor
             ListViewPreCourses.DataBind();
         }
 
+        //delete class from instructor
         protected void DeleteClass_Click(object sender, CommandEventArgs e)
         {
             Response.Redirect("~/Instructor/");
         }
 
+        //load student enrollment into class
+        protected string LoadStudentEnroll(int CourseID)
+        {
+            string userID = User.Identity.GetUserId();
+            if(CourseID > 0)
+            {
+                var allEnrollStudent = db.UsersCourses
+                .Where(u => u.CourseId == CourseID && !u.UserId.Equals(userID))
+                .Count();
+
+                if (allEnrollStudent > 0 && allEnrollStudent < 10) return "0" + allEnrollStudent.ToString();
+                else if (allEnrollStudent > 9) return allEnrollStudent.ToString();
+                else return "00";
+            }
+            
+            return "00";                           
+        }
+
+        //load all Assignments that created to it Class
+        protected string LoadAllAssignments(int CourseID)
+        {
+            
+            return "00";
+        }
+
+        //load all Projects that link to this Class
+        protected string LoadAllProjects(int CourseID)
+        {
+
+            return "00";
+        }
+
+        //load all ICE that link to this Class
+        protected string LoadAllICE(int CourseID)
+        {
+
+            return "00";
+        }
+
+        //load all Exam and Final that link to this Class
+        protected string LoadAllExamFinal(int CourseID)
+        {
+
+            return "00";
+        }
+
+        //load all ExtraCredit that link to this Class
+        protected string LoadAllExtraCredit(int CourseID)
+        {
+
+            return "00";
+        }
     }
 }

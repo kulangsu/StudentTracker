@@ -80,13 +80,13 @@
                                 <div class="row class_extra_info" style="margin-top: 2px;">
                                     <div class="col-md-6">
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">00</span>
+                                            <span class="input-group-addon"><%# LoadStudentEnroll(Convert.ToInt32(Eval("CourseID"))) %></span>
                                             <div class="form-control">Enrollment</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">00</span>
+                                            <span class="input-group-addon"><%# LoadAllAssignments(Convert.ToInt32(Eval("CourseID"))) %></span>
                                             <div class="form-control">Assignments</div>
                                         </div>
                                     </div>
@@ -94,13 +94,13 @@
                                 <div class="row" style="margin-top: 2px;">
                                     <div class="col-md-6">
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">00</span>
+                                            <span class="input-group-addon"><%# LoadAllProjects(Convert.ToInt32(Eval("CourseID"))) %></span>
                                             <div class="form-control">Projects</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">00</span>
+                                            <span class="input-group-addon"><%# LoadAllExamFinal(Convert.ToInt32(Eval("CourseID"))) %></span>
                                             <div class="form-control">Exam/Final</div>
                                         </div>
                                     </div>
@@ -108,13 +108,13 @@
                                 <div class="row" style="margin-top: 2px;">
                                     <div class="col-md-6">
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">00</span>
+                                            <span class="input-group-addon"><%# LoadAllICE(Convert.ToInt32(Eval("CourseID"))) %></span>
                                             <div class="form-control">In Class Exercise</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">00</span>
+                                            <span class="input-group-addon"><%# LoadAllExtraCredit(Convert.ToInt32(Eval("CourseID"))) %></span>
                                             <div class="form-control">Extra Credit</div>
                                         </div>
                                     </div>

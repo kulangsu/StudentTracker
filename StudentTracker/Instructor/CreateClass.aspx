@@ -54,13 +54,17 @@
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="ClassName" CssClass="col-md-3 control-label">Class Name</asp:Label>
-                <div class="col-md-2">
-                    <asp:DropDownList ID="CourseArea" runat="server" CssClass="form-control" AutoPostBack="True" DataSourceID="SqlCoursePrefixList" DataTextField="PrefixName" DataValueField="PrefixID" OnSelectedIndexChanged="CourseArea_SelectedIndexChanged">
+                <div class="col-md-1">
+                    <asp:DropDownList ID="CourseArea" runat="server" CssClass="form-control" AutoPostBack="True" DataSourceID="SqlCoursePrefixList" DataTextField="PrefixName" DataValueField="PrefixID" OnSelectedIndexChanged="CourseArea_SelectedIndexChanged" Width="75px">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlCoursePrefixList" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>" SelectCommand="SELECT * FROM [CoursePrefixs] ORDER BY [PrefixName]"></asp:SqlDataSource>
                 </div>
-                <div class="col-md-2">
-                    <asp:DropDownList ID="CourseNumber" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
+                <div class="col-md-1">
+                    <asp:SqlDataSource ID="SqlCoursePrefixList" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>" SelectCommand="SELECT * FROM [CoursePrefixs] ORDER BY [PrefixName]"></asp:SqlDataSource>
+                    <asp:DropDownList ID="CourseNumber" runat="server" CssClass="form-control" AutoPostBack="True" Width="75px"></asp:DropDownList>
+                </div>
+                <div class="col-md-2">                    
+                    <asp:DropDownList ID="CourseSection" runat="server" CssClass="form-control" AutoPostBack="True" Width="100px" DataSourceID="SqlCourseSectionList" DataTextField="Section" DataValueField="Section"></asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlCourseSectionList" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>" SelectCommand="SELECT * FROM [CourseSections] ORDER BY [Section]"></asp:SqlDataSource>
                 </div>
                 <div class="col-md-4">
                     <asp:TextBox runat="server" ID="ClassName" CssClass="form-control cap_first_letter textboxAuto" />                     
