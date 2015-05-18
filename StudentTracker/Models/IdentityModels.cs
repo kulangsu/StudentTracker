@@ -168,6 +168,11 @@ namespace StudentTracker.Models
         public DbSet<UsersCourse> UsersCourses { get; set; }
         public DbSet<CoursePrefix> CoursePrefixs { get; set; }
         public DbSet<CourseNumber> CourseNumbers { get; set; }
+        public DbSet<CourseSection> CourseSections { get; set; }
+        public DbSet<AssignmentGroup> AssignmentGroups { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<StudentAssignment> StudentAssignments { get; set; }
+        public DbSet<AssignmentFile> AssignmentFiles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
