@@ -35,5 +35,6 @@
     <asp:Button ID="btnAddHmw" runat="server" Text="Save" OnClick="btnAddHm_Click" Width="73px"/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click"/>
+        <asp:Button ID="btn_Delete" runat="server" Text="Delete" />
 </asp:Content>
 
