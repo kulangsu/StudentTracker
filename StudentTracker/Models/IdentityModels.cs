@@ -92,6 +92,13 @@ namespace StudentTracker.Models
 
         public virtual CoursePrefix CoursePrefixs { get; set; }
     }
+    //Course section
+    public class CourseSection
+    {
+        [Key]
+        public int SectionID { get; set; }
+        public string Section { get; set; }
+    }
 
     /*
     public class YourNextTableHere
@@ -124,6 +131,7 @@ namespace StudentTracker.Models
         public DbSet<UsersCourse> UsersCourses { get; set; }
         public DbSet<CoursePrefix> CoursePrefixs { get; set; }
         public DbSet<CourseNumber> CourseNumbers { get; set; }
+        public DbSet<CourseSection> CourseSections { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

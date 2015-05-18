@@ -269,6 +269,7 @@
     <Content Include="Instructor\Default.aspx" />
     <Content Include="Instructor\CreateClass.aspx" />
     <Content Include="Instructor\QuarterYear.aspx" />
+    <Content Include="Instructor\UploadGrade.aspx" />
     <Content Include="packages.config" />
     <Content Include="Account\Web.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -548,9 +549,12 @@
     <Compile Include="Instructor\QuarterYear.aspx.designer.cs">
       <DependentUpon>QuarterYear.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505110201021_InitialCreate.cs" />
-    <Compile Include="Migrations\201505110201021_InitialCreate.Designer.cs">
-      <DependentUpon>201505110201021_InitialCreate.cs</DependentUpon>
+    <Compile Include="Instructor\UploadGrade.aspx.cs">
+      <DependentUpon>UploadGrade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Instructor\UploadGrade.aspx.designer.cs">
+      <DependentUpon>UploadGrade.aspx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -602,11 +606,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505110201021_InitialCreate.resx">
-      <DependentUpon>201505110201021_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

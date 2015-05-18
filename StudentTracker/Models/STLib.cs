@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace StudentTracker.Models
 {
@@ -59,5 +61,68 @@ namespace StudentTracker.Models
         }
     }
 
+    //default RoleManager object
+    public class RoleManager
+    {
+        StudentTrackerDBContext db = new StudentTrackerDBContext();
+        
+        //return all Student ID
+        public string[] ReturnAllStudentID()
+        {
+            return AllUserID(ReturnRoleID("Student"));
+        }
+
+        //return all Instructor ID
+        public string[] ReturnAllInstructor()
+        {
+            return AllUserID(ReturnRoleID("Instructor"));
+        }
+        //return all Admin ID
+        public string[] ReturnAllAdmin()
+        {
+            return AllUserID(ReturnRoleID("Admin"));
+        }
+
+        //return RoleID by role name
+        public string ReturnRoleID(string roleName)
+        {
+            return (from r in db.Roles where r.Name.Contains(roleName) select r).FirstOrDefault().Id;
+        }
+
+        //return all user id by roleID
+        public string[] AllUserID(string RoleID)
+        {
+            return db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(RoleID)).Select(u => u.Id).ToArray();
+        }
+    }
+
+    //Capitalize first letter each word from a string
+    //exmaple: "hello my name is lap to"
+    //return: "Hello My Name Is Lap To"
+    public class CapFirstLetter
+    {
+        //capitalize first letter of each word
+        public String CapLetterString(String str, char delimiter)
+        {
+            str = str.ToLower().Trim();
+            if (delimiter.ToString() == null) delimiter = ' ';
+            string[] temp = str.Split(delimiter);
+            str = " ";
+            for (int i = 0; i < temp.Length; i++)
+            {
+                str += CapLetterWord(temp[i]);
+                str += " ";
+            }
+
+            return str.Trim();
+        }
+
+        //capitalize first letter from word
+        public string CapLetterWord(string word)
+        {
+            word = word.ToLower().Trim();
+            return (char.ToUpper(word[0]) + word.Substring(1));
+        }
+    }
 
 }
