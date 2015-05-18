@@ -90,6 +90,43 @@ namespace StudentTracker.Models
         public int PrefixID { get; set; }
     }
 
+    //definition AssignmentGroup table
+    public class AssignmentGroup
+    {
+        [Key]
+        public int AssignmentGroupID { get; set; }
+        public string AssignmentGroupName { get; set; }           
+    }
+
+    //definition Assignment table
+    public class Assignment
+    {
+        [Key]
+        public int AssignmentID { get; set; }
+        public int AssignmentGroupID { get; set; }
+        public int CourseID { get; set; }
+        public string AssignmentName { get; set; }
+        public System.DateTime DueDate { get; set; }
+        public decimal MaxPoint { get; set; }
+        public int activate { get; set; } 
+    }
+
+    public class StudentAssignment
+    {
+        [Key]
+        public int StudentAssignmentID { get; set; }
+        public int AssignmentID { get; set; }
+        public string UserId { get; set; }
+        public decimal Grade { get; set; }       
+    }
+    public class AssignmentFile
+    {
+        [Key]
+        public int AssignmentFileID { get; set; }
+        public int StudentAssignmentID { get; set; }
+        public string FileName { get; set; }
+        public System.DateTime UploadDate { get; set; }
+    }
     /*
     public class YourNextTableHere
     {
@@ -121,6 +158,10 @@ namespace StudentTracker.Models
         public DbSet<UsersCourse> UsersCourses { get; set; }
         public DbSet<CoursePrefix> CoursePrefixs { get; set; }
         public DbSet<CourseNumber> CourseNumbers { get; set; }
+        public DbSet<AssignmentGroup> AssignmentGroups { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<StudentAssignment> StudentAssignments { get; set; }
+        public DbSet<AssignmentFile> AssignmentFiles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
