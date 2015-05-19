@@ -10,13 +10,15 @@ using System.Web.UI.HtmlControls;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 
+
+
 namespace StudentTracker.Instructor
 {
     public partial class Default : System.Web.UI.Page
     {
         StudentTrackerDBContext db = new StudentTrackerDBContext();
         GetQuarter getQuarter = new GetQuarter();
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             int yr = DateTime.Now.Year;
@@ -74,7 +76,18 @@ namespace StudentTracker.Instructor
         //delete class from instructor
         protected void DeleteClass_Click(object sender, CommandEventArgs e)
         {
-            Response.Redirect("~/Instructor/");
+           // Response.Redirect("~/Instructor/");
+            var deleteIndivCourse =
+                from course in db.Courses
+                where course.ID.ToString() == (String)e.CommandArgument
+                select course;
+            if (deleteIndivCourse.Count() > 0)
+            {
+                db.Courses.Remove(deleteIndivCourse.First());
+                db.SaveChanges();
+                Response.Redirect("~/Instructor/");
+            }
+
         }
 
         //load student enrollment into class
