@@ -65,7 +65,7 @@
                                                 <div style="float: right;">
                                                     <a href="#" title="Transfer This Class To Other Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
                                                 <a href="#" title="Modify This Class"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp
-                                                <asp:LinkButton runat="server" ID="btnUserDelete" CssClass="glyphicon glyphicon-trash" OnClientClick=" return confirm('Please Confirm:\nAre are about permanent delete this class.\n\nAre You Sure?')" OnCommand="DeleteClass_Click" CommandArgument='<%#Eval("CourseID") %>' />
+                                                <asp:LinkButton runat="server" ID="btnUserDelete" CssClass="glyphicon glyphicon-trash" OnClientClick=" return confirm('Please Confirm:\nAre are about permanent delete this class.\nAll the enrolled student, assignmeents, projects linked to this class will be delete.\n\nAre You Sure?')" OnCommand="DeleteClass_Click" CommandArgument='<%#Eval("CourseID") %>' />
                                                 </div>
                                             </div>
                                         </div>
