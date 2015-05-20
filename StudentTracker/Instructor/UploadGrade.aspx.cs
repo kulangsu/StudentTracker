@@ -14,6 +14,7 @@ using System.IO;
 using System.Data;
 using System.Data.OleDb;
 using System.Web.Security;
+using System.Reflection;
 
 
 namespace StudentTracker.Instructor
@@ -24,6 +25,8 @@ namespace StudentTracker.Instructor
         StudentTrackerDBContext db = new StudentTrackerDBContext();
         //see STLib.cs file
         RoleManager roleManager = new RoleManager();
+
+        DataTable studentLists = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -74,6 +77,8 @@ namespace StudentTracker.Instructor
             
             gvCurrentStudentEnroll.DataSource = EnrollStudentLists;
             gvCurrentStudentEnroll.DataBind();
+
+            studentLists = ConvertToDataTable(EnrollStudentLists);
         }
 
         protected void UploadGrade_Click(object sender, EventArgs e)
@@ -98,6 +103,13 @@ namespace StudentTracker.Instructor
         {
             string conStr = "";
             Boolean isFormat = true;
+            DataTable dt = new DataTable();
+            DataTable status = new DataTable();
+            status.Columns.Add("Status", typeof(string));
+
+            DataTable grade = new DataTable();
+            grade.Columns.Add("Message", typeof(string));
+
             switch (Extension)
             {
                 case ".xls": //Excel 97-03
@@ -118,7 +130,6 @@ namespace StudentTracker.Instructor
                 OleDbConnection connExcel = new OleDbConnection(conStr);
                 OleDbCommand cmdExcel = new OleDbCommand();
                 OleDbDataAdapter oda = new OleDbDataAdapter();
-                DataTable dt = new DataTable();
                 cmdExcel.Connection = connExcel;
 
                 //Get the name of First Sheet
@@ -137,9 +148,38 @@ namespace StudentTracker.Instructor
 
                 //Bind Data to GridView
                 //gvGradeUploadStudent.Caption = Path.GetFileName(FilePath);
-                gvGradeUploadStudent.DataSource = dt;
-                gvGradeUploadStudent.DataBind();
+                //gvGradeUploadStudent.DataSource = dt;
+                //gvGradeUploadStudent.DataBind();
             }
+
+            //test--------------------------------
+            ErrorMessage.Text = "<hr>";
+            Boolean test = false;
+            foreach (DataRow row in studentLists.Rows)
+            {
+                test = false;
+                foreach (DataRow upload in dt.Rows)
+                {
+                    if (row[0].ToString().Equals(upload[0].ToString()))
+                    {
+                        status.Rows.Add("Ready");
+                        grade.Rows.Add("Ready batch upload grade for this student.");
+                        test = true;
+                        break;                        
+                    }
+                }
+                if (!test)
+                {
+                    status.Rows.Add("<span class='text-danger'>Not Ready</span>");
+                    grade.Rows.Add("<span class='text-danger'>Student not found from grade upload.</span>");
+                }
+            }
+
+            gvGradeUploadStatus.DataSource = status;
+            gvGradeUploadStatus.DataBind();
+
+            gvGradeUploadStudent.DataSource = grade;
+            gvGradeUploadStudent.DataBind();
         }
 
         //disable all buttons
@@ -147,6 +187,47 @@ namespace StudentTracker.Instructor
         {
             btnUploadGrade.Enabled = false;
             StudentGradeFile.Enabled = false;
+        }
+
+        public DataTable ConvertToDataTable<T>(IEnumerable<T> varlist)
+        {
+            DataTable dtReturn = new DataTable();
+
+            // column names 
+            PropertyInfo[] oProps = null;
+
+            if (varlist == null) return dtReturn;
+
+            foreach (T rec in varlist)
+            {
+                // Use reflection to get property names, to create table, Only first time, others will follow 
+                if (oProps == null)
+                {
+                    oProps = ((Type)rec.GetType()).GetProperties();
+                    foreach (PropertyInfo pi in oProps)
+                    {
+                        Type colType = pi.PropertyType;
+
+                        if ((colType.IsGenericType) && (colType.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                        {
+                            colType = colType.GetGenericArguments()[0];
+                        }
+
+                        dtReturn.Columns.Add(new DataColumn(pi.Name, colType));
+                    }
+                }
+
+                DataRow dr = dtReturn.NewRow();
+
+                foreach (PropertyInfo pi in oProps)
+                {
+                    dr[pi.Name] = pi.GetValue(rec, null) == null ? DBNull.Value : pi.GetValue
+                    (rec, null);
+                }
+
+                dtReturn.Rows.Add(dr);
+            }
+            return dtReturn;
         }
     }
 }
