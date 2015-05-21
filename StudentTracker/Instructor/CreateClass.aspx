@@ -30,8 +30,8 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-8">
                 <h2><%: Title %></h2>
-                <h4>Create new class each quarter. Select quarter year then enter class name. 
-                    If your QuarterYear is not found in the dropdown list, it needz to be created first.</h4>
+                <h4>Create a new class for each quarter. Select the quarter, year, and then enter the class name. 
+                    If your QuarterYear is not found in the dropdown list, it needs to be created first.</h4>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
             </h4>
         </div>
         <div class="col-md-offset-2 col-md-9">
-            <h4>Courses Link To:
+            <h4>These courses Link To:
                 <asp:Literal runat="server" ID="FullName" /></h4>
             <asp:GridView ID="GridViewInstructorClassList" runat="server" CssClass="table" AutoGenerateColumns="False">
                 <Columns>
@@ -96,12 +96,12 @@
                     <asp:BoundField DataField="CourseName" HeaderText="Course Name" SortExpression="CourseName" />
                 </Columns>
                 <EmptyDataTemplate>
-                    <h4 class="text-danger">No Class found from selected quarter.</h4>
+                    <h4 class="text-danger">No courses were found for the selected quarter.</h4>
                 </EmptyDataTemplate>
             </asp:GridView>
         </div>
         <div class="col-md-offset-2 col-md-9">
-            <h4>All Courses below link to other Instructors:</h4>
+            <h4>All of the courses below link to other Instructors:</h4>
             <asp:GridView ID="GridViewClassList" runat="server" CssClass="table" AutoGenerateColumns="false">
                 <Columns>
                     <asp:BoundField DataField="CourseID" HeaderText="Course ID" SortExpression="CourseID" />
@@ -111,7 +111,7 @@
                     <asp:BoundField DataField="CourseName" HeaderText="Course Name" SortExpression="CourseName" />
                 </Columns>
                 <EmptyDataTemplate>
-                    <h4 class="text-danger">No Class found from selected quarter.</h4>
+                    <h4 class="text-danger">No courses were found for the selected quarter.</h4>
                 </EmptyDataTemplate>                
             </asp:GridView>
         </div>

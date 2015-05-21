@@ -25,11 +25,13 @@ namespace StudentTracker.Instructor
             int yr = DateTime.Now.Year;
             if (!IsPostBack)
             {
-                //loading quarter year from database to gridview
+                //loading the quarter (QuarterYears) from the database to the gridview
+
                 var yrArr = new int[] { yr, yr + 1 };
 
-                //var query = from q in db.QuarterYears where (q => yrArr.Contains(q.Year)) orderby(q => q.);
+                // (to delete) var query = from q in db.QuarterYears where (q => yrArr.Contains(q.Year)) orderby(q => q.);
 
+                // loads the quarters for the current year and the next year into qrtYearList
                 var qrtYearList = db.QuarterYears
                     .Where(c => yrArr.Contains(c.Year))
                     .OrderByDescending(c => c.Year)
@@ -41,14 +43,15 @@ namespace StudentTracker.Instructor
                 selectQuarterYear.DataSource = qrtYearList;
                 selectQuarterYear.DataBind();
 
+                //if a quarter wasn't found for this year or the next (qrtYearList) an error message is given
                 if (qrtYearList.Count == 0)
                 {
-                    ErrorMessage.Text = "No QuarterYear found for curreent year or next year. Quarter Year need to create before can create class.";
+                    ErrorMessage.Text = "No quarter was found for the current year or next year. A quarter needs to be created before you can create a class.";
                     btnClassCreate.Enabled = false;
                     ClassListMessage.Text = "";
                 }
 
-                //load Classes List that link to Instructor
+                //loads the Classes List that link to an Instructor
                 LoadInstructorClassList(getQuarter.CurrentQuart());
                 LoadAllInstructorClassList(getQuarter.CurrentQuart());
 
@@ -56,14 +59,14 @@ namespace StudentTracker.Instructor
                 int BIT = 1;
                 LoadCourseNumber(BIT);
 
-                //get User full name
+                //gets the User's full name when the page loads
                 var manager = new UserManager<User>(new UserStore<User>(new StudentTrackerDBContext()));
                 var currentUser = manager.FindById(Context.User.Identity.GetUserId());
                 FullName.Text = currentUser.FirstName + ", "+currentUser.LastName;
             }
         }
 
-        //load All Classes List that link to ALL Instructors
+        //loads All Classes that link to ALL Instructors
         //per Quarter Year selected
         protected void LoadAllInstructorClassList(string qrt)
         {
@@ -71,9 +74,10 @@ namespace StudentTracker.Instructor
             var yrArr = new int[] { yr, yr + 1 };
             string userID = User.Identity.GetUserId();
 
-            //load all instructor userID
+            //loads all the instructor userIDs into 'users'
             var users = roleManager.ReturnAllInstructor(); 
 
+            //loads "CourseLists" with the UserID, course ID, course Name, year and quarter (by joining tables) and orders them in descending order by name 
             var CourseLists = db.UsersCourses
                 .Join(db.Courses, c => c.CourseId, cm => cm.ID, (c, cm) => new { c, cm })
                 .Join(db.QuarterYears, q => q.cm.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
@@ -81,7 +85,8 @@ namespace StudentTracker.Instructor
                 .OrderByDescending(q => q.q.cm.Name)
                 .Select(i => new {i.q.c.UserId, CourseID = i.q.cm.ID, CourseName = i.q.cm.Name, Year = i.qm.Year, Quarter = i.qm.Quarter });
 
-
+            //loads into "list" (by joining CourseLists with the UserID table where IDs match) 
+            //the course ID, full name, year, quarter and coursename for all instructors (for display)
             var list = (from u in db.Users
                         join a in CourseLists on u.Id equals a.UserId
                         select new { a.CourseID, FullName = u.FirstName + " " + u.LastName, a.Year, a.Quarter, a.CourseName }
