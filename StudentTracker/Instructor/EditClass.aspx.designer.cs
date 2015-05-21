@@ -13,6 +13,15 @@ namespace StudentTracker.Instructor {
     public partial class EditClass {
         
         /// <summary>
+        /// CourseName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal CourseName;
+        
+        /// <summary>
         /// ErrorMessage control.
         /// </summary>
         /// <remarks>
@@ -85,48 +94,12 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.TextBox ClassName;
         
         /// <summary>
-        /// btnClassCreate control.
+        /// btnClassUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClassCreate;
-        
-        /// <summary>
-        /// ClassListMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ClassListMessage;
-        
-        /// <summary>
-        /// FullName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FullName;
-        
-        /// <summary>
-        /// GridViewInstructorClassList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewInstructorClassList;
-        
-        /// <summary>
-        /// GridViewClassList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewClassList;
+        protected global::System.Web.UI.WebControls.Button btnClassUpdate;
     }
 }

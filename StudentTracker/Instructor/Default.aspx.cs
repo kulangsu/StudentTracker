@@ -73,6 +73,12 @@ namespace StudentTracker.Instructor
             ListViewPreCourses.DataBind();
         }
 
+        // clicking Edit button redirects user to EditClass page
+        protected void btnEditClass_Click(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("EditClass.aspx?classID="+ e.CommandArgument);
+        }
+
         //delete class from instructor
         protected void DeleteClass_Click(object sender, CommandEventArgs e)
         {
