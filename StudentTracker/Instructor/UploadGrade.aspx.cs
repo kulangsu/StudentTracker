@@ -114,13 +114,13 @@ namespace StudentTracker.Instructor
             switch (Extension)
             {
                 case ".xls": //Excel 97-03
-                    ErrorMessage.Text = "Excel 2003 or older is not support, please convert to Excel 2007 or later version then try again.";
+                    ErrorMessage.Text = "Excel 2003 (.xls) or older is not support, please convert to Excel 2007 or later version then try again.";
                     isFormat = false;
                     break;
                 case ".xlsx": //Excel 2007 and later
                     break;
                 default:
-                    ErrorMessage.Text = "File format not support. Please upload excel .xls or .xlsx";
+                    ErrorMessage.Text = "File format not support. Please upload Excel file (.xlsx) verion 2007 and later.";
                     isFormat = false;
                     break;
             }
