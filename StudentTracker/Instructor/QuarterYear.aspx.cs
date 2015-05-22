@@ -22,7 +22,7 @@ namespace StudentTracker.Instructor
                 int yr = DateTime.Now.Year;
                 selectYear.Items.Add(yr.ToString());
                 selectYear.Items.Add((yr + 1).ToString());
-                selectQuarter.SelectedValue = getQuarter.CurrentQuart();
+                selectQuarter.SelectedValue = getQuarter.CurrentQuarter();
             }
 
             LoadQuarterYear();

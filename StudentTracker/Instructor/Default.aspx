@@ -13,8 +13,8 @@
     </script>
     <div class="form-horizontal">
         <div class="row">
-            <div class="col-md-8">
-                <h2><%: Title %> <span class="glyphicon glyphicon-calendar"></span>School Year
+            <div class="col-md-12">
+                <h2><%: Title %> <span class="glyphicon glyphicon-calendar"></span>&nbsp;School Year
                     <asp:Label ID="schoolYear" runat="server"></asp:Label></h2>
             </div>
         </div>
@@ -23,8 +23,7 @@
                 <asp:ListView ID="CourseListView" runat="server">
                     <EmptyDataTemplate>
                         <ul class="nav nav-tabs">
-                            <li role="presentation" runat="server" class="active"><a href="#"><span class="glyphicon glyphicon-folder-close"></span>&nbsp Current Quarter</a></li>
-                            <li role="presentation" runat="server"><a href="#">Next Quarter</a></li>
+                            <li role="presentation" runat="server" class="active"><a href="#"><span class="glyphicon glyphicon-folder-close"></span>&nbsp Current Quarter :: <asp:Label ID="quarterYear" runat="server"></asp:Label></a></li>
                         </ul>
                         <table class="table" style="width: 100%;">
                             <tr>
@@ -37,8 +36,7 @@
                     </EmptyDataTemplate>
                     <LayoutTemplate>
                         <ul class="nav nav-tabs">
-                            <li role="presentation" runat="server" class="active"><a href="#"><span class="glyphicon glyphicon-folder-open"></span>&nbsp Current Quarter</a></li>
-                            <li role="presentation"><a href="#"><span class="glyphicon glyphicon-folder-close"></span>&nbsp Next Quarter</a></li>
+                            <li role="presentation" runat="server" class="active" style="font-size: 20px;"><a href="#"><span class="glyphicon glyphicon-folder-open"></span>&nbsp Current Quarter :: <asp:Label ID="quarterYear" runat="server"></asp:Label></a></li>
                         </ul>
                         <table class="border_lbr">
                             <tr>
@@ -126,10 +124,49 @@
             </div>
         </div>
 
+        <!--Next quarter year class-->
+        <div class="row" style="margin-top: 5px">
+            <div class="col-md-11">
+                <h3><span style="font-size: 20px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp Next Quarters Year Classes :: <asp:Label ID="nextQuarterYear" runat="server"></asp:Label></h3>
+            </div>
+
+            <div class="col-md-12">
+                <asp:ListView ID="ListViewNextCourses" runat="server" EnablePersistedSelection="False">
+                    <EmptyDataTemplate>
+                        <table class="table">
+                            <tr>
+                                <th style="text-align: center;">
+                                    <h3>No Class Found Fro Next Quarter Year!</h3>
+                                </th>
+                            </tr>
+                        </table>
+                    </EmptyDataTemplate>
+                    <LayoutTemplate>
+                        <div class="row" style="margin-bottom: 5px;">
+                            <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
+                        </div>
+                    </LayoutTemplate>
+
+                    <ItemTemplate>
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <a href="#" title="Transfer This Class To Other Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
+                                    <a href="#" title="Modify This Class"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp
+                                    <asp:LinkButton runat="server" ID="btnUserDelete" CssClass="glyphicon glyphicon-trash" OnClientClick=" return confirm('Please Confirm:\nYou are about permanently delete this class and its content.\n\nAre You Sure?')" OnCommand="DeleteClass_Click" CommandArgument='<%#Eval("CourseID") %>' />
+                                </span>
+                                <span class="form-control"><a href="#"><%#Eval("Year") %> <%#Eval("Quarter") %> :: <%#Eval("CourseName") %></a></span>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:ListView>
+            </div>
+        </div>
+
         <!--Previous quarter year class-->
         <div class="row" style="margin-top: 5px">
             <div class="col-md-11">
-                <h3><span style="font-size: 20px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp Show All Quarters Year</h3>
+                <h3><span style="font-size: 20px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp All Previous Quarters Year Classes</h3>
             </div>
 
             <div class="col-md-12">
@@ -161,6 +198,7 @@
                         <div class="col-md-12">
                             <div class="input-group">
                                 <span class="input-group-addon">
+                                    <a href="#" title="Transfer This Class To Other Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
                                     <asp:LinkButton runat="server" ID="btnUserDelete" CssClass="glyphicon glyphicon-trash" OnClientClick=" return confirm('Please Confirm:\nAre are about permanent delete this class.\n\nAre You Sure?')" OnCommand="DeleteClass_Click" CommandArgument='<%#Eval("CourseID") %>' />
                                 </span>
                                 <span class="form-control"><a href="#"><%#Eval("Year") %> <%#Eval("Quarter") %> :: <%#Eval("CourseName") %></a></span>

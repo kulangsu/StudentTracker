@@ -26,14 +26,25 @@ namespace StudentTracker.Instructor
             if (!IsPostBack)
             {
                 //loading the quarter (QuarterYears) from the database to the gridview
+                int[] temp = null;
+                var yrArr = temp;
+                string[] tempStr = null;
+                var qrtArry = tempStr;
 
-                var yrArr = new int[] { yr, yr + 1 };
-
-                // (to delete) var query = from q in db.QuarterYears where (q => yrArr.Contains(q.Year)) orderby(q => q.);
+                if (getQuarter.InQuarter() == 3)
+                {
+                    yrArr = new int[] { yr, yr + 1 };
+                    qrtArry = new string[] { getQuarter.GetQuarters(3), getQuarter.GetQuarters(0) };
+                }
+                else
+                {
+                    yrArr = new int[] { yr };
+                    qrtArry = new string[] { getQuarter.GetQuarters(getQuarter.InQuarter()), getQuarter.GetQuarters(getQuarter.InQuarter() + 1) };
+                }
 
                 // loads the quarters for the current year and the next year into qrtYearList
                 var qrtYearList = db.QuarterYears
-                    .Where(c => yrArr.Contains(c.Year))
+                    .Where(c => yrArr.Contains(c.Year) && qrtArry.Contains(c.Quarter))
                     .OrderByDescending(c => c.Year)
                     .Select(i => new { _ID = i.ID, _QrtYr = i.Year + " - " + i.Quarter })
                     .ToList();
@@ -52,8 +63,8 @@ namespace StudentTracker.Instructor
                 }
 
                 //loads the Classes List that link to an Instructor
-                LoadInstructorClassList(getQuarter.CurrentQuart());
-                LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                LoadInstructorClassList(getQuarter.CurrentQuarter());
+                LoadAllInstructorClassList(getQuarter.CurrentQuarter());
 
                 //loading default course number
                 int BIT = 1;
@@ -157,8 +168,8 @@ namespace StudentTracker.Instructor
                 {
                     ErrorMessage.Text += "<br>New Class created successful.";
                     //load Classes List that link to Instructor
-                    LoadInstructorClassList(getQuarter.CurrentQuart());
-                    LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                    LoadInstructorClassList(getQuarter.CurrentQuarter());
+                    LoadAllInstructorClassList(getQuarter.CurrentQuarter());
                 }
                 else
                     ErrorMessage.Text += "System failed to insert new Class to database.";

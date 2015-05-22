@@ -19,7 +19,7 @@ namespace StudentTracker.Models
     public class GetQuarter
     {
         //determine default current quarter by Month of the year
-        public string CurrentQuart()
+        public string CurrentQuarter()
         {
             return GetQuarters(InQuarter());
         }

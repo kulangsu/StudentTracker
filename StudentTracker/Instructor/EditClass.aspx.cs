@@ -49,8 +49,8 @@ namespace StudentTracker.Instructor
                 }
 
                 //load Classes List that link to Instructor
-                LoadInstructorClassList(getQuarter.CurrentQuart());
-                LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                LoadInstructorClassList(getQuarter.CurrentQuarter());
+                LoadAllInstructorClassList(getQuarter.CurrentQuarter());
 
                 //loading default course number
                 int BIT = 1;
@@ -152,8 +152,8 @@ namespace StudentTracker.Instructor
                 {
                     ErrorMessage.Text += "<br>New Class created successful.";
                     //load Classes List that link to Instructor
-                    LoadInstructorClassList(getQuarter.CurrentQuart());
-                    LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                    LoadInstructorClassList(getQuarter.CurrentQuarter());
+                    LoadAllInstructorClassList(getQuarter.CurrentQuarter());
                 }
                 else
                     ErrorMessage.Text += "System failed to insert new Class to database.";

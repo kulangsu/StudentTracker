@@ -32,7 +32,7 @@ namespace StudentTracker.Instructor
                 //loading the quarter year from the database to the gridview
                 string userID = User.Identity.GetUserId();
                 var yrArr = new int[] { yr, yr + 1 };
-                string qrt = getQuarter.CurrentQuart();
+                string qrt = getQuarter.CurrentQuarter();
 
                 // (to delete) var query = from q in db.QuarterYears where (q => yrArr.Contains(q.Year)) orderby(q => q.);
 
@@ -52,28 +52,98 @@ namespace StudentTracker.Instructor
 
                 schoolYear.Text = DateTime.Now.Year.ToString();
 
+                Label mylabel = (Label)CourseListView.FindControl("quarterYear");
+                mylabel.Text = getQuarter.CurrentQuarter() + " " + DateTime.Now.Year.ToString();
+
                 LoadPreviousCourses();
+                LoadNextQuarterCourses();
 
             }
         }
 
+        //load previous courses Year only 
+        protected void LoadNextQuarterCourses()
+        {
+            string userID = User.Identity.GetUserId();
+            int yr = DateTime.Now.Year;
+            //loading the quarter (QuarterYears) from the database to the gridview
+            int[] temp = null;
+            var yrArr = temp;
+            string[] tempStr = null;
+            var qrtArry = tempStr;
+
+            //if current quarter is Fall, then increase year+1 and quarter jump to Winter
+            if (getQuarter.InQuarter() == 3)
+            {
+                yrArr = new int[] { yr + 1 };
+                qrtArry = new string[] { getQuarter.GetQuarters(0) };
+                nextQuarterYear.Text = getQuarter.GetQuarters(0) + " " + (yr + 1).ToString();
+            }
+            else  //stay in current year then just increate quarter to next season
+            {
+                yrArr = new int[] { yr };
+                qrtArry = new string[] { getQuarter.GetQuarters(getQuarter.InQuarter() + 1) };
+                nextQuarterYear.Text = getQuarter.GetQuarters(getQuarter.InQuarter() + 1) + " " + yr.ToString();
+            }
+
+            var CourseListsNextQrt = db.UsersCourses
+                .Join(db.Courses, c => c.CourseId, cm => cm.ID, (c, cm) => new { c, cm })
+                .Join(db.QuarterYears, q => q.cm.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
+                // (to delete) .Where(w => yrArr.Contains(w.qm.Year) && w.qm.Quarter.Equals(qrt) && w.q.c.UserId.Equals(userID))
+                // (to delete) .Where(w => yrArr.Contains(w.qm.Year) && w.q.c.UserId.Equals(userID))
+                .Where(w => w.q.c.UserId.Equals(userID) && yrArr.Contains(w.qm.Year) && qrtArry.Contains(w.qm.Quarter))
+                .OrderByDescending(q => q.qm.Year)
+                .Select(i => new { CourseID = i.q.cm.ID, CourseName = i.q.cm.Name, Year = i.qm.Year, Quarter = i.qm.Quarter })
+                .ToList();
+
+            ListViewNextCourses.DataSource = CourseListsNextQrt;
+            ListViewNextCourses.DataBind();
+        }
 
         //load previous courses Year only 
         protected void LoadPreviousCourses()
         {
             string userID = User.Identity.GetUserId();
+            var quarterID = GetQuarterYearID();
 
             var CourseLists = db.UsersCourses
                 .Join(db.Courses, c => c.CourseId, cm => cm.ID, (c, cm) => new { c, cm })
                 .Join(db.QuarterYears, q => q.cm.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
                 // (to delete) .Where(w => yrArr.Contains(w.qm.Year) && w.qm.Quarter.Equals(qrt) && w.q.c.UserId.Equals(userID))
                 // (to delete) .Where(w => yrArr.Contains(w.qm.Year) && w.q.c.UserId.Equals(userID))
-                .Where(w => w.q.c.UserId.Equals(userID))
+                .Where(w => w.q.c.UserId.Equals(userID) && !quarterID.Contains(w.qm.ID))
                 .OrderByDescending(q => q.qm.Year)
                 .Select(i => new { CourseID = i.q.cm.ID, CourseName = i.q.cm.Name, Year = i.qm.Year, Quarter = i.qm.Quarter })
                 .ToList();
 
             ListViewPreCourses.DataSource = CourseLists;
+            ListViewPreCourses.DataBind();
+        }
+
+        //load quarter year id
+        protected int[] GetQuarterYearID()
+        {
+            int yr = DateTime.Now.Year;
+            //loading the quarter (QuarterYears) from the database to the gridview
+            int[] temp = null;
+            var yrArr = temp;
+            string[] tempStr = null;
+            var qrtArry = tempStr;
+
+            if (getQuarter.InQuarter() == 3)
+            {
+                yrArr = new int[] { yr, yr + 1 };
+                qrtArry = new string[] { getQuarter.GetQuarters(3), getQuarter.GetQuarters(0) };
+            }
+            else
+            {
+                yrArr = new int[] { yr };
+                qrtArry = new string[] { getQuarter.GetQuarters(getQuarter.InQuarter()), getQuarter.GetQuarters(getQuarter.InQuarter() + 1) };
+            }
+            return db.QuarterYears
+                .Where(q => yrArr.Contains(q.Year) && qrtArry.Contains(q.Quarter))
+                .Select(s=>s.ID)
+                .ToArray();
         }
 
         //deletes the instructors class when he clicks the trash can icon

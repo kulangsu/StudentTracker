@@ -57,10 +57,12 @@ namespace StudentTracker.Instructor
             LoadCurrentEnrollStudent(CourseID);
 
             //default null dataset
+            /*
             gvGradeUploadStudent.DataSource = null;
             gvGradeUploadStudent.DataBind();
             gvGradeUploadStatus.DataSource = null;
             gvGradeUploadStatus.DataBind();
+            */
 
         }
 
@@ -75,7 +77,7 @@ namespace StudentTracker.Instructor
                 .Join(db.Users, u => u.UserId, um => um.Id, (u, um) => new { u, um })
                 .Where(w => w.u.CourseId == CourseID && !w.u.UserId.Equals(userID))
                 .OrderBy(o => o.um.FirstName).ThenBy(i => i.um.LastName)
-                .Select(s => new { SID = s.um.SID, FirstName = s.um.FirstName, LastName = s.um.LastName }).ToList();
+                .Select(s => new { SID = s.um.SID, FirstName = s.um.FirstName, LastName = s.um.LastName, Message = "", Status = "" }).ToList();
 
             gvCurrentStudentEnroll.DataSource = EnrollStudentLists;
             gvCurrentStudentEnroll.DataBind();
@@ -137,25 +139,33 @@ namespace StudentTracker.Instructor
                     {
                         if (row[0].ToString().Equals(upload[0].ToString()))
                         {
-                            status.Rows.Add("Ready");
-                            grade.Rows.Add("Ready batch upload grade for this student.");
+                            //status.Rows.Add("Ready");
+                            row["Message"] = "Ready batch upload grade for this student.";
+                            //grade.Rows.Add("Ready batch upload grade for this student.");
+                            row["Status"] = "Ready";
                             isSIDMatch = true;
                             break;
                         }
                     }
                     if (!isSIDMatch)
                     {
-                        status.Rows.Add("<span class='text-danger'>Not Ready</span>");
-                        grade.Rows.Add("<span class='text-danger'>Student not found from grade upload.</span>");
+                        //status.Rows.Add("<span class='text-danger'>Not Ready</span>");
+                        row["Status"] = "<span class='text-danger'>Not Ready</span>";
+                        //grade.Rows.Add("<span class='text-danger'>Student not found from grade upload.</span>");
+                        row["Message"] = "<span class='text-danger'>Student not found from grade upload.</span>";
                     }
                 }
+                studentLists.AcceptChanges();
 
-                gvGradeUploadStatus.DataSource = status;
+                gvCurrentStudentEnroll.DataSource = studentLists;
+                gvCurrentStudentEnroll.DataBind();
+
+/*                gvGradeUploadStatus.DataSource = status;
                 gvGradeUploadStatus.DataBind();
 
                 gvGradeUploadStudent.DataSource = grade;
                 gvGradeUploadStudent.DataBind();
-
+*/
             }
         }
 
