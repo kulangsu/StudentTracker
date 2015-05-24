@@ -55,15 +55,6 @@ namespace StudentTracker.Instructor
 
             //load current enroll student list
             LoadCurrentEnrollStudent(CourseID);
-
-            //default null dataset
-            /*
-            gvGradeUploadStudent.DataSource = null;
-            gvGradeUploadStudent.DataBind();
-            gvGradeUploadStatus.DataSource = null;
-            gvGradeUploadStatus.DataBind();
-            */
-
         }
 
         protected void LoadCurrentEnrollStudent(int CourseID)
@@ -159,13 +150,6 @@ namespace StudentTracker.Instructor
 
                 gvCurrentStudentEnroll.DataSource = studentLists;
                 gvCurrentStudentEnroll.DataBind();
-
-/*                gvGradeUploadStatus.DataSource = status;
-                gvGradeUploadStatus.DataBind();
-
-                gvGradeUploadStudent.DataSource = grade;
-                gvGradeUploadStudent.DataBind();
-*/
             }
         }
 

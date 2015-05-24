@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>Student Tracker</h1>
+        <asp:Image runat="server" ImageUrl="~/Images/logo_grey.png" />
         <p class="lead">Welcome to BIT286 web application project.</p>
         <p><a href="http://faculty.cascadia.edu/mpanitz/Courses/BIT286/" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>

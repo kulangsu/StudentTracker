@@ -271,6 +271,10 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Icon.png" />
+    <Content Include="Images\logo_bl.png" />
+    <Content Include="Images\logo_blue.png" />
+    <Content Include="Images\logo_bl_1.png" />
+    <Content Include="Images\logo_grey.png" />
     <Content Include="Instructor\AddHomework.aspx" />
     <Content Include="Instructor\EditClass.aspx" />
     <Content Include="Instructor\Default.aspx" />
