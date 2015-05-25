@@ -276,6 +276,7 @@
     <Content Include="Images\logo_bl_1.png" />
     <Content Include="Images\logo_grey.png" />
     <Content Include="Instructor\AddHomework.aspx" />
+    <Content Include="Instructor\ClassHomepage.aspx" />
     <Content Include="Instructor\EditClass.aspx" />
     <Content Include="Instructor\Default.aspx" />
     <Content Include="Instructor\CreateClass.aspx" />
@@ -537,6 +538,13 @@
     </Compile>
     <Compile Include="Instructor\AddHomework.aspx.designer.cs">
       <DependentUpon>AddHomework.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor\ClassHomepage.aspx.cs">
+      <DependentUpon>ClassHomepage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Instructor\ClassHomepage.aspx.designer.cs">
+      <DependentUpon>ClassHomepage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Instructor\EditClass.aspx.cs">
       <DependentUpon>EditClass.aspx</DependentUpon>
