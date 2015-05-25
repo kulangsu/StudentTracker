@@ -329,8 +329,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="Student\ChangePassword.aspx" />
     <Content Include="Student\Default.aspx" />
+    <Content Include="Student\EditProfile.aspx" />
     <Content Include="Student\JoinClass.aspx" />
+    <Content Include="Student\StudentClass.aspx" />
+    <Content Include="Student\StudentPage.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -612,12 +616,26 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Student\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Student\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\JoinClass.aspx.cs">
       <DependentUpon>JoinClass.aspx</DependentUpon>
@@ -632,6 +650,20 @@
     </Compile>
     <Compile Include="Student\Student.master.designer.cs">
       <DependentUpon>Student.master</DependentUpon>
+    </Compile>
+    <Compile Include="Student\StudentClass.aspx.cs">
+      <DependentUpon>StudentClass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\StudentClass.aspx.designer.cs">
+      <DependentUpon>StudentClass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\StudentPage.aspx.cs">
+      <DependentUpon>StudentPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\StudentPage.aspx.designer.cs">
+      <DependentUpon>StudentPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

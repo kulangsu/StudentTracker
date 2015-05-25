@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentTracker.Instructor {
+namespace StudentTracker.Student {
     
     
-    public partial class Homework {
+    public partial class StudentClass {
         
         /// <summary>
         /// Lbl_pageTitle control.
@@ -22,48 +22,57 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.Label Lbl_pageTitle;
         
         /// <summary>
-        /// GriveViewAssignmentList control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GriveViewAssignmentList;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// drpDwnSelect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.DropDownList drpDwnSelect;
         
         /// <summary>
-        /// MessageLabel control.
+        /// TextBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MessageLabel;
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
-        /// btnAddHmw control.
+        /// btnBrowse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddHmw;
+        protected global::System.Web.UI.WebControls.Button btnBrowse;
         
         /// <summary>
-        /// btnRemoveHmw control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemoveHmw;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// Assignments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView Assignments;
     }
 }
