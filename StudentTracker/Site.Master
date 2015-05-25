@@ -51,7 +51,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Student Tracker</a>
+                    <a class="navbar-brand" runat="server" href="~/"><asp:Image runat="server" ImageUrl="~/Images/logo_blue.png"  Width="175px" Height="19px" /></a>
+                    <!--<a class="navbar-brand" runat="server" href="~/">Student Tracker</a>-->
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
