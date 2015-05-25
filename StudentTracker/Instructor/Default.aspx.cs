@@ -76,7 +76,7 @@ namespace StudentTracker.Instructor
         // clicking Edit button redirects user to EditClass page
         protected void btnEditClass_Click(object sender, CommandEventArgs e)
         {
-            Response.Redirect("EditClass.aspx?classID="+ e.CommandArgument);
+            Response.Redirect("EditClass.aspx?ClassID="+ e.CommandArgument);
         }
 
         //delete class from instructor

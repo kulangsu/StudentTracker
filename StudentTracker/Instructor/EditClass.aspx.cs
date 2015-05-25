@@ -28,16 +28,16 @@ namespace StudentTracker.Instructor
                 // display course name
                 CourseName.Text = "blah blah";
 
-                   
-            //check to make sure ClassID parameter exist, if not redirect user
-            if (Request.QueryString["ClassID"] == null)
-            {
-                //page has been attempt without ClassID, redirect user back to Instructor Homepage
-                Response.Redirect("~/Instructor");
-            }
-               
-            //ClassID is found, let determine what class about to edit and update
-            int ClassID = Convert.ToInt32(Request.QueryString["ClassID"]);
+
+                //check to make sure ClassID parameter exist, if not redirect user
+                if (Request.QueryString["ClassID"] == null)
+                {
+                    //page has been attempt without ClassID, redirect user back to Instructor Homepage
+                    Response.Redirect("~/Instructor");
+                }
+
+                //ClassID is found, let determine what class about to edit and update
+                int ClassID = Convert.ToInt32(Request.QueryString["ClassID"]);
  
 
                 //loading quarter year from database to gridview
