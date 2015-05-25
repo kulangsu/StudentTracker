@@ -57,9 +57,9 @@ namespace StudentTracker.Instructor
                 selectQuarterYear.DataBind();
 
 
-                ////load Classes List that link to Instructor
-                //LoadInstructorClassList(getQuarter.CurrentQuart());
-                //LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                //load Classes List that link to Instructor
+                LoadInstructorClassList(getQuarter.CurrentQuart());
+                LoadAllInstructorClassList(getQuarter.CurrentQuart());
 
                 ////loading default course number
                 //int BIT = 1;
@@ -135,8 +135,8 @@ namespace StudentTracker.Instructor
                 {
                     ErrorMessage.Text += "<br>New Class created successful.";
                     //load Classes List that link to Instructor
-                    //LoadInstructorClassList(getQuarter.CurrentQuart());
-                    //LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                    LoadInstructorClassList(getQuarter.CurrentQuart());
+                    LoadAllInstructorClassList(getQuarter.CurrentQuart());
                 }
                 else
                     ErrorMessage.Text += "System failed to insert new Class to database.";
@@ -159,7 +159,7 @@ namespace StudentTracker.Instructor
         }
 
         protected void LoadCourseNumber(int num)
-        {
+        {           
             var courseNumberList = db.CourseNumbers
                 .Where(c => c.PrefixID == num)
                 .OrderBy(c => c.Number)

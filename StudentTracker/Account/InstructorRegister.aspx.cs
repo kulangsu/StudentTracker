@@ -34,7 +34,7 @@ namespace StudentTracker.Account
             //need to create store procedure to check make sure only 1 valid SID or EID.
             //check SID and Email and EmailConfirmed = True
             int thisSID = Convert.ToInt32(SID.Text.Trim());
-            var isSID = context.Users.Where(u => u.SID == thisSID).ToList();
+            var isSID = context.Users.Where(u => u.SID == thisSID && u.EmailConfirmed == true).ToList();
             if (isSID.Count > 0)
             {
                 ErrorMessage.Text = "Employee ID (EID) is already registered in database or invalid.";

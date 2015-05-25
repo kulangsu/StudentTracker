@@ -34,43 +34,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="panel panel-default col-md-11 col-md-offset-1">
+            <div class="panel panel-default col-md-12">
                 <table class="table">
                     <tr>
-                        <th class="col-md-5"><h4>Current Enrolled Student</h4></th>
-                        <th class="col-md-5"><h4>Upload Grade Student</h4></th>
-                        <th class="col-md-2"><h4>Upload Status</h4></th>
+                        <th class="col-md-12"><h4>Current Enrolled Student</h4></th>
                     </tr>
                     <tr>
                         <td>
-                            <asp:GridView ID="gvCurrentStudentEnroll" runat="server" CssClass="table" AutoGenerateColumns="False">
+                            <asp:GridView ID="gvCurrentStudentEnroll" runat="server" CssClass="table" AutoGenerateColumns="False" PageSize="100">
                                 <Columns>
-                                    <asp:BoundField DataField="SID" HeaderText="Student ID" SortExpression="SID" />
+                                    <asp:BoundField DataField="SID" HeaderText="SID" SortExpression="SID" />
                                     <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
                                     <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
+                                    <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" HtmlEncode="False" HtmlEncodeFormatString="False" ItemStyle-Width="55%" />
+                                    <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" HtmlEncodeFormatString="False" HtmlEncode="False" />
                                 </Columns>
                                 <EmptyDataTemplate>
                                     <h4 class="text-danger">No Student Enroll In This Class.</h4>
-                                </EmptyDataTemplate>
-                            </asp:GridView>
-                        </td>
-                        <td>
-                            <asp:GridView ID="gvGradeUploadStudent" runat="server" CssClass="table" AutoGenerateColumns="False">
-                                <Columns>
-                                    <asp:BoundField DataField="Message" HeaderText="Grade Upload Message" SortExpression="Message" HtmlEncode="False" HtmlEncodeFormatString="False" />
-                                </Columns>
-                                <EmptyDataTemplate>
-                                    <h4 class="text-danger">Grade Upload Not Yet Submit.</h4>
-                                </EmptyDataTemplate>
-                            </asp:GridView>
-                        </td>
-                        <td>
-                            <asp:GridView ID="gvGradeUploadStatus" runat="server" CssClass="table" AutoGenerateColumns="False">
-                                <Columns>
-                                    <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" HtmlEncode="False" HtmlEncodeFormatString="False" />
-                                </Columns>
-                                <EmptyDataTemplate>                                    
-                                    <h4 class="text-danger">Not Upload</h4>
                                 </EmptyDataTemplate>
                             </asp:GridView>
                         </td>

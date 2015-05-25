@@ -12,9 +12,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Configuration;
 using System.IO;
 using System.Data;
-using System.Data.OleDb;
 using System.Web.Security;
 using System.Reflection;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 
 namespace StudentTracker.Instructor
@@ -36,30 +37,24 @@ namespace StudentTracker.Instructor
                 //page has been attempt without CourseID, redirect user back to Instructor Homepage
                 Response.Redirect("~/Instructor");
             }
-                
+
             //CourseID is found, let determine what class about to upload student grade
             int CourseID = Convert.ToInt32(Request.QueryString["CourseID"]);
             //CourseID = 14;
             var msg = (from c in db.Courses where c.ID == CourseID select c.Name).SingleOrDefault();
-            
+
             //Class not found, redirect to instructor homepage
             if (msg == null)
             {
                 ErrorMessage.Text = "Class is not found, make sure your browser session still valid then try again.";
                 DisableUpload();
                 ClassName.Text = "Course Not Found!";
-            }else
+            }
+            else
                 ClassName.Text = msg.ToString();
 
             //load current enroll student list
             LoadCurrentEnrollStudent(CourseID);
-
-            //default null dataset
-            gvGradeUploadStudent.DataSource = null;
-            gvGradeUploadStudent.DataBind();
-            gvGradeUploadStatus.DataSource = null;
-            gvGradeUploadStatus.DataBind();
-            
         }
 
         protected void LoadCurrentEnrollStudent(int CourseID)
@@ -67,18 +62,18 @@ namespace StudentTracker.Instructor
             string userID = User.Identity.GetUserId();
             //load all instructor userID
             var users = roleManager.ReturnAllStudentID();
-            
+
             var EnrollStudentLists = db.UsersCourses
                 //.Join(db.Courses, c => c.CourseId, cm => cm.ID, (c, cm) => new { c, cm })
                 .Join(db.Users, u => u.UserId, um => um.Id, (u, um) => new { u, um })
                 .Where(w => w.u.CourseId == CourseID && !w.u.UserId.Equals(userID))
-                .OrderBy(o => o.um.FirstName).ThenBy(i=>i.um.LastName)
-                .Select(s => new { SID=s.um.SID,FirstName=s.um.FirstName,LastName=s.um.LastName }).ToList();
-            
+                .OrderBy(o => o.um.FirstName).ThenBy(i => i.um.LastName)
+                .Select(s => new { SID = s.um.SID, FirstName = s.um.FirstName, LastName = s.um.LastName, Message = "", Status = "" }).ToList();
+
             gvCurrentStudentEnroll.DataSource = EnrollStudentLists;
             gvCurrentStudentEnroll.DataBind();
 
-            studentLists = ConvertToDataTable(EnrollStudentLists);
+            studentLists = ConvertListToDataTable(EnrollStudentLists);
         }
 
         protected void UploadGrade_Click(object sender, EventArgs e)
@@ -101,7 +96,6 @@ namespace StudentTracker.Instructor
 
         protected void ImportToGrid(string FilePath, string Extension, string isHDR)
         {
-            string conStr = "";
             Boolean isFormat = true;
             DataTable dt = new DataTable();
             DataTable status = new DataTable();
@@ -109,77 +103,54 @@ namespace StudentTracker.Instructor
 
             DataTable grade = new DataTable();
             grade.Columns.Add("Message", typeof(string));
-
+            ErrorMessage.Text = "";
             switch (Extension)
             {
                 case ".xls": //Excel 97-03
-                    conStr = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
+                    ErrorMessage.Text = "Excel 2003 (.xls) or older is not support, please convert to Excel 2007 or later version then try again.";
+                    isFormat = false;
                     break;
-                case ".xlsx": //Excel 07
-                    conStr = ConfigurationManager.ConnectionStrings["Excel07ConString"].ConnectionString;
+                case ".xlsx": //Excel 2007 and later
                     break;
                 default:
-                    ErrorMessage.Text = "File format not support. Please upload excel .xls or .xlsx";
+                    ErrorMessage.Text = "File format not support. Please upload Excel file (.xlsx) verion 2007 and later.";
                     isFormat = false;
                     break;
             }
 
             if (isFormat)
             {
-                conStr = String.Format(conStr, FilePath, isHDR);
-                OleDbConnection connExcel = new OleDbConnection(conStr);
-                OleDbCommand cmdExcel = new OleDbCommand();
-                OleDbDataAdapter oda = new OleDbDataAdapter();
-                cmdExcel.Connection = connExcel;
+                dt = XcelToDataTable(FilePath);
 
-                //Get the name of First Sheet
-                connExcel.Open();
-                DataTable dtExcelSchema;
-                dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                string SheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
-                connExcel.Close();
-
-                //Read Data from First Sheet
-                connExcel.Open();
-                cmdExcel.CommandText = "SELECT * From [" + SheetName + "]";
-                oda.SelectCommand = cmdExcel;
-                oda.Fill(dt);
-                connExcel.Close();
-
-                //Bind Data to GridView
-                //gvGradeUploadStudent.Caption = Path.GetFileName(FilePath);
-                //gvGradeUploadStudent.DataSource = dt;
-                //gvGradeUploadStudent.DataBind();
-            }
-
-            //test--------------------------------
-            ErrorMessage.Text = "<hr>";
-            Boolean test = false;
-            foreach (DataRow row in studentLists.Rows)
-            {
-                test = false;
-                foreach (DataRow upload in dt.Rows)
+                Boolean isSIDMatch = false;
+                foreach (DataRow row in studentLists.Rows)
                 {
-                    if (row[0].ToString().Equals(upload[0].ToString()))
+                    isSIDMatch = false;
+                    foreach (DataRow upload in dt.Rows)
                     {
-                        status.Rows.Add("Ready");
-                        grade.Rows.Add("Ready batch upload grade for this student.");
-                        test = true;
-                        break;                        
+                        if (row[0].ToString().Equals(upload[0].ToString()))
+                        {
+                            //status.Rows.Add("Ready");
+                            row["Message"] = "Ready batch upload grade for this student.";
+                            //grade.Rows.Add("Ready batch upload grade for this student.");
+                            row["Status"] = "Ready";
+                            isSIDMatch = true;
+                            break;
+                        }
+                    }
+                    if (!isSIDMatch)
+                    {
+                        //status.Rows.Add("<span class='text-danger'>Not Ready</span>");
+                        row["Status"] = "<span class='text-danger'>Not Ready</span>";
+                        //grade.Rows.Add("<span class='text-danger'>Student not found from grade upload.</span>");
+                        row["Message"] = "<span class='text-danger'>Student not found from grade upload.</span>";
                     }
                 }
-                if (!test)
-                {
-                    status.Rows.Add("<span class='text-danger'>Not Ready</span>");
-                    grade.Rows.Add("<span class='text-danger'>Student not found from grade upload.</span>");
-                }
+                studentLists.AcceptChanges();
+
+                gvCurrentStudentEnroll.DataSource = studentLists;
+                gvCurrentStudentEnroll.DataBind();
             }
-
-            gvGradeUploadStatus.DataSource = status;
-            gvGradeUploadStatus.DataBind();
-
-            gvGradeUploadStudent.DataSource = grade;
-            gvGradeUploadStudent.DataBind();
         }
 
         //disable all buttons
@@ -189,7 +160,8 @@ namespace StudentTracker.Instructor
             StudentGradeFile.Enabled = false;
         }
 
-        public DataTable ConvertToDataTable<T>(IEnumerable<T> varlist)
+        //convert List<> to DataTable
+        public DataTable ConvertListToDataTable<T>(IEnumerable<T> varlist)
         {
             DataTable dtReturn = new DataTable();
 
@@ -228,6 +200,58 @@ namespace StudentTracker.Instructor
                 dtReturn.Rows.Add(dr);
             }
             return dtReturn;
+        }
+
+        public static DataTable XcelToDataTable(string fileName)
+        {
+            DataTable dataTable = new DataTable();
+            using (SpreadsheetDocument spreadSheetDocument = SpreadsheetDocument.Open(fileName, false))
+            {
+                WorkbookPart workbookPart = spreadSheetDocument.WorkbookPart;
+                IEnumerable<Sheet> sheets = spreadSheetDocument.WorkbookPart.Workbook.GetFirstChild<Sheets>().Elements<Sheet>();
+                string relationshipId = sheets.First().Id.Value;
+                WorksheetPart worksheetPart = (WorksheetPart)spreadSheetDocument.WorkbookPart.GetPartById(relationshipId);
+                Worksheet workSheet = worksheetPart.Worksheet;
+                SheetData sheetData = workSheet.GetFirstChild<SheetData>();
+                IEnumerable<Row> rows = sheetData.Descendants<Row>();
+
+                foreach (Cell cell in rows.ElementAt(0))
+                {
+                    dataTable.Columns.Add(GetCellValue(spreadSheetDocument, cell));
+                }
+
+                foreach (Row row in rows)
+                {
+                    DataRow dataRow = dataTable.NewRow();
+                    for (int i = 0; i < row.Descendants<Cell>().Count(); i++)
+                    {
+                        dataRow[i] = GetCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(i));
+                    }
+
+                    dataTable.Rows.Add(dataRow);
+                }
+
+            }
+            dataTable.Rows.RemoveAt(0);
+
+            return dataTable;
+        }
+
+        private static string GetCellValue(SpreadsheetDocument document, Cell cell)
+        {
+            SharedStringTablePart stringTablePart = document.WorkbookPart.SharedStringTablePart;
+            if (cell.CellValue == null) return null;
+
+            string value = cell.CellValue.InnerXml;
+
+            if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
+            {
+                return stringTablePart.SharedStringTable.ChildElements[Int32.Parse(value)].InnerText;
+            }
+            else
+            {
+                return value;
+            }
         }
     }
 }

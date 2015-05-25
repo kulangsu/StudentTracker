@@ -21,7 +21,7 @@ namespace StudentTracker.Student
            
             if (!IsPostBack)
             {
-                string qrt = getQuarter.CurrentQuart();
+                string qrt = getQuarter.CurrentQuarter();
 
                 //get current quarter courses by joining courses and quarterYears tables        
                 var courseList = db.Courses
