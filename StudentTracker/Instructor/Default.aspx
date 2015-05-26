@@ -85,7 +85,7 @@
                                     <div class="col-md-6">
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-addon"><%# LoadAllAssignments(Convert.ToInt32(Eval("CourseID"))) %></span>
-                                            <div class="form-control">Assignments</div>
+                                            <a href="Homework.aspx?courseID=<%#Eval("CourseID") %>"><div class="form-control">Assignments</div></a>
                                         </div>
                                     </div>
                                 </div>
