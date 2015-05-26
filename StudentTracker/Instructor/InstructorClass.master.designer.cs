@@ -10,7 +10,7 @@
 namespace StudentTracker.Instructor {
     
     
-    public partial class InstructorClass {
+    public partial class InstructorClassMaster {
         
         /// <summary>
         /// MainContent control.
