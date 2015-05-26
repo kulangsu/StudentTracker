@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Instructor/Instructor.master" AutoEventWireup="true" CodeBehind="Homework.aspx.cs" Inherits="StudentTracker.Instructor.Homework" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>
-    <asp:Label ID="Lbl_pageTitle" runat="server" Text="Homework List"></asp:Label><br /><br< /></h1>
+    <h2>
+    <asp:Label ID="Lbl_pageTitle" runat="server" Text="Homework List"></asp:Label><br /><br< /></h2>
     
-    <asp:GridView ID="GriveViewAssignmentList" runat="server" >
+    <asp:GridView ID="GriveViewAssignmentList" runat="server" CssClass="table"  >
       
    
        </asp:GridView>

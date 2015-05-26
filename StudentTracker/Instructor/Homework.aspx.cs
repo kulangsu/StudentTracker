@@ -16,8 +16,21 @@ namespace StudentTracker.Instructor
         StudentTrackerDBContext db = new StudentTrackerDBContext();
         protected void Page_Load(object sender, EventArgs e)
         {
+            int classID = Convert.ToInt32(Request.QueryString["field1"]);
 
+            var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
+            if (dbClassID != null)
+            {
+                Lbl_pageTitle.Text = dbClassID.Name;
+            }
+            else
+            {
+                Lbl_pageTitle.Text = "Please return to the instrictor homepage to choose a class";
+
+            }
             var assignmentList = db.Assignments
+                .Join(db.AssignmentGroups, ag => ag.AssignmentGroupID, cm => cm.AssignmentGroupID, (ag, cm) => new { ag, cm })
+                .Select(i => new { Assignment_Group = i.cm.AssignmentGroupName, Assignment_Name = i.ag.AssignmentName, Points_Possible = i.ag.MaxPoint, Due_date = i.ag.DueDate})
                 .ToList();
 
                                  
