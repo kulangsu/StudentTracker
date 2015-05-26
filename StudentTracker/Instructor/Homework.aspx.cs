@@ -19,7 +19,7 @@ namespace StudentTracker.Instructor
         StudentTrackerDBContext db = new StudentTrackerDBContext();
         protected void Page_Load(object sender, EventArgs e)
         {
-            int classID = Convert.ToInt32(Request.QueryString["field1"]);
+            int classID = Convert.ToInt32(Request.QueryString["courseID"]);
 
             var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
             if (dbClassID != null)
@@ -66,7 +66,7 @@ namespace StudentTracker.Instructor
 
         protected void btnAddHmw_Click(object sender, EventArgs e)
         {
-            Server.Transfer("AddHomework.aspx");
+            Server.Transfer("AddHomework.aspx?courseID=Request.QueryString['courseID']");
         }
 
         //protected void btnRemoveHmw_Click(object sender, EventArgs e)
