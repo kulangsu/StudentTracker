@@ -15,7 +15,6 @@
                     <li class="list-group-item"><a runat="server" href="~/"><span class="glyphicon glyphicon-home"></span>&nbsp Home</a></li>
                     <li class="list-group-item"><a href="QuarterYear"><span class="glyphicon glyphicon-calendar"></span>&nbsp Create Quarter Year</a></li>
                     <li class="list-group-item"><a href="CreateClass"><span class="glyphicon glyphicon-book"></span>&nbsp Create New Class</a></li>
-                    <li class="list-group-item"><a href="Homework"><span class="glyphicon glyphicon-book"></span>&nbsp Assignment</a></li>
                     <li class="list-group-item"><a href="#">Next Link Here</a></li>
                     <li class="list-group-item"><a href="#">Next Link Here</a></li>
                     <li class="list-group-item"><a href="#">Next Link Here</a></li>

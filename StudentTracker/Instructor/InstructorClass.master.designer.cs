@@ -10,7 +10,7 @@
 namespace StudentTracker.Instructor {
     
     
-    public partial class InstructorClass {
+    public partial class InstructorClassMaster {
         
         /// <summary>
         /// MainContent control.
@@ -20,5 +20,14 @@ namespace StudentTracker.Instructor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        
+        /// <summary>
+        /// testtodd1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor testtodd1;
     }
 }
