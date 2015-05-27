@@ -18,7 +18,7 @@ namespace StudentTracker.Instructor
         protected void Page_Load(object sender, EventArgs e)
         {
          
-            int classID = Convert.ToInt32(Request.QueryString["courseID"]);
+            int classID = Convert.ToInt32(Request.QueryString["field1"]);
       
             var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
             if (dbClassID != null)
