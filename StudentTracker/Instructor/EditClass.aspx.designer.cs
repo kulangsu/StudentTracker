@@ -49,15 +49,6 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.DropDownList CourseArea;
         
         /// <summary>
-        /// SqlCoursePrefixList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlCoursePrefixList;
-        
-        /// <summary>
         /// CourseNumber control.
         /// </summary>
         /// <remarks>
@@ -74,15 +65,6 @@ namespace StudentTracker.Instructor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList CourseSection;
-        
-        /// <summary>
-        /// SqlCourseSectionList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlCourseSectionList;
         
         /// <summary>
         /// ClassName control.

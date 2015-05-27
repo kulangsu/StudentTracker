@@ -609,6 +609,10 @@
     <Compile Include="Instructor\UploadGrade.aspx.designer.cs">
       <DependentUpon>UploadGrade.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505260141359_ChangePrefix.cs" />
+    <Compile Include="Migrations\201505260141359_ChangePrefix.Designer.cs">
+      <DependentUpon>201505260141359_ChangePrefix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\STLib.cs" />
@@ -690,6 +694,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505260141359_ChangePrefix.resx">
+      <DependentUpon>201505260141359_ChangePrefix.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -61,8 +61,9 @@
                                                 <div style="float: left; font-weight: bold;"><a href="#"><%#Eval("Year") %> - <%#Eval("Quarter") %></a></div>
 
                                                 <div style="float: right;">
-                                                    <a href="#" title="Transfer This Class To Other Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp                         
-                                                <asp:LinkButton runat="server" ID="btnEditClass" CssClass="glyphicon glyphicon-pencil"  CommandArgument='<%#Eval("CourseID") %>' CommandName="btnEditClass_Click"  />
+                                                    <a href="#" title="Transfer This Class To Other Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp  
+                                                    <a href="EditClass.aspx?field1=<%#Eval("CourseID") %>" title="Edit Class"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp                       
+                                               
                                                 <asp:LinkButton runat="server" ID="btnUserDelete" CssClass="glyphicon glyphicon-trash" OnClientClick=" return confirm('Please Confirm:\nYou are about permanently delete this class and its content.\n\nAre You Sure?')" OnCommand="DeleteClass_Click" CommandArgument='<%#Eval("CourseID") %>' />
                                                 </div>
                                             </div>

@@ -25,19 +25,20 @@ namespace StudentTracker.Instructor
             int yr = DateTime.Now.Year;
             if (!IsPostBack)
             {
-                // display course name
-                CourseName.Text = "blah blah";
+                //// display course name
+                //CourseName.Text = "blah blah";
 
-
-                //check to make sure ClassID parameter exist, if not redirect user
-                if (Request.QueryString["ClassID"] == null)
+                int classID = Convert.ToInt32(Request.QueryString["field1"]);
+                var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
+                if (dbClassID != null)
                 {
-                    //page has been attempt without ClassID, redirect user back to Instructor Homepage
-                    Response.Redirect("~/Instructor");
+                    CourseName.Text = dbClassID.Name; // Display course name
                 }
+                else
+                {
+                    Response.Redirect("~/Instructor"); // Return to Instuctor homepage
 
-                //ClassID is found, let determine what class about to edit and update
-                int ClassID = Convert.ToInt32(Request.QueryString["ClassID"]);
+                }
  
 
                 //loading quarter year from database to gridview
@@ -56,42 +57,51 @@ namespace StudentTracker.Instructor
                 selectQuarterYear.DataSource = qrtYearList;
                 selectQuarterYear.DataBind();
 
+                selectQuarterYear.Items.FindByValue(dbClassID.QuarterYearID.ToString()).Selected = true;
 
-                //load Classes List that link to Instructor
-                LoadInstructorClassList(getQuarter.CurrentQuart());
-                LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                // Split the selected class name!
+                string[] nameSplit = dbClassID.Name.Split();
+                string first = nameSplit[0]; // Course Prefix like BIT
+                string second = nameSplit[1]; // Course Number like 115
+                string third = nameSplit[2]; // Course Name like Java
+                string fourth = nameSplit[3]; // Section Number like Sec01
 
-                ////loading default course number
-                //int BIT = 1;
-                //LoadCourseNumber(BIT);
+                // Course Pre-fix dropdown list
+                var prefixList = db.CoursePrefixs
 
-                ////get User full name
-                //var manager = new UserManager<User>(new UserStore<User>(new StudentTrackerDBContext()));
-                //var currentUser = manager.FindById(Context.User.Identity.GetUserId());
-                //FullName.Text = currentUser.FirstName + ", "+currentUser.LastName;
+                    .Select(i => new { _ID = i.PrefixID, _Prefix = i.PrefixName })
+                    .ToList();
+
+                CourseArea.DataValueField = "_ID";
+                CourseArea.DataTextField = "_Prefix";
+                CourseArea.DataSource = prefixList;
+                CourseArea.DataBind();
+
+                if (first != null)
+                {
+                    CourseArea.Items.FindByValue(first).Selected = true;
+                }
+                
+                // Get Course Number from the array
+                if (second != null)
+                {
+                    //CourseNumber.Items.FindByValue(second).Selected = true;
+                }
+
+                // Get Course Name from the array
+                if (third != null)
+                {
+                    ClassName.Text = third;
+                }
+
+                // Get Section number
+                if (fourth != null)
+                {
+                    // CourseSection.Items.FindByValue(fourth).Selected = true;
+                }
             }
         }
 
-
-
-        ////load Classes List that link to Instructore
-        ////per Quarter Year selected
-        //protected void LoadInstructorClassList(string qrt)
-        //{
-        //    int yr = DateTime.Now.Year;
-        //    var yrArr = new int[] { yr, yr + 1 };
-        //    string userID = User.Identity.GetUserId();
-        //    var CourseLists = db.UsersCourses
-        //        .Join(db.Courses, c => c.CourseId, cm => cm.ID, (c, cm) => new { c, cm })
-        //        .Join(db.QuarterYears, q => q.cm.QuarterYearID, qm => qm.ID, (q, qm) => new { q, qm })
-        //        .Where(w => w.qm.Quarter.Equals(qrt) && w.q.c.UserId.Equals(userID))
-        //        .OrderByDescending(q => q.q.cm.Name)
-        //        .Select(i => new { CourseID = i.q.cm.ID, CourseName = i.q.cm.Name, Year = i.qm.Year, Quarter = i.qm.Quarter })
-        //        .ToList();
-
-        //    GridViewInstructorClassList.DataSource = CourseLists;
-        //    GridViewInstructorClassList.DataBind();
-        //}
 
         protected void UpdateClass_Click(object sender, EventArgs e)
         {
@@ -135,8 +145,8 @@ namespace StudentTracker.Instructor
                 {
                     ErrorMessage.Text += "<br>New Class created successful.";
                     //load Classes List that link to Instructor
-                    LoadInstructorClassList(getQuarter.CurrentQuart());
-                    LoadAllInstructorClassList(getQuarter.CurrentQuart());
+                    //LoadInstructorClassList(getQuarter.CurrentQuart());
+                    //LoadAllInstructorClassList(getQuarter.CurrentQuart());
                 }
                 else
                     ErrorMessage.Text += "System failed to insert new Class to database.";
@@ -171,9 +181,6 @@ namespace StudentTracker.Instructor
             CourseNumber.DataBind();
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-        } 
+        
     }
 }

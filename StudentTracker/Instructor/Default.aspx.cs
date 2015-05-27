@@ -146,12 +146,6 @@ namespace StudentTracker.Instructor
                 .ToArray();
         }
 
-        // clicking Edit button redirects user to EditClass page
-        protected void btnEditClass_Click(object sender, CommandEventArgs e)
-        {
-            Response.Redirect("EditClass.aspx?ClassID="+ e.CommandArgument);
-        }
-
         //delete class from instructor
         protected void DeleteClass_Click(object sender, CommandEventArgs e)
         {

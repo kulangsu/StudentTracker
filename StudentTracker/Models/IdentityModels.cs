@@ -90,7 +90,7 @@ namespace StudentTracker.Models
         public string Number { get; set; }
         public int PrefixID { get; set; }
 
-        public virtual CoursePrefix CoursePrefixs { get; set; }
+        public virtual CoursePrefix CoursePrefixes { get; set; }
     }
     //Course section
     public class CourseSection
