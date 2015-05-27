@@ -13,5 +13,15 @@ namespace StudentTracker.Student
         {
 
         }
+
+        protected void btnChange_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

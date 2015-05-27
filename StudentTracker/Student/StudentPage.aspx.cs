@@ -13,5 +13,25 @@ namespace StudentTracker.Student
         {
 
         }
+
+        protected void btnEditProfile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnChangePswd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void bntSelect_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void drpDwn_Join_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

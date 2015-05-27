@@ -8,7 +8,7 @@
             </h1>
             <h2>
             <asp:Label ID="Label1" runat="server" Text="Select Homework:" Font-Size="Large"></asp:Label>
-                 <asp:DropDownList ID="drpDwnSelect" runat="server" Font-Size="Medium" DataTextField="Assignment" DataValueField="ID"  Height="25px" Width="211px">
+                 <asp:DropDownList ID="drpDwnSelect" runat="server" Font-Size="Medium" DataTextField="Assignment" DataValueField="ID"  Height="25px" Width="211px" OnSelectedIndexChanged="drpDwnSelect_SelectedIndexChanged">
              </asp:DropDownList></h2>
              <p>
                  <asp:TextBox ID="TextBox1" runat="server" Width="155px" Height="20px"></asp:TextBox>
