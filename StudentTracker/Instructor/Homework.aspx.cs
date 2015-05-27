@@ -28,7 +28,7 @@ namespace StudentTracker.Instructor
             }
             else
             {
-                Lbl_pageTitle.Text = "Please return to the instructor homepage to choose a class";
+                Lbl_pageTitle.Text = "Please return to the Instructor homepage to choose a class";
                 btnAddHmw.Visible = false;
             }
             //var assignmentList = db.Assignments
