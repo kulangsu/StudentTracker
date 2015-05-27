@@ -9,11 +9,6 @@
         <li>Lap To</li>
         <li>Ryan Abraham</li>
         <li>Tao</li>
-        <li><a href="www.jenniferbronson.com">Jen Bronson</a></li>
-        <li>Maggie Raicu</li>
-        <li>Eric S</li>
-        <li>David A</li>
-        <li>Lara Ramey</li>
     </ul>
 
 </asp:Content>

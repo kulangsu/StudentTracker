@@ -10,14 +10,14 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="SID" CssClass="col-md-5 control-label">Student ID</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="SID" CssClass="form-control" placeholder="Enter Your 9-digit Student ID" />
+                        <asp:TextBox runat="server" ID="SID" CssClass="form-control" placeholder="Enter 9-digits Studend ID" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="SID"
-                            CssClass="text-danger" ErrorMessage="Your Student ID is required." Display="Dynamic" />
+                            CssClass="text-danger" ErrorMessage="Student ID is required." Display="Dynamic" />
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
                             ControlToValidate="SID"
                             ValidationExpression="^(\d{9})$"
                             Display="Dynamic"
-                            ErrorMessage="Enter a valid 9-digit Student ID"
+                            ErrorMessage="Enter a valid 9-digits Student ID"
                             EnableClientScript="True"
                             runat="server" CssClass="text-danger" />
                     </div>
@@ -27,7 +27,7 @@
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="FirstName" CssClass="form-control cap_first_letter" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="FirstName"
-                            CssClass="text-danger" ErrorMessage="Your first name is required." Display="Dynamic" />
+                            CssClass="text-danger" ErrorMessage="First Name field is required." Display="Dynamic" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -35,22 +35,22 @@
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="LastName" CssClass="form-control cap_first_letter" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="LastName"
-                            CssClass="text-danger" ErrorMessage="Your last name is required." Display="Dynamic" />
+                            CssClass="text-danger" ErrorMessage="Last Name field is required." Display="Dynamic" />
                     </div>
                 </div>
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="City" CssClass="col-md-5 control-label">City</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="City" CssClass="form-control cap_first_letter" placeholder="City is optional" type="text" value="" />
+                        <asp:TextBox runat="server" ID="City" CssClass="form-control cap_first_letter" placeholder="City field is optional" type="text" value="" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-5 control-label">Email</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" placeholder="An email is required for confirmation" />
+                        <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" placeholder="Required valid email for confirmation" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                            CssClass="text-danger" ErrorMessage="An email address is required." Display="Dynamic" />
+                            CssClass="text-danger" ErrorMessage="Email field is required." Display="Dynamic" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -58,7 +58,7 @@
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="Password"
-                            CssClass="text-danger" ErrorMessage="A password is required." Display="Dynamic" />
+                            CssClass="text-danger" ErrorMessage="Password field is required." Display="Dynamic" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -66,9 +66,9 @@
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" CssClass="form-control" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
-                            CssClass="text-danger" Display="Dynamic" ErrorMessage="Confirming your password is required." />
+                            CssClass="text-danger" Display="Dynamic" ErrorMessage="The confirm password field is required." />
                         <asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
-                            CssClass="text-danger" Display="Dynamic" ErrorMessage="Your Password and Confirmation Password do not match." />
+                            CssClass="text-danger" Display="Dynamic" ErrorMessage="Password and Confirmation Password do not match." />
                     </div>
                 </div>
                 <div class="form-group">

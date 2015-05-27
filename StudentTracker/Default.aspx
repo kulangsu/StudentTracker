@@ -4,7 +4,7 @@
 
     <div class="jumbotron">
         <asp:Image runat="server" ImageUrl="~/Images/logo_grey.png" />
-        <p class="lead">Welcome to the BIT286 web application project.</p>
+        <p class="lead">Welcome to BIT286 web application project.</p>
         <p><a href="http://faculty.cascadia.edu/mpanitz/Courses/BIT286/" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
 
@@ -12,28 +12,28 @@
         <div class="col-md-4">
             <h2>Students</h2>
             <p>
-                Upload your assignments as soon as you are ready.  Get feedback quickly.
+                Some introduction about this site for student.
             </p>
             <p>
-                <a class="btn btn-default" href="About.aspx">Learn more &raquo;</a>
+                <a class="btn btn-default" href="#">Learn more &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
-            <h2>Instructors</h2>
+            <h2>Instructor</h2>
             <p>
-                Access all student submissions with the click of a button.  Upload grades with ease.
+                Some instroduction for instructor site.
             </p>
             <p>
-                <a class="btn btn-default" href="About.aspx">Learn more &raquo;</a>
+                <a class="btn btn-default" href="#">Learn more &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
             <h2>Student Tracker</h2>
             <p>
-                Keep track of assignments and grades all in one place!
+                Some introduction about this Student Tracker site.
             </p>
             <p>
-                <a class="btn btn-default" href="About.aspx">Learn more &raquo;</a>
+                <a class="btn btn-default" href="#">Learn more &raquo;</a>
             </p>
         </div>
     </div>

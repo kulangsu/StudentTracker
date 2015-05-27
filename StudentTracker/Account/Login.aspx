@@ -45,8 +45,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register a new Student Account</asp:HyperLink><br />
-                            <asp:HyperLink runat="server" ID="RegisterHyperLinkInstructor" ViewStateMode="Disabled">Register a new Instructor Account</asp:HyperLink><br />
+                            <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new Student Account</asp:HyperLink><br />
+                            <asp:HyperLink runat="server" ID="RegisterHyperLinkInstructor" ViewStateMode="Disabled">Register as a new Instructore Account</asp:HyperLink><br />
                             <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
                         </div>
                     </div>
