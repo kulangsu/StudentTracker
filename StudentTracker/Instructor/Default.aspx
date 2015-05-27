@@ -28,7 +28,7 @@
                         <table class="table" style="width: 100%;">
                             <tr>
                                 <th style="text-align: center;">
-                                    <h3>No Class Found From Select Quarter!</h3>
+                                    <h3>No Classes Were Found For The Selected Quarter!</h3>
                                 </th>
                             </tr>
                         </table>
@@ -61,7 +61,7 @@
                                                 <div style="float: left; font-weight: bold;"><a href="#"><%#Eval("Year") %> - <%#Eval("Quarter") %></a></div>
 
                                                 <div style="float: right;">
-                                                    <a href="#" title="Transfer This Class To Other Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
+                                                    <a href="#" title="Transfer This Class To Another Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
                                                 <a href="#" title="Modify This Class"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp
                                                 <asp:LinkButton runat="server" ID="btnUserDelete" CssClass="glyphicon glyphicon-trash" OnClientClick=" return confirm('Please Confirm:\nYou are about permanently delete this class and its content.\n\nAre You Sure?')" OnCommand="DeleteClass_Click" CommandArgument='<%#Eval("CourseID") %>' />
                                                 </div>
@@ -85,7 +85,7 @@
                                     <div class="col-md-6">
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-addon"><%# LoadAllAssignments(Convert.ToInt32(Eval("CourseID"))) %></span>
-                                            <div class="form-control">Assignments</div>
+                                            <a href="Homework.aspx?courseID=<%#Eval("CourseID") %>"><div class="form-control">Assignments</div></a>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
         <!--Next quarter year class-->
         <div class="row" style="margin-top: 5px">
             <div class="col-md-11">
-                <h3><span style="font-size: 20px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp Next Quarters Year Classes :: <asp:Label ID="nextQuarterYear" runat="server"></asp:Label></h3>
+                <h3><span style="font-size: 20px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp Future Quarter :: <asp:Label ID="nextQuarterYear" runat="server"></asp:Label></h3>
             </div>
 
             <div class="col-md-12">
@@ -136,7 +136,7 @@
                         <table class="table">
                             <tr>
                                 <th style="text-align: center;">
-                                    <h3>No Class Found Fro Next Quarter Year!</h3>
+                                    <h3>No Classes Were Found For The Next Quarter!</h3>
                                 </th>
                             </tr>
                         </table>
@@ -151,7 +151,7 @@
                         <div class="col-md-12">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <a href="#" title="Transfer This Class To Other Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
+                                    <a href="#" title="Transfer This Class To Another Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
                                     <a href="#" title="Modify This Class"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp
                                     <asp:LinkButton runat="server" ID="btnUserDelete" CssClass="glyphicon glyphicon-trash" OnClientClick=" return confirm('Please Confirm:\nYou are about permanently delete this class and its content.\n\nAre You Sure?')" OnCommand="DeleteClass_Click" CommandArgument='<%#Eval("CourseID") %>' />
                                 </span>
@@ -166,7 +166,7 @@
         <!--Previous quarter year class-->
         <div class="row" style="margin-top: 5px">
             <div class="col-md-11">
-                <h3><span style="font-size: 20px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp All Previous Quarters Year Classes</h3>
+                <h3><span style="font-size: 20px; color: #ff6a00" class="glyphicon glyphicon-book"></span>&nbsp Previous Quarters</h3>
             </div>
 
             <div class="col-md-12">
@@ -175,7 +175,7 @@
                         <table class="table">
                             <tr>
                                 <th style="text-align: center;">
-                                    <h3>No Class Found From Selected Year!</h3>
+                                    <h3>No Classes Were Found For The Selected Year!</h3>
                                 </th>
                             </tr>
                         </table>
@@ -198,7 +198,7 @@
                         <div class="col-md-12">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <a href="#" title="Transfer This Class To Other Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
+                                    <a href="#" title="Transfer This Class To Another Instructor"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>&nbsp;&nbsp
                                     <asp:LinkButton runat="server" ID="btnUserDelete" CssClass="glyphicon glyphicon-trash" OnClientClick=" return confirm('Please Confirm:\nAre are about permanent delete this class.\n\nAre You Sure?')" OnCommand="DeleteClass_Click" CommandArgument='<%#Eval("CourseID") %>' />
                                 </span>
                                 <span class="form-control"><a href="#"><%#Eval("Year") %> <%#Eval("Quarter") %> :: <%#Eval("CourseName") %></a></span>

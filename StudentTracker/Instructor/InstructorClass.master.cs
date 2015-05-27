@@ -13,7 +13,7 @@ namespace StudentTracker.Instructor
         protected void Page_Load(object sender, EventArgs e)
         {
             int classID = Convert.ToInt32(Request.QueryString["field1"]);
-            testtodd1.HRef = "Homework.aspx?field2=" + classID;
+            testtodd1.HRef = "Homework.aspx?CourseID=" + classID;
 
         }
     }

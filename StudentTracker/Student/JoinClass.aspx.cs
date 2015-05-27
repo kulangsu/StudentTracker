@@ -81,6 +81,11 @@ namespace StudentTracker.Student
                  ErrorMessage.Text += "<br>You are already enrolled in this class.";
         }
 
+        protected void drpDwn_Join_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

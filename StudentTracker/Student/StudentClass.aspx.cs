@@ -13,5 +13,20 @@ namespace StudentTracker.Student
         {
 
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBrowse_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void drpDwnSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
