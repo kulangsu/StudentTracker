@@ -139,6 +139,8 @@ namespace StudentTracker.Models
         public int StudentAssignmentID { get; set; }
         public string FileName { get; set; }
         public System.DateTime UploadDate { get; set; }
+        public bool isFeedback { get; set; }
+
     }
     /*
     public class YourNextTableHere
