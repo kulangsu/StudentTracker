@@ -9,7 +9,7 @@
         <asp:Literal runat="server" ID="ErrorMessage" />
     </h4>
     <p>
-        <asp:DropDownList ID="drpDwn_Join" runat="server" DataTextField="Name" DataValueField="ID" Font-Size="Larger" Height="25px" Width="300px">
+        <asp:DropDownList ID="drpDwn_Join" runat="server" DataTextField="Name" DataValueField="ID" Font-Size="Larger" Height="25px" Width="300px" OnSelectedIndexChanged="drpDwn_Join_SelectedIndexChanged">
         </asp:DropDownList>&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btn_Join" runat="server" Font-Size="Larger" OnClick="btn_Join_Click" Text="Join" />
     </p>

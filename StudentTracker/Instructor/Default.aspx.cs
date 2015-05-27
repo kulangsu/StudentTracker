@@ -9,9 +9,6 @@ using Microsoft.AspNet.Identity;
 using System.Web.UI.HtmlControls;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-
-
-
 namespace StudentTracker.Instructor
 {
     public partial class Default : System.Web.UI.Page

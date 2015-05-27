@@ -1,26 +1,61 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Instructor/Instructor.master" AutoEventWireup="true" CodeBehind="Homework.aspx.cs" Inherits="StudentTracker.Instructor.Homework" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Instructor/InstructorClass.master" AutoEventWireup="true" CodeBehind="Homework.aspx.cs" Inherits="StudentTracker.Instructor.Homework" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>
-    <asp:Label ID="Lbl_pageTitle" runat="server" Text="Homework List"></asp:Label><br /><br< /></h1>
-    
-    <asp:GridView ID="GriveViewAssignmentList" runat="server" AllowPaging="True" CellPadding="8" GridLines="Horizontal" HorizontalAlign="Center" AutoGenerateColumns="False" OnSelectedIndexChanged="GriveViewAssignmentList_SelectedIndexChanged" DataSourceID="SqlDataSource1">
+    <h2>
+    <asp:Label ID="Lbl_pageTitle" runat="server" Text="Homework List"></asp:Label><br /><br< /></h2>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>" 
+            DeleteCommand="DELETE FROM Assignments
+            WHERE AssignmentID = @AssignmentID 
+            "
+        UpdateCommand="Update assignments set assignmentName=@assignmentName,DueDate=@DueDate,MaxPoint=@MaxPoint where AssignmentID=@assignmentID"
+         SelectCommand="Select * from Assignments as a inner join AssignmentGroups as ag on a.AssignmentGroupID=ag.AssignmentGroupID where courseID=@CourseID">
+        <UpdateParameters>
+            <asp:Parameter Name="AssignmentID" />
+            <asp:Parameter Name="assignmentName" />
+            <asp:Parameter Name="DueDate" />
+            <asp:Parameter Name="MaxPoint" />
+        </UpdateParameters>    
+        <DeleteParameters>
+                <asp:Parameter Name="AssignmentID" />                
+            </DeleteParameters>  
+        <SelectParameters>
+                <asp:QueryStringParameter Name="CourseID" QueryStringField="CourseID" Type="Int32" />
+            </SelectParameters>         
+        </asp:SqlDataSource>
+    <asp:GridView ID="GriveViewAssignmentList"  DataKeyNames="AssignmentID" DataSourceID="SqlDataSource1" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" >
         <Columns>
-            <asp:TemplateField HeaderText="Select" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="60" HeaderStyle-HorizontalAlign="Center">
+            <asp:CommandField ShowEditButton="True" />
+            <asp:CommandField ShowDeleteButton="True" />
+             <asp:BoundField DataField="AssignmentID" HeaderText="AssignmentID" ReadOnly="True" Visible="false" />
+            
+            <asp:BoundField DataField="AssignmentGroupName" HeaderText="Assignment Group" ReadOnly="True"/>
+            <asp:TemplateField HeaderText="Assignment Name">
                 <EditItemTemplate>
-                    <asp:CheckBox ID="CheckBox1" runat="server" />
+                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("AssignmentName") %>'></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:CheckBox ID="ckBx_AssignmentList" runat="server" />
+                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("AssignmentName") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-
-            <asp:BoundField DataField="AssignmentName" HeaderText="Assignment Name" ItemStyle-Width="200" />
-            <asp:CommandField ShowEditButton="true" /> 
+            <asp:TemplateField HeaderText="Points Possible">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("MaxPoint") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("MaxPoint") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Due Date">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("DueDate") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("DueDate") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
+      
    
        </asp:GridView>
-
-      <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:StudentTracker_DBConnectionString %>" SelectCommand="SELECT [AssignmentName] FROM [Assignment]"></asp:SqlDataSource>
 
       <asp:label id="MessageLabel" forecolor="Red" runat="server"/>
 
@@ -29,7 +64,6 @@
 
     <asp:Button ID="btnAddHmw" runat="server" Text="Add Homework" OnClick="btnAddHmw_Click" CssClass="btn btn-primary" />
     &nbsp;&nbsp;&nbsp;&nbsp;
-   <asp:Button ID="btnRemoveHmw" runat="server" Text="Remove Homework" onClick="btnRemoveHmw_Click" CausesValidation="False" CssClass="btn btn-primary"  />
     <br />
     <br />
 </asp:Content>

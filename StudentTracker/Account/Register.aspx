@@ -10,14 +10,14 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="SID" CssClass="col-md-5 control-label">Student ID</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="SID" CssClass="form-control" placeholder="Enter 9-digits Studend ID" />
+                        <asp:TextBox runat="server" ID="SID" CssClass="form-control" placeholder="Enter your 9-digit Student ID" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="SID"
                             CssClass="text-danger" ErrorMessage="Student ID is required." Display="Dynamic" />
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
                             ControlToValidate="SID"
                             ValidationExpression="^(\d{9})$"
                             Display="Dynamic"
-                            ErrorMessage="Enter a valid 9-digits Student ID"
+                            ErrorMessage="Enter a valid 9-digit Student ID"
                             EnableClientScript="True"
                             runat="server" CssClass="text-danger" />
                     </div>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-5 control-label">Email</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" placeholder="Required valid email for confirmation" />
+                        <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" placeholder="Email is required for confirmation" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
                             CssClass="text-danger" ErrorMessage="Email field is required." Display="Dynamic" />
                     </div>

@@ -118,7 +118,10 @@ namespace StudentTracker.Models
         public string AssignmentName { get; set; }
         public System.DateTime DueDate { get; set; }
         public decimal MaxPoint { get; set; }
-        public int activate { get; set; } 
+        public int activate { get; set; }
+
+        public virtual Course Course{ get; set; }
+        public virtual AssignmentGroup AssignmentGroup { get; set; }
     }
 
     public class StudentAssignment
@@ -136,6 +139,8 @@ namespace StudentTracker.Models
         public int StudentAssignmentID { get; set; }
         public string FileName { get; set; }
         public System.DateTime UploadDate { get; set; }
+        public bool isFeedback { get; set; }
+
     }
     /*
     public class YourNextTableHere
