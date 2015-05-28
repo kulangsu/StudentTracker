@@ -28,9 +28,9 @@ namespace StudentTracker.Account
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
             
             //force First and Last name first letter to Uppercase.
-            string fName = FirstName.Text;
+            string fName = FirstName.Text.Trim();
             fName = char.ToUpper(fName[0]) + fName.Substring(1);
-            string lName = LastName.Text;
+            string lName = LastName.Text.Trim();
             lName = char.ToUpper(lName[0]) + lName.Substring(1);
 
             //need to create store procedure to check make sure only 1 valid SID or EID.
@@ -46,12 +46,12 @@ namespace StudentTracker.Account
             //built new user information
             var user = new User
             {
-                UserName = Email.Text,  //UserName will use email as login
-                Email = Email.Text,
+                UserName = Email.Text.Trim(),  //UserName will use email as login
+                Email = Email.Text.Trim(),
                 FirstName = fName,
                 LastName = lName,
-                SID = Convert.ToInt32(SID.Text),
-                City = City.Text,
+                SID = thisSID,
+                City = City.Text.Trim(),
                 CreatedDate = System.DateTime.Now,
                 LastLogin = System.DateTime.Now
             };

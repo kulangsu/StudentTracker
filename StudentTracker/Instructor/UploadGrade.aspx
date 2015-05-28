@@ -44,9 +44,8 @@
                             <asp:GridView ID="gvCurrentStudentEnroll" runat="server" CssClass="table" AutoGenerateColumns="False" PageSize="100">
                                 <Columns>
                                     <asp:BoundField DataField="SID" HeaderText="SID" SortExpression="SID" />
-                                    <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
-                                    <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
-                                    <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" HtmlEncode="False" HtmlEncodeFormatString="False" ItemStyle-Width="55%" />
+                                    <asp:BoundField DataField="FullName" HeaderText="Name (First, Last)" SortExpression="FullName" />
+                                    <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" HtmlEncode="False" HtmlEncodeFormatString="False" ItemStyle-Width="60%" />
                                     <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" HtmlEncodeFormatString="False" HtmlEncode="False" />
                                 </Columns>
                                 <EmptyDataTemplate>

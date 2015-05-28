@@ -57,6 +57,7 @@ namespace StudentTracker.Instructor
             LoadCurrentEnrollStudent(CourseID);
         }
 
+        //load current enroll student prepare to upload grade
         protected void LoadCurrentEnrollStudent(int CourseID)
         {
             string userID = User.Identity.GetUserId();
@@ -68,7 +69,7 @@ namespace StudentTracker.Instructor
                 .Join(db.Users, u => u.UserId, um => um.Id, (u, um) => new { u, um })
                 .Where(w => w.u.CourseId == CourseID && !w.u.UserId.Equals(userID))
                 .OrderBy(o => o.um.FirstName).ThenBy(i => i.um.LastName)
-                .Select(s => new { SID = s.um.SID, FirstName = s.um.FirstName, LastName = s.um.LastName, Message = "", Status = "" }).ToList();
+                .Select(s => new { SID = s.um.SID, FullName = s.um.FirstName +", "+ s.um.LastName, Message = "", Status = "" }).ToList();
 
             gvCurrentStudentEnroll.DataSource = EnrollStudentLists;
             gvCurrentStudentEnroll.DataBind();
@@ -94,6 +95,7 @@ namespace StudentTracker.Instructor
                 ErrorMessage.Text = "You did not select Student Grade to upload.";
         }
 
+        //display result uploat grade (batch)
         protected void ImportToGrid(string FilePath, string Extension, string isHDR)
         {
             Boolean isFormat = true;
@@ -121,6 +123,13 @@ namespace StudentTracker.Instructor
             if (isFormat)
             {
                 dt = XcelToDataTable(FilePath);
+
+                //is dt empty, display message then do nothing
+                if(dt == null)
+                {
+                    ErrorMessage.Text = "File upload in wrong format, invalid template or empty.";
+                    return;
+                }
 
                 Boolean isSIDMatch = false;
                 foreach (DataRow row in studentLists.Rows)
@@ -202,18 +211,26 @@ namespace StudentTracker.Instructor
             return dtReturn;
         }
 
+        //convert speadsheet to datatable
         public static DataTable XcelToDataTable(string fileName)
         {
             DataTable dataTable = new DataTable();
             using (SpreadsheetDocument spreadSheetDocument = SpreadsheetDocument.Open(fileName, false))
             {
                 WorkbookPart workbookPart = spreadSheetDocument.WorkbookPart;
-                IEnumerable<Sheet> sheets = spreadSheetDocument.WorkbookPart.Workbook.GetFirstChild<Sheets>().Elements<Sheet>();
+                IEnumerable<Sheet> sheets = spreadSheetDocument.WorkbookPart.Workbook.GetFirstChild<Sheets>().Elements<Sheet>();//.Where(s=>s.Name=="sheet name");
+                //if Sheet Name not found return null
+                //if(sheets.Count() ==) return null;
+                
                 string relationshipId = sheets.First().Id.Value;
                 WorksheetPart worksheetPart = (WorksheetPart)spreadSheetDocument.WorkbookPart.GetPartById(relationshipId);
                 Worksheet workSheet = worksheetPart.Worksheet;
                 SheetData sheetData = workSheet.GetFirstChild<SheetData>();
                 IEnumerable<Row> rows = sheetData.Descendants<Row>();
+                IEnumerable<Cell> cells = worksheetPart.Worksheet.Descendants<Cell>();
+
+                //if upload file is empty, then do nothing; retun null
+                if (cells.Count() == 0) return null;
 
                 foreach (Cell cell in rows.ElementAt(0))
                 {
@@ -237,6 +254,7 @@ namespace StudentTracker.Instructor
             return dataTable;
         }
 
+        //get cell value text from speadsheet
         private static string GetCellValue(SpreadsheetDocument document, Cell cell)
         {
             SharedStringTablePart stringTablePart = document.WorkbookPart.SharedStringTablePart;
