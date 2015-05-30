@@ -185,36 +185,115 @@ namespace StudentTracker.Instructor
         //load all Assignments that have been created into the Class
         protected string LoadAllAssignments(int CourseID)
         {
-            
+            if (CourseID > 0)
+            {
+                var allAssignments = db.Assignments
+                .Where(u => u.CourseID == CourseID && !u.AssignmentGroupID.Equals(1))
+                .Count();
+
+                if (allAssignments > 0 && allAssignments < 10) return "0" + allAssignments.ToString();
+                else if (allAssignments > 9) return allAssignments.ToString();
+                else return "00";
+            }
             return "00";
         }
 
         //load all Projects that link to this Class
         protected string LoadAllProjects(int CourseID)
         {
+            if (CourseID > 0)
+            {
+                var allProjects = db.Assignments
+                .Where(u => u.CourseID == CourseID && !u.AssignmentGroupID.Equals(6))
+                .Count();
 
+                if (allProjects > 0 && allProjects < 10) return "0" + allProjects.ToString();
+                else if (allProjects > 9) return allProjects.ToString();
+                else return "00";
+            }
             return "00";
         }
 
         //load all ICEs that link to this Class
         protected string LoadAllICE(int CourseID)
         {
+            if (CourseID > 0)
+            {
+                var allICEs = db.Assignments
+                .Where(u => u.CourseID == CourseID && !u.AssignmentGroupID.Equals(3))
+                .Count();
 
+                if (allICEs > 0 && allICEs < 10) return "0" + allICEs.ToString();
+                else if (allICEs > 9) return allICEs.ToString();
+                else return "00";
+            }
             return "00";
         }
 
         //load all Exams and Finals that link to this Class
         protected string LoadAllExamFinal(int CourseID)
         {
+            if (CourseID > 0)
+            {
+                var allExams = db.Assignments
+                .Where(u => u.CourseID == CourseID && !u.AssignmentGroupID.Equals(5))
+                .Count();
 
+                if (allExams > 0 && allExams < 10) return "0" + allExams.ToString();
+                else if (allExams > 9) return allExams.ToString();
+                else return "00";
+            }
             return "00";
         }
 
         //load all ExtraCredits that link to this Class
         protected string LoadAllExtraCredit(int CourseID)
         {
+            if (CourseID > 0)
+            {
+                var allExtraCredit = db.Assignments
+                .Where(u => u.CourseID == CourseID && !u.AssignmentGroupID.Equals(7))
+                .Count();
 
+                if (allExtraCredit > 0 && allExtraCredit < 10) return "0" + allExtraCredit.ToString();
+                else if (allExtraCredit > 9) return allExtraCredit.ToString();
+                else return "00";
+            }
             return "00";
         }
+
+        //load all PCEs - (post or pre class exercises) that link to this Class
+        protected string LoadAllPCEs(int CourseID)
+        {
+            if (CourseID > 0)
+            {
+                var allPCEs = db.Assignments
+                .Where(u => u.CourseID == CourseID && !u.AssignmentGroupID.Equals(2))
+                .Count();
+
+                if (allPCEs > 0 && allPCEs < 10) return "0" + allPCEs.ToString();
+                else if (allPCEs > 9) return allPCEs.ToString();
+                else return "00";
+            }
+            return "00";
+        }
+
+        //load all Quizes that link to this Class
+        protected string LoadAllQuizes(int CourseID)
+        {
+            if (CourseID > 0)
+            {
+                var allQuizes = db.Assignments
+                .Where(u => u.CourseID == CourseID && !u.AssignmentGroupID.Equals(4))
+                .Count();
+
+                if (allQuizes > 0 && allQuizes < 10) return "0" + allQuizes.ToString();
+                else if (allQuizes > 9) return allQuizes.ToString();
+                else return "00";
+            }
+            return "00";
+        }
+
+
     }
 }
