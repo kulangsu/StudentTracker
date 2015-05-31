@@ -87,7 +87,7 @@ namespace StudentTracker.Student
         public void sendToFTP()
         {
             var fileName1 = Path.GetFileName("~/document/" + filename);
-            var request = (FtpWebRequest)WebRequest.Create("ftp://23.99.86.195/" + fileName1);
+            var request = (FtpWebRequest)WebRequest.Create("ftp://191.239.52.64/" + fileName1);
 
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential("bit286", "Catch-22");
