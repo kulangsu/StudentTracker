@@ -25,8 +25,7 @@ namespace StudentTracker.Instructor
             int yr = DateTime.Now.Year;
             if (!IsPostBack)
             {
-                //// display course name
-                //CourseName.Text = "blah blah";
+                // display course name
 
                 int classID = Convert.ToInt32(Request.QueryString["field1"]);
                 var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
@@ -122,11 +121,12 @@ namespace StudentTracker.Instructor
             }
         }
 
-
+        // Click Update Button updates the selected class row in Courses table
         protected void UpdateClass_Click(object sender, EventArgs e)
         {
             ErrorMessage.Text = "";
 
+            // Generate a new class name
             string CoursePre = CourseArea.SelectedItem.Text;
             string CourseNum = CourseNumber.SelectedItem.Text;
             string courseName = ClassName.Text;
@@ -134,44 +134,47 @@ namespace StudentTracker.Instructor
 
             courseName = CoursePre + " " + CourseNum + " " + capFirstLetter.CapLetterString(ClassName.Text, ' ') + " " + CourseSec;
 
-            //quick check to see if Year & QuarterYear already exist
-            int qrtyrid = Convert.ToInt32(selectQuarterYear.SelectedValue);
-            var quarteryear = db.Courses
-                              .Where(q => q.QuarterYearID == qrtyrid && q.Name.Equals(courseName))
-                              .ToList();
+            // Update the row in database
+            StudentTrackerDBContext st = new StudentTrackerDBContext();
+            Course updateClass = st.Courses.Single(c => c.ID == dbClassID);
 
-            if (quarteryear.Count == 0)
-            {
-                //insert new quarteryear into database
-                var addClass = new Course
-                {
-                    QuarterYearID = Convert.ToInt32(selectQuarterYear.SelectedValue),
-                    Name = courseName
-                };
-                db.Courses.Add(addClass);
-                db.SaveChanges();
-                int classID = addClass.ID;
-                if (classID > 0)
-                {
-                    var addClassToIntructor = new UsersCourse
-                    {
-                        CourseId = classID,
-                        UserId = User.Identity.GetUserId()
-                    };
-                    db.UsersCourses.Add(addClassToIntructor);
-                    classID = db.SaveChanges();
-                }
+            updateClass.Name = courseName;
+            updateClass.QuarterYearID = Convert.ToInt32(selectQuarterYear.SelectedValue);
 
-                if (classID > 0)
-                {
-                    ErrorMessage.Text += "<br>Class has been updated successfully.";
-                    //load Classes List that link to Instructor
-                    //LoadInstructorClassList(getQuarter.CurrentQuart());
-                    //LoadAllInstructorClassList(getQuarter.CurrentQuart());
-                }
-                else
-                    ErrorMessage.Text += "System failed to update class.";
-            }
+            st.SaveChanges();
+
+            //if (quarteryear.Count == 0)
+            //{
+            //    //insert new quarteryear into database
+            //    var addClass = new Course
+            //    {
+            //        QuarterYearID = Convert.ToInt32(selectQuarterYear.SelectedValue),
+            //        Name = courseName
+            //    };
+            //    db.Courses.Add(addClass);
+            //    db.SaveChanges();
+            //    int classID = addClass.ID;
+            //    if (classID > 0)
+            //    {
+            //        var addClassToIntructor = new UsersCourse
+            //        {
+            //            CourseId = classID,
+            //            UserId = User.Identity.GetUserId()
+            //        };
+            //        db.UsersCourses.Add(addClassToIntructor);
+            //        classID = db.SaveChanges();
+            //    }
+
+            //    if (classID > 0)
+            //    {
+            //        ErrorMessage.Text += "<br>Class has been updated successfully.";
+            //        //load Classes List that link to Instructor
+            //        //LoadInstructorClassList(getQuarter.CurrentQuart());
+            //        //LoadAllInstructorClassList(getQuarter.CurrentQuart());
+            //    }
+            //    else
+            //        ErrorMessage.Text += "System failed to update class.";
+            //}
 
         }
 
