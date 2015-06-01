@@ -7,19 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace StudentTracker.Student
 {
-    public partial class EditProfile : System.Web.UI.Page
+    public partial class EditProfile: System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnChange_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnReset_Click(object sender, EventArgs e)
         {
 
         }

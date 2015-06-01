@@ -57,20 +57,15 @@ C:\Users\Maggie\Desktop\Sudent_Tracker\StudentTracker\obj\Debug\StudentTracker.p
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\StudentTracker.dll.config
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\StudentTracker.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\StudentTracker.pdb
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\AjaxMin.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Antlr3.Runtime.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\AspNet.ScriptManager.bootstrap.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\AspNet.ScriptManager.jQuery.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\EntityFramework.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\EntityFramework.SqlServer.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\HtmlAgilityPack.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.Identity.Owin.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Data.Edm.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Data.OData.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.Security.Cookies.dll
@@ -83,26 +78,19 @@ C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.ScriptManager.MSAjax.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.ScriptManager.WebForms.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.WindowsAzure.Configuration.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.WindowsAzure.Storage.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Newtonsoft.Json.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Owin.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\SendGrid.SmtpApi.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\SendGridMail.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\System.Spatial.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\System.Web.Optimization.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\System.Web.Providers.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\WebGrease.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Antlr3.Runtime.pdb
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\EntityFramework.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\EntityFramework.SqlServer.xml
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\HtmlAgilityPack.pdb
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\HtmlAgilityPack.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Data.Edm.xml
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Data.OData.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.Security.xml
@@ -112,192 +100,14 @@ C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.WindowsAzure.Storage.pdb
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.WindowsAzure.Storage.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Newtonsoft.Json.xml
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\System.Spatial.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\System.Web.Optimization.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\System.Web.Providers.xml
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\de\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\es\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\fr\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\it\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ja\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ko\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ru\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\de\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\es\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\fr\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\it\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ja\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ko\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ru\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\zh-Hans\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\zh-Hant\Microsoft.Data.OData.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\de\System.Spatial.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\es\System.Spatial.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\fr\System.Spatial.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\it\System.Spatial.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ja\System.Spatial.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ko\System.Spatial.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\ru\System.Spatial.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\zh-Hans\System.Spatial.resources.dll
-C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\obj\Debug\StudentTracker.csprojResolveAssemblyReference.cache
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\obj\Debug\StudentTracker.dll
 C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\obj\Debug\StudentTracker.pdb
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\obj\Debug\StudentTracker.csprojResolveAssemblyReference.cache
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\obj\Debug\StudentTracker.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\obj\Debug\StudentTracker.pdb
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\StudentTracker.dll.config
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\StudentTracker.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\StudentTracker.pdb
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\AjaxMin.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Antlr3.Runtime.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\AspNet.ScriptManager.bootstrap.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\DocumentFormat.OpenXml.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\EntityFramework.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\EntityFramework.SqlServer.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\HtmlAgilityPack.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.FriendlyUrls.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Data.Edm.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Data.OData.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.Facebook.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.Google.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.Twitter.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.ScriptManager.MSAjax.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.ScriptManager.WebForms.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.WindowsAzure.Configuration.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.WindowsAzure.Storage.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Newtonsoft.Json.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Owin.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\SendGrid.SmtpApi.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\SendGridMail.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\System.Spatial.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\System.Web.Optimization.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\System.Web.Providers.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\WebGrease.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Antlr3.Runtime.pdb
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\EntityFramework.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\EntityFramework.SqlServer.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\HtmlAgilityPack.pdb
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\HtmlAgilityPack.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Data.Edm.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Data.OData.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.Cookies.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.Facebook.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.Google.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.WindowsAzure.Storage.pdb
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.WindowsAzure.Storage.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Newtonsoft.Json.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\System.Spatial.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\System.Web.Optimization.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\System.Web.Providers.xml
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\de\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\es\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\fr\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\it\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ja\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ko\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ru\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\de\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\es\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\fr\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\it\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ja\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ko\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ru\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\zh-Hans\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\zh-Hant\Microsoft.Data.OData.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\de\System.Spatial.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\es\System.Spatial.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\fr\System.Spatial.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\it\System.Spatial.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ja\System.Spatial.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ko\System.Spatial.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\ru\System.Spatial.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\zh-Hans\System.Spatial.resources.dll
-C:\Users\toddt_000\Source\Repos\StudentTracker5_25\StudentTracker\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\obj\Debug\StudentTracker.csprojResolveAssemblyReference.cache
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\obj\Debug\StudentTracker.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\StudentTracker.dll.config
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\StudentTracker.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\StudentTracker.pdb
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Antlr3.Runtime.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\AspNet.ScriptManager.bootstrap.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\DocumentFormat.OpenXml.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\EntityFramework.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\EntityFramework.SqlServer.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.FriendlyUrls.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.Facebook.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.Google.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.Twitter.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.ScriptManager.MSAjax.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.ScriptManager.WebForms.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Newtonsoft.Json.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Owin.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\SendGrid.SmtpApi.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\SendGridMail.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\System.Web.Optimization.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\System.Web.Providers.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\WebGrease.dll
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Antlr3.Runtime.pdb
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\EntityFramework.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\EntityFramework.SqlServer.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.Cookies.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.Facebook.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.Google.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Newtonsoft.Json.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\System.Web.Optimization.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\System.Web.Providers.xml
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\obj\Debug\StudentTracker.pdb
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\obj\Debug\StudentTracker.Migrations.ChangePrefix.resources
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\obj\Debug\StudentTracker.csproj.GenerateResource.Cache
-C:\Users\Hiromi\Documents\Spring 2015\BIT 286\StudentTracker_Project\GitHub\Repos\StudentTracker\bin\AjaxControlToolkit.dll
+C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\AjaxControlToolkit.dll
+C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\bin\DocumentFormat.OpenXml.dll
+C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\obj\Debug\StudentTracker.Migrations.ChangePrefix.resources
+C:\Users\Jennifer\Source\Repos\StudentTracker\StudentTracker\obj\Debug\StudentTracker.csproj.GenerateResource.Cache
