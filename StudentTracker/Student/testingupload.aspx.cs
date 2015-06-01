@@ -4,9 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Hosting;
 using System.IO.Compression;
 using System.IO;
 using System.Net;
+using Microsoft.WindowsAzure.Storage;
+
+
+
 
 namespace StudentTracker.Student
 {
@@ -15,6 +20,8 @@ namespace StudentTracker.Student
         string filename;
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+
 
         }
 
@@ -52,7 +59,7 @@ namespace StudentTracker.Student
                     if (fileextention == ".doc" || fileextention == ".docx" || fileextention == ".zip")
                     {
                         filename = System.IO.Path.GetFileName(fileupload1.FileName);
-                        fileupload1.SaveAs(Server.MapPath("~/App_Data/document/" + filename));
+                        fileupload1.SaveAs(HostingEnvironment.MapPath("~/App_Data/document/" + filename));
                         lblmessage.Text = "File uploaded to server successfully. Please wait for file transfer to finish";
                     }
                     else
@@ -70,11 +77,11 @@ namespace StudentTracker.Student
         }
         public void injectFeedback()
         {
-            using (FileStream zipToOpen = new FileStream(Server.MapPath("~/App_Data/document/" + filename), FileMode.Open))
+            using (FileStream zipToOpen = new FileStream(HostingEnvironment.MapPath("~/App_Data/document/" + filename), FileMode.Open))
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
-                    ZipArchiveEntry readmeEntry = archive.CreateEntryFromFile(Server.MapPath("~/App_Data/document/feedback.docx"), "feedback.docx");
+                    ZipArchiveEntry readmeEntry = archive.CreateEntryFromFile(HostingEnvironment.MapPath("~/App_Data/document/feedback.docx"), "feedback.docx");
                     using (StreamWriter writer = new StreamWriter(readmeEntry.Open()))
                     {
                         writer.WriteLine("Information about this package.");
@@ -95,7 +102,7 @@ namespace StudentTracker.Student
             request.UseBinary = true;
             request.KeepAlive = false;
 
-            using (var fileStream = File.OpenRead(Server.MapPath("~/App_Data/document/" + filename)))
+            using (var fileStream = File.OpenRead(HostingEnvironment.MapPath("~/App_Data/document/" + filename)))
 
             {
                 using (var requestStream = request.GetRequestStream())
