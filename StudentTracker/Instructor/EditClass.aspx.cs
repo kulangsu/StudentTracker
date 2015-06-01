@@ -126,6 +126,9 @@ namespace StudentTracker.Instructor
         {
             ErrorMessage.Text = "";
 
+            int classID = Convert.ToInt32(Request.QueryString["field1"]);
+            
+
             // Generate a new class name
             string CoursePre = CourseArea.SelectedItem.Text;
             string CourseNum = CourseNumber.SelectedItem.Text;
@@ -136,7 +139,7 @@ namespace StudentTracker.Instructor
 
             // Update the row in database
             StudentTrackerDBContext st = new StudentTrackerDBContext();
-            Course updateClass = st.Courses.Single(c => c.ID == dbClassID);
+            Course updateClass = st.Courses.Single(c => c.ID == classID);
 
             updateClass.Name = courseName;
             updateClass.QuarterYearID = Convert.ToInt32(selectQuarterYear.SelectedValue);
