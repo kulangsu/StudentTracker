@@ -61,14 +61,23 @@ namespace StudentTracker.Instructor
 
                 // Split the selected class name!
                 string[] nameSplit = dbClassID.Name.Split();
-                string first = nameSplit[0]; // Course Prefix like BIT
-                string second = nameSplit[1]; // Course Number like 115
-                string third = nameSplit[2]; // Course Name like Java
-                string fourth = nameSplit[3]; // Section Number like Sec01
+                string name_0 = nameSplit[0]; // Course Prefix like BIT
+                string name_1 = nameSplit[1]; // Course Number like 115
+                
+                // Split up the selected Course Name between spaces and store them into array slots
+                for (int i = 2; i <= nameSplit.Length - 2; i++)
+                {
+                    string cn = string.Format("name_{0}", i);
+                    cn = nameSplit[i];
+                }
 
-                // Course Pre-fix dropdown list
+                // Section Number like Sec01
+                string cn1 = string.Format("name_{0}", nameSplit.Length - 1);
+                cn1 = nameSplit[nameSplit.Length - 1]; 
+
+
+                // Course Prefix dropdown list
                 var prefixList = db.CoursePrefixs
-
                     .Select(i => new { _ID = i.PrefixID, _Prefix = i.PrefixName })
                     .ToList();
 
@@ -77,27 +86,38 @@ namespace StudentTracker.Instructor
                 CourseArea.DataSource = prefixList;
                 CourseArea.DataBind();
 
-                if (first != null)
-                {
-                    CourseArea.Items.FindByValue(first).Selected = true;
-                }
-                
-                // Get Course Number from the array
-                if (second != null)
-                {
-                    //CourseNumber.Items.FindByValue(second).Selected = true;
-                }
+                // Course Number dropdown list
+                var courseNumberList = db.CourseNumbers
+                    .Select(i => new { _ID = i.NumberID, _Number = i.Number })
+                    .ToList();
 
-                // Get Course Name from the array
-                if (third != null)
-                {
-                    ClassName.Text = third;
-                }
+                CourseNumber.DataValueField = "_ID";
+                CourseNumber.DataTextField = "_Number";
+                CourseNumber.DataSource = courseNumberList;
+                CourseNumber.DataBind();
 
-                // Get Section number
-                if (fourth != null)
+                // Course Section dropdown list
+                var courseSectionList = db.CourseSections
+                    .Select(i => new { _ID = i.SectionID, _Section = i.Section })
+                    .ToList();
+
+                CourseSection.DataValueField = "_ID";
+                CourseSection.DataTextField = "_Section";
+                CourseSection.DataSource = courseSectionList;
+                CourseSection.DataBind();
+
+              
+                // Display the selected Course Prefix and Number
+                CourseArea.Items.FindByText(name_0).Selected = true;
+                CourseNumber.Items.FindByText(name_1).Selected = true;
+
+                // Display the selected Course Section
+                CourseSection.Items.FindByText(cn1).Selected = true;
+
+                // Display the selected Course Name
+                for (int i = 2; i <= nameSplit.Length - 2; i++)
                 {
-                    // CourseSection.Items.FindByValue(fourth).Selected = true;
+                    ClassName.Text += nameSplit[i];
                 }
             }
         }
@@ -113,6 +133,7 @@ namespace StudentTracker.Instructor
             string CourseSec = CourseSection.SelectedItem.Text;
 
             courseName = CoursePre + " " + CourseNum + " " + capFirstLetter.CapLetterString(ClassName.Text, ' ') + " " + CourseSec;
+
             //quick check to see if Year & QuarterYear already exist
             int qrtyrid = Convert.ToInt32(selectQuarterYear.SelectedValue);
             var quarteryear = db.Courses
@@ -143,13 +164,13 @@ namespace StudentTracker.Instructor
 
                 if (classID > 0)
                 {
-                    ErrorMessage.Text += "<br>New Class created successful.";
+                    ErrorMessage.Text += "<br>Class has been updated successfully.";
                     //load Classes List that link to Instructor
                     //LoadInstructorClassList(getQuarter.CurrentQuart());
                     //LoadAllInstructorClassList(getQuarter.CurrentQuart());
                 }
                 else
-                    ErrorMessage.Text += "System failed to insert new Class to database.";
+                    ErrorMessage.Text += "System failed to update class.";
             }
 
         }
@@ -169,7 +190,7 @@ namespace StudentTracker.Instructor
         }
 
         protected void LoadCourseNumber(int num)
-        {           
+        {
             var courseNumberList = db.CourseNumbers
                 .Where(c => c.PrefixID == num)
                 .OrderBy(c => c.Number)
