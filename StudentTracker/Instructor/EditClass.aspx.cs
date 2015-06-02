@@ -20,14 +20,14 @@ namespace StudentTracker.Instructor
         RoleManager roleManager = new RoleManager();
         CapFirstLetter capFirstLetter = new CapFirstLetter();
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             int yr = DateTime.Now.Year;
             if (!IsPostBack)
             {
                 // display course name
-                classID = Convert.ToInt32(Request.QueryString["field1"]);
+
+                int classID = Convert.ToInt32(Request.QueryString["field1"]);
                 var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
                 if (dbClassID != null)
                 {
@@ -126,6 +126,8 @@ namespace StudentTracker.Instructor
         {
             ErrorMessage.Text = "";
 
+            int classID = Convert.ToInt32(Request.QueryString["field1"]);
+            
             // Generate a new class name
             string CoursePre = CourseArea.SelectedItem.Text;
             string CourseNum = CourseNumber.SelectedItem.Text;
@@ -136,47 +138,14 @@ namespace StudentTracker.Instructor
 
             // Update the row in database
             StudentTrackerDBContext st = new StudentTrackerDBContext();
-            //Course updateClass = st.Courses.Single(c => c.ID == dbClassID);
             Course updateClass = st.Courses.Single(c => c.ID == classID);
 
             updateClass.Name = courseName;
             updateClass.QuarterYearID = Convert.ToInt32(selectQuarterYear.SelectedValue);
 
             st.SaveChanges();
-
-            //if (quarteryear.Count == 0)
-            //{
-            //    //insert new quarteryear into database
-            //    var addClass = new Course
-            //    {
-            //        QuarterYearID = Convert.ToInt32(selectQuarterYear.SelectedValue),
-            //        Name = courseName
-            //    };
-            //    db.Courses.Add(addClass);
-            //    db.SaveChanges();
-            //    int classID = addClass.ID;
-            //    if (classID > 0)
-            //    {
-            //        var addClassToIntructor = new UsersCourse
-            //        {
-            //            CourseId = classID,
-            //            UserId = User.Identity.GetUserId()
-            //        };
-            //        db.UsersCourses.Add(addClassToIntructor);
-            //        classID = db.SaveChanges();
-            //    }
-
-            //    if (classID > 0)
-            //    {
-            //        ErrorMessage.Text += "<br>Class has been updated successfully.";
-            //        //load Classes List that link to Instructor
-            //        //LoadInstructorClassList(getQuarter.CurrentQuart());
-            //        //LoadAllInstructorClassList(getQuarter.CurrentQuart());
-            //    }
-            //    else
-            //        ErrorMessage.Text += "System failed to update class.";
-            //}
-
+            // Refresh the page with new changes
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void selectQuarterYear_SelectedIndexChanged(object sender, EventArgs e)
