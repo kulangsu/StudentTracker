@@ -15,6 +15,7 @@ namespace StudentTracker.Student
         StudentTrackerDBContext db = new StudentTrackerDBContext();
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 int classID = Convert.ToInt32(Request.QueryString["courseID"]);
