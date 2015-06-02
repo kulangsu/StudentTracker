@@ -9,6 +9,8 @@ using System.IO.Compression;
 using System.IO;
 using System.Net;
 using Microsoft.WindowsAzure.Storage;
+using Microsoft.Office.Interop.Word;
+using System.Threading;
 
 
 
@@ -45,14 +47,35 @@ namespace StudentTracker.Student
         {
 
             getFile();
-          //  createFeedback();
-            injectFeedback();
+            createFeedback();
+           injectFeedback();
             sendToFTP();
         }
 
         private void createFeedback()
         {
           //  Document doc = new Document();
+            Microsoft.Office.Interop.Word._Application oWord = new Application();
+
+            oWord.Visible = true;
+
+            var oDoc = oWord.Documents.Add();
+
+            //Insert a paragraph at the beginning of the document.
+            var paragraph1 = oDoc.Content.Paragraphs.Add();
+
+            paragraph1.Range.Text = "Heading 1";
+            paragraph1.Range.Font.Bold = 1;
+            paragraph1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
+
+            oDoc.SaveAs2(Path.GetTempPath()  + "feedback.docx");
+            int milliseconds = 5000;
+            Thread.Sleep(milliseconds);
+            oDoc.Close();
+
+            oWord.Quit();
+            
+            
 
         }
 
@@ -89,7 +112,7 @@ namespace StudentTracker.Student
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
-                    ZipArchiveEntry readmeEntry = archive.CreateEntryFromFile(Path.GetTempPath() + filename, "feedback.docx");
+                    ZipArchiveEntry readmeEntry = archive.CreateEntryFromFile(Path.GetTempPath() + "feedback.docx", "feedback.docx");
                     using (StreamWriter writer = new StreamWriter(readmeEntry.Open()))
                     {
                         writer.WriteLine("Information about this package.");
@@ -97,6 +120,7 @@ namespace StudentTracker.Student
                     }
                 }
             }
+            
 
         }
         public void sendToFTP()
@@ -110,7 +134,7 @@ namespace StudentTracker.Student
             request.UseBinary = true;
             request.KeepAlive = false;
 
-            using (var fileStream = File.OpenRead(HostingEnvironment.MapPath(Path.GetTempPath() + filename)))
+            using (var fileStream = File.OpenRead(Path.GetTempPath() + filename))
 
             {
                 using (var requestStream = request.GetRequestStream())
