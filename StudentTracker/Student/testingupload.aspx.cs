@@ -121,5 +121,10 @@ namespace StudentTracker.Student
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Label3.Text = Path.GetFullPath(FileUpload2.PostedFile.FileName);
+        }
     }
 }

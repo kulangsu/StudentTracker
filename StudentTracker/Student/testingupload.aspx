@@ -42,4 +42,8 @@
                  <asp:Label ID="lblmessage" runat="server" Text="Label" Font-Size="Large"></asp:Label>
              <p>
 
+                 <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                  <asp:FileUpload ID="FileUpload2" runat="server" />
+                 <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+
 </asp:Content>
