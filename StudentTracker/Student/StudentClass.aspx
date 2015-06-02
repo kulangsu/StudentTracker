@@ -6,8 +6,6 @@
         <asp:Label ID="Lbl_pageTitle" runat="server" Text="Student Class"></asp:Label>&nbsp;&nbsp;&nbsp;
                     
     </h1>
-
-
     <h4>
         <asp:Literal runat="server" ID="ErrorMessage" />
     </h4>

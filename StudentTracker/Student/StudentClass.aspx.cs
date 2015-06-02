@@ -15,10 +15,20 @@ namespace StudentTracker.Student
         StudentTrackerDBContext db = new StudentTrackerDBContext();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+            int classID = Convert.ToInt32(Request.QueryString["CourseID"]);
+            var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
+            if (dbClassID != null)
+            {
+                Lbl_pageTitle.Text = dbClassID.Name;
+            }
+            else
+            {
+                Lbl_pageTitle.Text = "Please return to the Student homepage to choose a class";
+
+            }
             if (!IsPostBack)
             {
-                int classID = Convert.ToInt32(Request.QueryString["courseID"]);
                 var assignementList = db.Assignments                       
                        .Where(c => c.CourseID == classID)                       
                        .Select(i => new { Assignment_ID = i.AssignmentID, Assignment_Name = i.AssignmentName })
