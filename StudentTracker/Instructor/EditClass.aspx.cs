@@ -20,14 +20,14 @@ namespace StudentTracker.Instructor
         RoleManager roleManager = new RoleManager();
         CapFirstLetter capFirstLetter = new CapFirstLetter();
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int yr = DateTime.Now.Year;
             if (!IsPostBack)
             {
                 // display course name
-
-                int classID = Convert.ToInt32(Request.QueryString["field1"]);
+                classID = Convert.ToInt32(Request.QueryString["field1"]);
                 var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
                 if (dbClassID != null)
                 {
@@ -136,7 +136,8 @@ namespace StudentTracker.Instructor
 
             // Update the row in database
             StudentTrackerDBContext st = new StudentTrackerDBContext();
-            Course updateClass = st.Courses.Single(c => c.ID == dbClassID);
+            //Course updateClass = st.Courses.Single(c => c.ID == dbClassID);
+            Course updateClass = st.Courses.Single(c => c.ID == classID);
 
             updateClass.Name = courseName;
             updateClass.QuarterYearID = Convert.ToInt32(selectQuarterYear.SelectedValue);
