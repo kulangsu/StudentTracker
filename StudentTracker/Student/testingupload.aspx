@@ -33,7 +33,7 @@
              </asp:GridView>
                     <asp:Label ID="Label2" runat="server" Text="Browse for Homework Zip File" Font-Size="Large" ></asp:Label>
                      <br />
-                       <asp:FileUpload ID="fileupload1" runat="server" />
+                     <asp:FileUpload ID="fileupload1" runat="server" />
                                  
                  <p>
                      <asp:Button ID="Button2" runat="server" Text="Upload File" OnClick="Button2_Click1" />

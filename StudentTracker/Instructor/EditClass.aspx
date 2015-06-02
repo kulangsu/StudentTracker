@@ -63,7 +63,7 @@
                     <asp:DropDownList ID="CourseNumber" runat="server" CssClass="form-control" AutoPostBack="True" Width="75px"></asp:DropDownList>
                 </div>
                 <div class="col-md-2">                    
-                    <asp:DropDownList ID="CourseSection" runat="server" CssClass="form-control" AutoPostBack="True" Width="100px" DataSourceID="SqlCourseSectionList" DataTextField="Section" DataValueField="Section"></asp:DropDownList>
+                    <asp:DropDownList ID="CourseSection" runat="server" CssClass="form-control" AutoPostBack="True" Width="100px"></asp:DropDownList>
                 </div>
                 <div class="col-md-4">
                     <asp:TextBox runat="server" ID="ClassName" CssClass="form-control cap_first_letter textboxAuto" />                     
