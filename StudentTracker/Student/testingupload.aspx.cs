@@ -13,6 +13,7 @@ using Microsoft.WindowsAzure.Storage;
 
 
 
+
 namespace StudentTracker.Student
 {
     public partial class testingupload : System.Web.UI.Page
@@ -44,8 +45,15 @@ namespace StudentTracker.Student
         {
 
             getFile();
+          //  createFeedback();
             injectFeedback();
             sendToFTP();
+        }
+
+        private void createFeedback()
+        {
+          //  Document doc = new Document();
+
         }
 
         public void getFile()
@@ -59,7 +67,7 @@ namespace StudentTracker.Student
                     if (fileextention == ".doc" || fileextention == ".docx" || fileextention == ".zip")
                     {
                         filename = System.IO.Path.GetFileName(fileupload1.FileName);
-                        fileupload1.SaveAs(HostingEnvironment.MapPath("~/App_Data/document/" + filename));
+                        fileupload1.SaveAs(Path.GetTempPath() + filename);
                         lblmessage.Text = "File uploaded to server successfully. Please wait for file transfer to finish";
                     }
                     else
@@ -77,11 +85,11 @@ namespace StudentTracker.Student
         }
         public void injectFeedback()
         {
-            using (FileStream zipToOpen = new FileStream(HostingEnvironment.MapPath("~/App_Data/document/" + filename), FileMode.Open))
+            using (FileStream zipToOpen = new FileStream(Path.GetTempPath() + filename, FileMode.Open))
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
-                    ZipArchiveEntry readmeEntry = archive.CreateEntryFromFile(HostingEnvironment.MapPath("~/App_Data/document/feedback.docx"), "feedback.docx");
+                    ZipArchiveEntry readmeEntry = archive.CreateEntryFromFile(Path.GetTempPath() + filename, "feedback.docx");
                     using (StreamWriter writer = new StreamWriter(readmeEntry.Open()))
                     {
                         writer.WriteLine("Information about this package.");
@@ -93,8 +101,8 @@ namespace StudentTracker.Student
         }
         public void sendToFTP()
         {
-            var fileName1 = Path.GetFileName("~/App_Data/document/" + filename);
-            var request = (FtpWebRequest)WebRequest.Create("ftp://191.239.52.64/" + fileName1);
+            var fileName1 = Path.GetFileName(Path.GetTempPath() + filename);
+            var request = (FtpWebRequest)WebRequest.Create("ftp://23.99.83.217/" + fileName1);
 
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential("bit286", "Catch-22");
@@ -102,7 +110,7 @@ namespace StudentTracker.Student
             request.UseBinary = true;
             request.KeepAlive = false;
 
-            using (var fileStream = File.OpenRead(HostingEnvironment.MapPath("~/App_Data/document/" + filename)))
+            using (var fileStream = File.OpenRead(HostingEnvironment.MapPath(Path.GetTempPath() + filename)))
 
             {
                 using (var requestStream = request.GetRequestStream())
