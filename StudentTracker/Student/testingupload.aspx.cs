@@ -70,8 +70,7 @@ namespace StudentTracker.Student
             paragraph1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
 
             oDoc.SaveAs2(Server.MapPath(FolderPath + "feedback.docx"));
-            int milliseconds = 5000;
-            Thread.Sleep(milliseconds);
+           
             oWord.Quit();
             
             
