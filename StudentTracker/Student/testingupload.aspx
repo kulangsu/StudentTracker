@@ -31,19 +31,11 @@
                      <h4 class="text-danger">No Student Enroll In This Class.</h4>
                  </EmptyDataTemplate>
              </asp:GridView>
-                    <asp:Label ID="Label2" runat="server" Text="Browse for Homework Zip File" Font-Size="Large" ></asp:Label>
-                     <br />
-                     <asp:FileUpload ID="fileupload1" runat="server" />
-                                 
-                 <p>
-                     <asp:Button ID="Button2" runat="server" Text="Upload File" OnClick="Button2_Click1" />
-            
-                 <p>
+                  
                  <asp:Label ID="lblmessage" runat="server" Text="Label" Font-Size="Large"></asp:Label>
              <p>
 
-                 <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                  <asp:FileUpload ID="FileUpload2" runat="server" />
+                 
                  <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
 
 </asp:Content>
