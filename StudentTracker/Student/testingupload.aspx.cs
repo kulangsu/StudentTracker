@@ -1,16 +1,10 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Hosting;
-using System.IO.Compression;
-using System.IO;
-using System.Net;
-using Microsoft.WindowsAzure.Storage;
 using Microsoft.Office.Interop.Word;
-using System.Threading;
 using System.Configuration;
 
 
@@ -21,7 +15,6 @@ namespace StudentTracker.Student
 {
     public partial class testingupload : System.Web.UI.Page
     {
-        string filename;
         string FolderPath = ConfigurationManager.AppSettings["AppDataFolderPath"];
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,13 +38,7 @@ namespace StudentTracker.Student
 
         }
 
-        protected void Button2_Click1(object sender, EventArgs e)
-        {
-
-            
-            createFeedback();
-            
-        }
+       
 
         private void createFeedback()
         {
