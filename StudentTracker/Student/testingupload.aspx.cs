@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-//using Microsoft.Office.Interop.Word;
+using Novacode;
+using System.Diagnostics;
+
 using System.Configuration;
 
 
@@ -42,25 +44,24 @@ namespace StudentTracker.Student
 
         private void createFeedback()
         {
-          //  Document doc = new Document();
-            //Microsoft.Office.Interop.Word._Application oWord = new Application();
 
-            //oWord.Visible = true;
-
-            //var oDoc = oWord.Documents.Add();
-
-            ////Insert a paragraph at the beginning of the document.
-            //var paragraph1 = oDoc.Content.Paragraphs.Add();
-
-            //paragraph1.Range.Text = "Testing Testing";
-            //paragraph1.Range.Font.Bold = 1;
-            //paragraph1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
-
-            //oDoc.SaveAs2(Server.MapPath(FolderPath + "feedback.docx"));
+             // Modify to suit your machine:
+            string fileName = Server.MapPath(FolderPath + "feedback.docx");
+  
+            // Create a document in memory:
+            var doc = DocX.Create(fileName);
+  
+            // Insert a paragrpah:
+            doc.InsertParagraph("This is my first paragraph");
+  
+            // Save to the output directory:
+            doc.Save();
+  
+            // Open in Word:
            
-            //oWord.Quit();
-            
-            
+        
+
+
 
         }
 
