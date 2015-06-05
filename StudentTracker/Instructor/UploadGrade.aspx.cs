@@ -10,12 +10,14 @@ using System.Web.UI.HtmlControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Configuration;
-using System.IO;
 using System.Data;
 using System.Web.Security;
 using System.Reflection;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using System.IO;
+
+
 
 
 namespace StudentTracker.Instructor
@@ -35,7 +37,8 @@ namespace StudentTracker.Instructor
             if (Request.QueryString["CourseID"] == null)
             {
                 //page has been attempt without CourseID, redirect user back to Instructor Homepage
-                Response.Redirect("~/Instructor");
+                //Response.Redirect("~/Instructor");
+                DisableUpload();
             }
 
             //CourseID is found, let determine what class about to upload student grade
@@ -46,15 +49,25 @@ namespace StudentTracker.Instructor
             //Class not found, redirect to instructor homepage
             if (msg == null)
             {
-                ErrorMessage.Text = "Class is not found, make sure your browser session still valid then try again.";
                 DisableUpload();
-                ClassName.Text = "Course Not Found!";
             }
             else
                 ClassName.Text = msg.ToString();
 
             //load current enroll student list
             LoadCurrentEnrollStudent(CourseID);
+
+            /*
+            if (GradeUploadFile.IsInFileUploadPostBack)
+            {
+                //string fileId = Request.QueryString["fileId"];
+                string FilePath = Session["UploadFilePath"].ToString();
+                //ErrorMessage.Text += fileId+"<br>";
+                ErrorMessage.Text += FilePath;
+                
+                    ImportToGrid(FilePath, "Yes");
+                
+            }*/
         }
 
         //load current enroll student prepare to upload grade
@@ -77,28 +90,31 @@ namespace StudentTracker.Instructor
             studentLists = ConvertListToDataTable(EnrollStudentLists);
         }
 
-        protected void UploadGrade_Click(object sender, EventArgs e)
+        string myFile = null;
+        protected void OnUploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
         {
             //verify that the FileUpload control contains a file.
-            if (StudentGradeFile.HasFile)
-            {
                 string isHeader = "Yes";  //Show Header Yes/No
-                string FileName = Path.GetFileName(StudentGradeFile.PostedFile.FileName);
-                string Extension = Path.GetExtension(StudentGradeFile.PostedFile.FileName);
+                string FileName = Path.GetFileName(e.FileName);
+//                string Extension = Path.GetExtension(e.FileName);
                 string FolderPath = ConfigurationManager.AppSettings["AppDataFolderPath"];
 
                 string FilePath = Server.MapPath(FolderPath + FileName);
-                StudentGradeFile.SaveAs(FilePath);
-                ImportToGrid(FilePath, Extension, isHeader);
-            }
-            else
-                ErrorMessage.Text = "You did not select Student Grade to upload.";
+                
+                GradeUploadFile.SaveAs(FilePath);
+
+                Session["UploadFilePath"] = FilePath;
+                Session["UploadFileName"] = FileName;
+                e.PostedUrl = string.Format("?preview=1&fileId={0}", e.FileId);
+            //ImportToGrid(FilePath, isHeader);
         }
 
+     
+
         //display result uploat grade (batch)
-        protected void ImportToGrid(string FilePath, string Extension, string isHDR)
+        protected void ImportToGrid(string FilePath, string isHDR)
         {
-            Boolean isFormat = true;
+//            Boolean isFormat = true;
             DataTable dt = new DataTable();
             DataTable status = new DataTable();
             status.Columns.Add("Status", typeof(string));
@@ -106,7 +122,7 @@ namespace StudentTracker.Instructor
             DataTable grade = new DataTable();
             grade.Columns.Add("Message", typeof(string));
             ErrorMessage.Text = "";
-            switch (Extension)
+/*            switch (Extension)
             {
                 case ".xls": //Excel 97-03
                     ErrorMessage.Text = "Excel 2003 (.xls) or older is not support, please convert to Excel 2007 or later version then try again.";
@@ -118,10 +134,10 @@ namespace StudentTracker.Instructor
                     ErrorMessage.Text = "File format not support. Please upload Excel file (.xlsx) verion 2007 and later.";
                     isFormat = false;
                     break;
-            }
+            }*/
 
-            if (isFormat)
-            {
+//            if (isFormat)
+//            {
                 dt = XcelToDataTable(FilePath);
 
                 //is dt empty, display message then do nothing
@@ -154,7 +170,7 @@ namespace StudentTracker.Instructor
                         //grade.Rows.Add("<span class='text-danger'>Student not found from grade upload.</span>");
                         row["Message"] = "<span class='text-danger'>Student not found from grade upload.</span>";
                     }
-                }
+//                }
                 studentLists.AcceptChanges();
 
                 gvCurrentStudentEnroll.DataSource = studentLists;
@@ -165,8 +181,11 @@ namespace StudentTracker.Instructor
         //disable all buttons
         protected void DisableUpload()
         {
-            btnUploadGrade.Enabled = false;
-            StudentGradeFile.Enabled = false;
+            GradeUploadFile.Enabled = false;
+            //StudentGradeFile.Enabled = false;
+            ErrorMessage.Text = "Class is not found, make sure your browser session still valid then try again.";
+            ClassName.Text = "Course Not Found!";
+
         }
 
         //convert List<> to DataTable
@@ -269,6 +288,22 @@ namespace StudentTracker.Instructor
             else
             {
                 return value;
+            }
+        }
+
+        protected void btnupload_Click(object sender, EventArgs e)
+        {
+            ErrorMessage.Text = "Are you ready?";
+            if (Session["UploadFilePath"] != null)
+            {
+                string FilePath = Session["UploadFilePath"].ToString();
+                ErrorMessage.Text += "<br>" + FilePath;
+                ImportToGrid(FilePath, "Yes");
+                FileName.Text = "File Uploaded: " + Session["UploadFileName"].ToString();
+
+                //reset session
+                Session["UploadFilePath"] = null;
+                Session["UploadFileName"] = null;
             }
         }
     }

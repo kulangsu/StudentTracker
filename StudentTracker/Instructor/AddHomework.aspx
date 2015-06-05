@@ -1,11 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Instructor/InstructorClass.master" AutoEventWireup="true" CodeBehind="AddHomework.aspx.cs" Inherits="StudentTracker.Instructor.AddHomework" %>
+﻿<%@ Page Title="Add Activity To Class" Language="C#" MasterPageFile="~/Instructor/InstructorClass.master" AutoEventWireup="true" CodeBehind="AddHomework.aspx.cs" Inherits="StudentTracker.Instructor.AddHomework" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <h2><%: Title %>
-                    <asp:Literal ID="CourseName" runat="server"></asp:Literal>
-                </h2>
+     <h2><%: Title %></h2>
+    <h2><asp:Literal ID="CourseName" runat="server"></asp:Literal></h2>
     <asp:Label ID="AddActionLabel" runat="server" Visible="False"></asp:Label><br /><br />
     <asp:Label ID="lblHmwName" runat="server" Text="Homework Name:"></asp:Label>&nbsp;<asp:TextBox ID="txtHmwName" runat="server" Width="195px"></asp:TextBox><br />
-    <asp:Label ID="lblHmwPoints" runat="server" Text="Homework Points:"></asp:Label><asp:TextBox ID="TxtHmwPoints" runat="server" Width="195px"></asp:TextBox>
+    <asp:Label ID="lblHmwPoints" runat="server" Text="Homework Points:"></asp:Label><asp:TextBox ID="TxtHmwPoints" runat="server" Width="195px" TextMode="Number"></asp:TextBox>
     <br />
     <asp:Label ID="lblHmwType" runat="server" Text="Homework Type:"></asp:Label>
     &nbsp; <asp:DropDownList ID="DropDownList1" runat="server">
