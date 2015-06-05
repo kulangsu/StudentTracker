@@ -13,13 +13,22 @@ namespace StudentTracker.Instructor {
     public partial class AddHomework {
         
         /// <summary>
-        /// lblAddHmw control.
+        /// CourseName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddHmw;
+        protected global::System.Web.UI.WebControls.Literal CourseName;
+        
+        /// <summary>
+        /// AddActionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AddActionLabel;
         
         /// <summary>
         /// lblHmwName control.
@@ -40,6 +49,42 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.TextBox txtHmwName;
         
         /// <summary>
+        /// lblHmwPoints control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHmwPoints;
+        
+        /// <summary>
+        /// TxtHmwPoints control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtHmwPoints;
+        
+        /// <summary>
+        /// lblHmwType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHmwType;
+        
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        
+        /// <summary>
         /// lblActStartDate control.
         /// </summary>
         /// <remarks>
@@ -58,22 +103,31 @@ namespace StudentTracker.Instructor {
         protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
-        /// lblActStopDate control.
+        /// RB_End control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblActStopDate;
+        protected global::System.Web.UI.WebControls.RadioButton RB_End;
         
         /// <summary>
-        /// Calendar2 control.
+        /// LabelEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar2;
+        protected global::System.Web.UI.WebControls.Label LabelEndDate;
+        
+        /// <summary>
+        /// LabelMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelMessage;
         
         /// <summary>
         /// btnAddHmw control.

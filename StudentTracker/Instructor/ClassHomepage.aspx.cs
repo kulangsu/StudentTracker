@@ -27,7 +27,7 @@ namespace StudentTracker.Instructor
             }
             else
             {
-                Lbl_pageTitle.Text = "Please return to the instrictor homepage to choose a class";
+                Response.Redirect("~/Instructor"); // Return to Instuctor homepage
 
             }
 

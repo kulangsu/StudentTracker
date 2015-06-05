@@ -290,7 +290,6 @@
     <Content Include="Instructor\EditClass.aspx" />
     <Content Include="Instructor\Default.aspx" />
     <Content Include="Instructor\CreateClass.aspx" />
-    <Content Include="Instructor\EditHomework.aspx" />
     <Content Include="Instructor\Homework.aspx" />
     <Content Include="Instructor\QuarterYear.aspx" />
     <Content Include="Instructor\UploadGrade.aspx" />
@@ -569,13 +568,6 @@
     </Compile>
     <Compile Include="Instructor\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Instructor\EditHomework.aspx.cs">
-      <DependentUpon>EditHomework.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Instructor\EditHomework.aspx.designer.cs">
-      <DependentUpon>EditHomework.aspx</DependentUpon>
     </Compile>
     <Compile Include="Instructor\Homework.aspx.cs">
       <DependentUpon>Homework.aspx</DependentUpon>

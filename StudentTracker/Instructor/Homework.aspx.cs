@@ -66,7 +66,7 @@ namespace StudentTracker.Instructor
 
         protected void btnAddHmw_Click(object sender, EventArgs e)
         {
-            Server.Transfer("AddHomework.aspx?courseID=Request.QueryString['courseID']");
+            Response.Redirect("AddHomework.aspx?courseID=Request.QueryString['courseID']");
         }
 
         //protected void btnRemoveHmw_Click(object sender, EventArgs e)
