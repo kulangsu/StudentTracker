@@ -14,6 +14,7 @@ namespace StudentTracker.Instructor
         {
             int classID = Convert.ToInt32(Request.QueryString["field1"]);
             testtodd1.HRef = "Homework.aspx?CourseID=" + classID;
+            queryhelper.HRef = "AddHomework.aspx?CourseID=" + classID;
 
         }
     }

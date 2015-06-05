@@ -20,7 +20,7 @@ namespace StudentTracker.Instructor
             {
                 {
 
-                    int classID = Convert.ToInt32(Request.QueryString["field1"]);
+                    int classID = Convert.ToInt32(Request.QueryString["CourseID"]);
                     var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
                     if (dbClassID != null)
                     {
@@ -66,7 +66,7 @@ namespace StudentTracker.Instructor
             Validate();
             if (IsValid)
             {
-                int classID = Convert.ToInt32(Request.QueryString["courseID"]);
+                int classID = Convert.ToInt32(Request.QueryString["CourseID"]);
  
                 string homeworkName = txtHmwName.Text;
                 System.DateTime dueDate = Calendar1.SelectedDate.Date;
@@ -85,9 +85,18 @@ namespace StudentTracker.Instructor
                         activate = 1  //auto-sets activation to true
                     };
                     db.Assignments.Add(addHomework);
+                    int Assignment_ID = db.SaveChanges();
+                    if (Assignment_ID > 0)
+                    {
+                        AddActionLabel.Visible = true;
+                        AddActionLabel.Text = "A new assignment was created!";
 
-                    AddActionLabel.Visible = true;
-                    AddActionLabel.Text = "A new assignment was created!";
+                    }
+                    else
+                    {
+                        AddActionLabel.Visible = true;
+                        AddActionLabel.Text = "Assignment failed to create.";
+                    }
                 }
                 else
                 {
