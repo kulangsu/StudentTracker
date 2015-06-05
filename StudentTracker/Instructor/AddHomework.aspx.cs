@@ -93,7 +93,7 @@ namespace StudentTracker.Instructor
                     int assignmentType = Convert.ToInt32(DropDownList1.SelectedValue);
                
                 //if we have the expected data, make a new Assignement object and fill in it's fields with our data
-                if (homeworkName != null || possiblePoints >= 0 || assignmentType > 0 || classID > 0)
+                if (homeworkName != null && possiblePoints >= 0 && assignmentType > 0 && classID > 0)
                 {
                     var addHomework = new Assignment
                     {
