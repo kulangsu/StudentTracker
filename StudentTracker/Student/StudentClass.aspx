@@ -49,11 +49,46 @@
                 </table>
             </LayoutTemplate>
             <ItemTemplate>
-                <div class="col-md-6">
-                    <div class="AssignmentGroupList" id="AssGroup<%#Eval("Assignment") %>">
+                <div>
+                    <h3><%#Eval("AssignmentName") %> :</h3>
+                    <br />
 
-                    </div>
-
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>"
+                        SelectCommand="select * from AssignmentFiles  where StudentAssignmentID=@StudentAssignID">
+                       
+                        <SelectParameters>
+                            <asp:QueryStringParameter Name="StudentAssignID"  QueryStringField="StudentAssignmentID" Type="Int32" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:ListView ID="AssignmentFileListView" DataSourceID="SqlDataSource1" runat="server">
+                        <EmptyDataTemplate>
+                            <table class="table" style="width: 100%;">
+                                <tr>
+                                    <th style="text-align: center;">
+                                        <h4>No files uploaded!</h4>
+                                    </th>
+                                </tr>
+                            </table>
+                        </EmptyDataTemplate>
+                        <LayoutTemplate>
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" runat="server" class="active" style="font-size: 20px;"><a href="#"><span class="glyphicon glyphicon-folder-open"></span>&nbsp Uploaded Files</li>
+                            </ul>
+                            <table class="border_lbr">
+                                <tr>
+                                    <td>
+                                        <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
+                                    </td>
+                                </tr>
+                            </table>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <div>
+                                <%#Eval("FileName") %> uploaded on <%#Eval("UploadDate") %>
+                            </div>
+                        </ItemTemplate>
+                    </asp:ListView>
+                    Your Grade: <%#Eval("Grade") %> (out of <%#Eval("MaxPoint") %>
                 </div>
             </ItemTemplate>
         </asp:ListView>
