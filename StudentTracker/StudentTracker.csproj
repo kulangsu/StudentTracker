@@ -286,6 +286,8 @@
     <Content Include="Images\logo_blue.png" />
     <Content Include="Images\logo_bl_1.png" />
     <Content Include="Images\logo_grey.png" />
+    <Content Include="Images\spinner.gif" />
+    <Content Include="Images\upload_animate.png" />
     <Content Include="Instructor\AddHomework.aspx" />
     <Content Include="Instructor\ClassHomepage.aspx" />
     <Content Include="Instructor\EditClass.aspx" />

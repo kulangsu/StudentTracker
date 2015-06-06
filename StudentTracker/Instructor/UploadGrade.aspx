@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Upload Student Grade" Language="C#" MasterPageFile="~/Instructor/InstructorClass.master" AutoEventWireup="true" CodeBehind="UploadGrade.aspx.cs" Inherits="StudentTracker.Instructor.UploadGrade" %>
+﻿<%@ Page Title="Batch Upload Student Grade" Language="C#" MasterPageFile="~/Instructor/InstructorClass.master" AutoEventWireup="true" CodeBehind="UploadGrade.aspx.cs" Inherits="StudentTracker.Instructor.UploadGrade" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 
@@ -14,8 +14,6 @@
             __doPostBack("<%= btnupload.UniqueID %>", "");
         }
     </script>
-
-
     <div class="form-horizontal">
         <div class="form-horizontal">
             <div class="row">
@@ -43,9 +41,9 @@
                         AllowedFileTypes="xlsx"
                         ThrobberID="Progressbar"
                         OnUploadComplete="OnUploadComplete"
-                        OnClientUploadComplete ="uploadComplete" />
-                    <asp:Image ID="Progressbar" ImageUrl="~/Images/logo_grey.png" Style="display:None" runat="server" />
-
+                        OnClientUploadComplete ="uploadComplete"
+                        />
+                    <asp:Image ID="Progressbar" ImageUrl="~/Images/spinner.gif" Style="display:None" runat="server" />
                     <asp:Button ID="btnupload" runat="server" OnClick="btnupload_Click" Text="Save File" style="visibility :hidden " />
                 </div>
             </div>

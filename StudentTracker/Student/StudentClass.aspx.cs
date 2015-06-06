@@ -65,8 +65,8 @@ namespace StudentTracker.Student
             };
 
             db.StudentAssignments.Add(addStudentAssignment);
-            int StudentAssignment_ID = db.SaveChanges();
-
+            db.SaveChanges();
+            int StudentAssignment_ID = addStudentAssignment.StudentAssignmentID;
             //message status to user
             if (StudentAssignment_ID > 0)
             {

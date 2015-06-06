@@ -31,6 +31,8 @@ namespace StudentTracker.Instructor
 
         DataTable studentLists = new DataTable();
 
+        string isHeader = "Yes";  //Show Header Yes/No
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //upload student grade for particular class required CourseID
@@ -56,18 +58,6 @@ namespace StudentTracker.Instructor
 
             //load current enroll student list
             LoadCurrentEnrollStudent(CourseID);
-
-            /*
-            if (GradeUploadFile.IsInFileUploadPostBack)
-            {
-                //string fileId = Request.QueryString["fileId"];
-                string FilePath = Session["UploadFilePath"].ToString();
-                //ErrorMessage.Text += fileId+"<br>";
-                ErrorMessage.Text += FilePath;
-                
-                    ImportToGrid(FilePath, "Yes");
-                
-            }*/
         }
 
         //load current enroll student prepare to upload grade
@@ -90,26 +80,48 @@ namespace StudentTracker.Instructor
             studentLists = ConvertListToDataTable(EnrollStudentLists);
         }
 
-        string myFile = null;
+        //Save upload-grade file to server in temp folder
+        //upload file using ajaxfileupload control
         protected void OnUploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
         {
             //verify that the FileUpload control contains a file.
-                string isHeader = "Yes";  //Show Header Yes/No
                 string FileName = Path.GetFileName(e.FileName);
 //                string Extension = Path.GetExtension(e.FileName);
-                string FolderPath = ConfigurationManager.AppSettings["AppDataFolderPath"];
-
-                string FilePath = Server.MapPath(FolderPath + FileName);
+                string FolderPath = ConfigurationManager.AppSettings["AppDataFolderPath"]+"Temp/";
                 
-                GradeUploadFile.SaveAs(FilePath);
+                string FilePath = Server.MapPath(FolderPath + FileName);
 
-                Session["UploadFilePath"] = FilePath;
-                Session["UploadFileName"] = FileName;
-                e.PostedUrl = string.Format("?preview=1&fileId={0}", e.FileId);
+                if (CreateFolder(Server.MapPath(FolderPath)))
+                {
+                    GradeUploadFile.SaveAs(FilePath);
+
+                    Session["UploadFilePath"] = FilePath;
+                    Session["UploadFileName"] = FileName;
+                    e.PostedUrl = string.Format("?preview=1&fileId={0}", e.FileId);
+                }
             //ImportToGrid(FilePath, isHeader);
         }
 
-     
+
+        //Creates the folder if needed.
+        //<param name="path">The path.</param>
+        //<returns></returns>
+        private bool CreateFolder(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                try
+                {
+                    Directory.CreateDirectory(path);
+                }
+                catch (Exception)
+                {
+                    /*TODO: You must process this exception.*/
+                    return false;
+                }
+            }
+            return true;
+        }
 
         //display result uploat grade (batch)
         protected void ImportToGrid(string FilePath, string isHDR)
@@ -293,18 +305,20 @@ namespace StudentTracker.Instructor
 
         protected void btnupload_Click(object sender, EventArgs e)
         {
-            ErrorMessage.Text = "Are you ready?";
             if (Session["UploadFilePath"] != null)
             {
                 string FilePath = Session["UploadFilePath"].ToString();
                 ErrorMessage.Text += "<br>" + FilePath;
-                ImportToGrid(FilePath, "Yes");
+                ImportToGrid(FilePath, isHeader);
                 FileName.Text = "File Uploaded: " + Session["UploadFileName"].ToString();
 
                 //reset session
                 Session["UploadFilePath"] = null;
                 Session["UploadFileName"] = null;
             }
+            else
+                ErrorMessage.Text = "session not found.";
         }
+
     }
 }
