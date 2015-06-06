@@ -19,9 +19,10 @@ namespace StudentTracker.Student
     {
         StudentTrackerDBContext db = new StudentTrackerDBContext();
         //gets the path of the local storage on the server
-        string FolderPath = ConfigurationManager.AppSettings["AppDataFolderPath"];
+        private string FolderPath = ConfigurationManager.AppSettings["AppDataFolderPath"];
        // name to be used in Insertion into student assignment files
-        string fileName;
+        private string fileName;
+        
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -110,9 +111,10 @@ namespace StudentTracker.Student
                 {
 
                     ErrorMessage.Text += "<br>You have successfully upload your assignment.";
-                    //to create the feedback and insert the infor into the tabels for tracking
-                    createFeedback();
-                    insertFeedbackToTable();
+                    //to create the feedback and insert the infor into the tabels for tracking given studentassignment ID to use in insert of feedback document
+
+                    createFeedback(StudentAssignment_ID);
+                    
                 }
                 else
                     ErrorMessage.Text += "<br>System failed to upload your assignment.";
@@ -122,55 +124,51 @@ namespace StudentTracker.Student
 
         }
         //this method inserts the information for the feedback document so it can be tracked and retrieved
-        public void insertFeedbackToTable(){
-            //get userID
-            string user = User.Identity.GetUserId();
-            int Assignment_ID = Convert.ToInt32(drpDwn_Assignment.SelectedValue);
-            //Adds the file uploaded into the student assignment table
-            var addStudentAssignment = new StudentAssignment
-            {
-                AssignmentID = Assignment_ID,
-                UserId = user
-            };
-            //adds and saves
-            db.StudentAssignments.Add(addStudentAssignment);
-            int StudentAssignment_ID = db.SaveChanges();
-            //this next line gets the Id of the resulting insertion from above.  this is then passed to the studentassignmentfile table
-            StudentAssignment_ID=addStudentAssignment.StudentAssignmentID;
-            if (StudentAssignment_ID > 0)
-            {
-                //insert new assignment into AssignmentFiles table
-                var addAssignmentFile = new AssignmentFile
-                {
-                    StudentAssignmentID = StudentAssignment_ID,
-                    FileName = fileName,
-                    UploadDate = System.DateTime.Now
-                };
+        private void insertFeedbackToTable(int assignID, String Name, String assignName)
+        {
 
-                db.AssignmentFiles.Add(addAssignmentFile);
-                int AssignmentFile_ID = db.SaveChanges();
-            }
-            
+            //insert new feedback for an assignment into AssignmentFiles table and mark as feedback 
+            var addAssignmentFile = new AssignmentFile
+            {
+                StudentAssignmentID = assignID,
+                FileName = "Feedback_" + assignName + "_" + Name + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".docx",
+                UploadDate = System.DateTime.Now,
+                isFeedback = true
+            };
+
+            db.AssignmentFiles.Add(addAssignmentFile);
+            int AssignmentFile_ID = db.SaveChanges();
+
+
         }
         //will create a feedback document using the users info  from the file upload
-        private void createFeedback()
+        private void createFeedback(int stuAssignID)
         {
-                    
+
             string user = User.Identity.GetUserId();
+
+
             //gets the user name to display
-            var query =(from c in db.Users
-              where c.Id == user
-              select new { c.LastName, c.FirstName }).Single();
+            var query = (from c in db.Users
+                         where c.Id == user
+                         select new { c.LastName, c.FirstName }).Single();
             String stuName = query.FirstName + " " + query.LastName;
+
+
             //gets assignment number to help 
             int Assignment_ID = Convert.ToInt32(drpDwn_Assignment.SelectedValue);
             string assignName = drpDwn_Assignment.SelectedItem.Text;
-            //uses attributes from the user and file to create a unique name for the file to be saved
-           fileName = Server.MapPath(FolderPath + "Feedback_" + assignName + "_" + stuName + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".docx");
+
+
+            //uses attributes from the user and file to create a unique name for the file to be saved, this is also how the files is saved.  if you wanted to save it in a particular folder other than app data you would have to palce the "/" in the path to designate forlders
+            fileName = Server.MapPath(FolderPath + "Feedback_" + assignName + "_" + stuName + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".docx");
+
+
             // Set up our paragraph contents:
             string headerText = "Feedback Document for " + assignName;
             string letterBodyText = DateTime.Now.ToShortDateString();
-            string StudentName =stuName + Environment.NewLine + Environment.NewLine;
+            string StudentName = stuName + Environment.NewLine + Environment.NewLine;
+
             //Main area for comments to be left.  for now we added a little bacon ipsum
             string paraTwo = ""
                 + "PLEASE WRITE INDIVIDUAL COMMENTS HERE" + Environment.NewLine + Environment.NewLine
@@ -228,15 +226,18 @@ namespace StudentTracker.Student
             //save
             doc.Save();
 
+            //called here to pass the data from this function to the insertto table
+            insertFeedbackToTable(stuAssignID, assignName, stuName);
+
         }
 
-        
+
 
         protected void drpDwn_Assignment_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        
+
     }
 }
