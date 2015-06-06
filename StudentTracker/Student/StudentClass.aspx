@@ -23,9 +23,7 @@
         <asp:Button ID="btnSubmit" runat="server" Text="Submit" Width="156px" Height="30px" Font-Size="Larger" OnClick="btnSubmit_Click" />
 
     <p>
-    <p>
-        <h2>Homework Re-download and Feedback</h2>
-
+    <p>       
         <asp:ListView ID="AssignmentListView" runat="server">
             <EmptyDataTemplate>
                 <table class="table" style="width: 100%;">
@@ -49,23 +47,23 @@
                 </table>
             </LayoutTemplate>
             <ItemTemplate>
-                <div>
+                
                     <h3><%#Eval("AssignmentName") %> :</h3>
                     <br />
 
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>"
+                    <asp:SqlDataSource ID="SqlDataSourceAssignmentFile" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>"
                         SelectCommand="select * from AssignmentFiles  where StudentAssignmentID=@StudentAssignID">
                        
                         <SelectParameters>
-                            <asp:QueryStringParameter Name="StudentAssignID"  QueryStringField="StudentAssignmentID" Type="Int32" />
+                            <asp:QueryStringParameter Name="StudentAssignID" />
                         </SelectParameters>
                     </asp:SqlDataSource>
-                    <asp:ListView ID="AssignmentFileListView" DataSourceID="SqlDataSource1" runat="server">
+                    <asp:ListView ID="AssignmentFileListView" DataKeyNames="StudentAssignmentID" DataSourceID="SqlDataSourceAssignmentFile" runat="server">
                         <EmptyDataTemplate>
-                            <table class="table" style="width: 100%;">
+                            <table style="width: 100%;">
                                 <tr>
                                     <th style="text-align: center;">
-                                        <h4>No files uploaded!</h4>
+                                        <h5>No files uploaded!</h5>
                                     </th>
                                 </tr>
                             </table>
@@ -88,8 +86,8 @@
                             </div>
                         </ItemTemplate>
                     </asp:ListView>
-                    Your Grade: <%#Eval("Grade") %> (out of <%#Eval("MaxPoint") %>
-                </div>
+                    Your Grade: <%#Eval("Grade") %> (out of <%#Eval("MaxPoint") %>)
+                
             </ItemTemplate>
         </asp:ListView>
 
