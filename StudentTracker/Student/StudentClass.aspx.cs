@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Configuration;
 using Novacode;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace StudentTracker.Student
 {
@@ -46,6 +49,29 @@ namespace StudentTracker.Student
                 drpDwn_Assignment.DataTextField = "Assignment_Name";
                 drpDwn_Assignment.DataSource = assignementList;
                 drpDwn_Assignment.DataBind();
+
+                //assignment list view
+                try
+                {
+                    //create sql connection
+                    SqlConnection SQLconn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbStudentTracker"].ConnectionString);
+                    SQLconn.Open();
+                    // create sql query joining users and programs table
+                    string getAssignment = "select SA.Grade, A.AssignmentName from Assignments A inner join StudentAssignments SA on SA.AssignmentID=A.AssignmentID inner join AssignmentFiles AF on SA.StudentAssignmentID = AF.StudentAssignmentID";
+                    SqlCommand sqlcom = new SqlCommand(getAssignment, SQLconn);
+                    DataTable dt = new DataTable(); //create datatable 
+                    //Initializes a new instance of the SqlDataAdapter class with a SelectCommand and a SqlConnection object.
+                    SqlDataAdapter da = new SqlDataAdapter(sqlcom);
+                    //Adds or refreshes rows in a specified range in the DataSet to match those in the data source using the DataTable dt
+                    da.Fill(dt);
+                    GridView1.DataSource = dt;// assigning data table dt to gridview1 datasource
+                    GridView1.DataBind();
+                    SQLconn.Close();
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("Database connection error: " + ex.ToString());
+                }
             }
         }
 

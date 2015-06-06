@@ -24,18 +24,39 @@
 
     <p>
     <p>
-        &nbsp;<asp:GridView ID="Assignments" runat="server" AutoGenerateColumns="False" CssClass="table" PageSize="100">
-            <Columns>
-                <asp:BoundField DataField="AssignmentName" HeaderText="Assignment Name" />
-                <asp:BoundField DataField="Grade" HeaderText="Grade" />
-                <asp:BoundField DataField="Attendance" HeaderText="Attendance" />
-                <asp:BoundField DataField="GrandTotal" HeaderText="Grand Total" />
-                <asp:BoundField DataField="Updated" HeaderText="Updated" />
-            </Columns>
+        <h2>Homework Re-download and Feedback</h2>
+
+        <asp:ListView ID="AssignmentListView" runat="server">
             <EmptyDataTemplate>
-                <h4 class="text-danger">No Student Enroll In This Class.</h4>
+                <table class="table" style="width: 100%;">
+                    <tr>
+                        <th style="text-align: center;">
+                            <h3>No Assignment uploaded!</h3>
+                        </th>
+                    </tr>
+                </table>
             </EmptyDataTemplate>
-        </asp:GridView>
-        <p>
-            &nbsp;
+            <LayoutTemplate>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" runat="server" class="active" style="font-size: 20px;"><a href="#"><span class="glyphicon glyphicon-folder-open"></span>&nbsp Homework Re-Download and Feedback</li>
+                </ul>
+                <table class="border_lbr">
+                    <tr>
+                        <td>
+                            <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
+                        </td>
+                    </tr>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <div class="col-md-6">
+                    <div class="AssignmentGroupList" id="AssGroup<%#Eval("Assignment") %>">
+
+                    </div>
+
+                </div>
+            </ItemTemplate>
+        </asp:ListView>
+
+        <br />
 </asp:Content>
