@@ -15,7 +15,6 @@ namespace StudentTracker.Instructor
     {
         StudentTrackerDBContext db = new StudentTrackerDBContext();
 
-
         /// <summary>
         /// if we have a class id, load the name of the class that we are looking at
         /// else, take us to the Insttuctor page to choose a class.
@@ -24,18 +23,20 @@ namespace StudentTracker.Instructor
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            int classID = Convert.ToInt32(Request.QueryString["field1"]);
-            var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
-            if (dbClassID != null)
+            if (!IsPostBack)
             {
-                Lbl_pageTitle.Text = dbClassID.Name;
-            }
-            else
-            {
-                Response.Redirect("~/Instructor"); // Return to Instuctor homepage
-            }
+                int classID = Convert.ToInt32(Request.QueryString["field1"]);
+                var dbClassID = db.Courses.SingleOrDefault(i => i.ID.Equals(classID));
+                if (dbClassID != null)
+                {
+                    Lbl_pageTitle.Text = dbClassID.Name;
 
+                }
+                else
+                {
+                    Response.Redirect("~/Instructor"); // Return to Instuctor homepage
+                }
+            }
         }
 
         /// <summary>
@@ -51,20 +52,26 @@ namespace StudentTracker.Instructor
             if (IsValid)
             {
 
-                //capture the course ID and the new student's SID#
+                //capture the course ID 
                 int classID = Convert.ToInt32(Request.QueryString["field1"]);
-                int sid = Convert.ToInt32(TxtBx_sid.Text);
+
+                //convert and capture new student's user entered SID#
+                int sid;
+                bool isSID = Int32.TryParse(TxtBx_sid.Text, out sid);
 
                 //check to see if there is a match for the entered SID# in Users table
-                var newStudent = db.Users.SingleOrDefault(i => i.SID.Equals(sid));
+                var newStudent = db.Users.FirstOrDefault(i => i.SID.Equals(sid));
 
                 //if there is a matching User, begin process of enrolling
                 if (newStudent != null)
                 {
-                    //check to see if the student is already in the class
-                    //if not enrolled, create a new UsersCourse object 
-                    var isEnrolled = db.UsersCourses.SingleOrDefault(u => u.UserId.Equals(newStudent.Id));
-                    if (isEnrolled != null)
+                    //check to see if the student is already enrolled in this specific class                     
+                    var enrolled = db.UsersCourses
+                        .Where(i => i.CourseId.Equals(classID))
+                        .FirstOrDefault(u => u.UserId.Equals(newStudent.Id));
+
+                    //if not enrolled, create a new UsersCourse object
+                    if (enrolled == null)
                     {
                         var newClassStudent = new UsersCourse
                         {
@@ -75,45 +82,56 @@ namespace StudentTracker.Instructor
 
                         //add new UsersCourse object to the UsersCourses table
                         db.UsersCourses.Add(newClassStudent);
-                        var isAdded = db.SaveChanges(); //Commit to database
+                        var isAdded = db.SaveChanges(); 
 
-                        //If we have successfully added to the database, 
-                        //let the user know and update the Gridview with the new information.
-                        if (isAdded == 1)
+                        if (isAdded == 1)//if we have successfully added to the database
                         {
-                            //TODO: give message that new student has been added and bind the new data to the gridview
+                            //Bind the new data to the gridview so that added students are shown on refresh
                             GrdView_Students.DataBind();
+
+                            //Give message that addition was successful
+                            Lbl_Message.Visible = true;
                             Lbl_Message.Text = "You have successfully added a student!";
                         }
                         else
                         {
                             //Give message that adding new student was unsuccessful
+                            Lbl_Message.Visible = true;
+                            Lbl_Message.Text = "Atempt to add a student was not not successful.";
                         }
                     }
                     else
                     {
-                        //TODO: give message student is already enrolled in this class
+                        //Give message student is already enrolled in this class
+                        Lbl_Message.Visible = true;
+                        Lbl_Message.Text = "The student you are trying to add is already enrolled in the class.";
                     }
                 }
                 else
                 {
                     //TODO: give message that SID is not in the database
+                    Lbl_Message.Visible = true;
+                    Lbl_Message.Text = "This student has not created an acccount.";
                 }
-
-
             }
             else
             {
                 //Give messaage that data could not be validated
+                Lbl_Message.Visible = true;
+                Lbl_Message.Text = "Data was validated.";
             }
-
         }
 
+        /// <summary>
+        /// Clear message and SID Textbox text 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Btn_Reset_Click(object sender, EventArgs e)
         {
+            Lbl_Message.Text = " ";
+            TxtBx_sid.Text = " ";
 
         }
-
-
     }
 }
