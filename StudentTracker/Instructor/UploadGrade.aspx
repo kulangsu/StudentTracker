@@ -59,6 +59,7 @@
                         <td>
                             <asp:GridView ID="gvCurrentStudentEnroll" runat="server" CssClass="table" AutoGenerateColumns="False" PageSize="100">
                                 <Columns>
+                                    <asp:BoundField DataField="UserID" HeaderText="User ID" SortExpression="UserID" Visible="false" />
                                     <asp:BoundField DataField="SID" HeaderText="SID" SortExpression="SID" />
                                     <asp:BoundField DataField="FullName" HeaderText="Name (First, Last)" SortExpression="FullName" />
                                     <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" HtmlEncode="False" HtmlEncodeFormatString="False" ItemStyle-Width="60%" />
