@@ -23,19 +23,73 @@
         <asp:Button ID="btnSubmit" runat="server" Text="Submit" Width="156px" Height="30px" Font-Size="Larger" OnClick="btnSubmit_Click" />
 
     <p>
-    <p>
-        &nbsp;<asp:GridView ID="Assignments" runat="server" AutoGenerateColumns="False" CssClass="table" PageSize="100">
-            <Columns>
-                <asp:BoundField DataField="AssignmentName" HeaderText="Assignment Name" />
-                <asp:BoundField DataField="Grade" HeaderText="Grade" />
-                <asp:BoundField DataField="Attendance" HeaderText="Attendance" />
-                <asp:BoundField DataField="GrandTotal" HeaderText="Grand Total" />
-                <asp:BoundField DataField="Updated" HeaderText="Updated" />
-            </Columns>
+    <p>       
+        <asp:ListView ID="AssignmentListView" runat="server">
             <EmptyDataTemplate>
-                <h4 class="text-danger">No Student Enroll In This Class.</h4>
+                <table class="table" style="width: 100%;">
+                    <tr>
+                        <th style="text-align: center;">
+                            <h3>No Assignment uploaded!</h3>
+                        </th>
+                    </tr>
+                </table>
             </EmptyDataTemplate>
-        </asp:GridView>
-        <p>
-            &nbsp;
+            <LayoutTemplate>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" runat="server" class="active" style="font-size: 20px;"><a href="#"><span class="glyphicon glyphicon-folder-open"></span>&nbsp Homework Re-Download and Feedback</li>
+                </ul>
+                <table class="border_lbr">
+                    <tr>
+                        <td>
+                            <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
+                        </td>
+                    </tr>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                
+                    <h3><%#Eval("AssignmentName") %> :</h3>
+                    <br />
+
+                    <asp:SqlDataSource ID="SqlDataSourceAssignmentFile" runat="server" ConnectionString="<%$ ConnectionStrings:dbStudentTracker %>"
+                        SelectCommand="select * from AssignmentFiles  where StudentAssignmentID=@StudentAssignID">
+                       
+                        <SelectParameters>
+                            <asp:QueryStringParameter Name="StudentAssignID" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:ListView ID="AssignmentFileListView" DataKeyNames="StudentAssignmentID" DataSourceID="SqlDataSourceAssignmentFile" runat="server">
+                        <EmptyDataTemplate>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <th style="text-align: center;">
+                                        <h5>No files uploaded!</h5>
+                                    </th>
+                                </tr>
+                            </table>
+                        </EmptyDataTemplate>
+                        <LayoutTemplate>
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" runat="server" class="active" style="font-size: 20px;"><a href="#"><span class="glyphicon glyphicon-folder-open"></span>&nbsp Uploaded Files</li>
+                            </ul>
+                            <table class="border_lbr">
+                                <tr>
+                                    <td>
+                                        <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
+                                    </td>
+                                </tr>
+                            </table>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <div>
+                                <%#Eval("FileName") %> uploaded on <%#Eval("UploadDate") %>
+                            </div>
+                        </ItemTemplate>
+                    </asp:ListView>
+                    Your Grade: <%#Eval("Grade") %> (out of <%#Eval("MaxPoint") %>)
+                
+            </ItemTemplate>
+        </asp:ListView>
+
+        <br />
 </asp:Content>
