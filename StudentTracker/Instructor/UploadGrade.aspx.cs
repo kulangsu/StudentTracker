@@ -284,9 +284,7 @@ namespace StudentTracker.Instructor
                 if (cells.Count() == 0) return null;
 
                 foreach (Cell cell in rows.ElementAt(0))
-                {
                     dataTable.Columns.Add(GetCellValue(spreadSheetDocument, cell));                    
-                }
 
                 foreach (Row row in rows)
                 {
@@ -314,13 +312,9 @@ namespace StudentTracker.Instructor
             string value = cell.CellValue.InnerXml;
 
             if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
-            {
                 return stringTablePart.SharedStringTable.ChildElements[Int32.Parse(value)].InnerText;
-            }
             else
-            {
                 return value;
-            }
         }
 
         protected void btnupload_Click(object sender, EventArgs e)
